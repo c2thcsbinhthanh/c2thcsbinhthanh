@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>http://thcsbinhthanh.pgdthoaison.edu.vn</title>
+
+  <style>
+    body{
+      margin:0;
+      padding:0;
+      background:white;
+      font-family:Arial;
+    }
+
+    #banner{
+      width:100%;
+      height:220px;
+      position:fixed;
+      top:25px;
+      left:0;
+      display:block;
+      object-fit:cover;
+      z-index:1;
+    }
+
+    #topbar{
+      position:fixed;
+      top:220px;
+      left:0;
+      width:100%;
+      height:40px;
+      background:white;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      z-index:998;
+      transition:top 0.5s ease;
+    }
+
+    #clock{
+      padding-left:10px;
+      font-size:18px;
+      white-space:nowrap;
+      color:black;
+      flex:0 0 auto;
+    }
+
+    #ticker{
+      margin-left:20px;
+      white-space:nowrap;
+      display:inline-block;
+      font-size:20px;
+      color:#1565C0;
+      font-weight:bold;
+      animation:run 12s linear infinite;
+    }
+
+    @keyframes run{
+      0%{
+        transform:translateX(100%);
+        opacity:0;
+      }
+      5%{
+        opacity:1;
+      }
+      95%{
+        opacity:1;
+      }
+      100%{
+        transform:translateX(-120%);
+        opacity:0;
+      }
+    }
+
+    .topbtn{
+      position:fixed;
+      background:#ECC94B;
+      border:2.5px solid black;
+      z-index:1000;
+    }
+
+    #menuBtn{
+      top:248px;
+      right:10px;
+    }
+
+    #searchBtn{
+      top:0px;
+      right:10px;
+      border:2.5px solid #00FFFF;
+    }
+
+    #emailBtn{
+      top:0px;
+      left:11.5px;
+      width:30px;
+      height:20px;
+      border:2.5px solid #00FFFF;
+    }
+
+    #email{
+      position:fixed;
+      top:20px;
+      left:10px;
+      background:white;
+      border:2px solid white;
+      width:190px;
+      max-height:0;
+      overflow:hidden;
+      transition:max-height 0.35s ease;
+      z-index:1000;
+    }
+
+    #email p{
+      margin:8px 10px;
+      color:#333;
+      font-weight:bold;
+    }
+
+    #email a{
+      display:block;
+      margin:0 10px 6px 10px;
+      color:#D32F2F;
+      text-decoration:none;
+      font-weight:bold;
+      word-break:break-word;
+    }
+
+    #email button{
+      margin:0 10px 10px 10px;
+      padding:5px 8px;
+      border:none;
+      background:#1565C0;
+      color:white;
+      border-radius:6px;
+      font-size:13px;
+    }
+
+    #menu{
+      position:fixed;
+      top:275px;
+      left:10px;
+      background:Navy;
+      border:2px solid white;
+      width:360px;
+      max-height:0;
+      overflow:hidden;
+      transition:max-height 0.5s ease;
+      z-index:999;
+      font-weight:bold;
+    }
+
+    #menu a{
+      display:block;
+      margin:0;
+      padding:10px;
+      color:white;
+      text-decoration:none;
+      font-size:20px;
+    }
+
+    #menu a:hover{
+      background:#1565C0;
+    }
+  </style>
+</head>
+
+<body>
+
+<img id="banner" src="1.png">
+
+<div id="topbar">
+  <div id="clock">00:00:00</div>
+  <div id="ticker">Trang thông tin điện tử của Trường THCS Bình Thành</div>
+</div>
+
+<button id="menuBtn" class="topbtn" onclick="toggleMenu()">☰</button>
+<button id="searchBtn"
+class="topbtn"
+onclick="searchMenu()">
+🔍
+</button>
+<button id="emailBtn" class="topbtn" onclick="toggleEmail()">📧</button>
+
+<div id="email">
+
+<p>Thông tin liên hệ</p>
+
+<p>Email chính:</p>
+
+<a href="mailto:truongthcsbinhthanh.edu@gmail.com">
+truongthcsbinhthanh.edu@gmail.com
+</a>
+
+<button onclick="copyText('truongthcsbinhthanh.edu@gmail.com')">
+Sao chép
+</button>
+
+<p>Email phụ:</p>
+
+<a href="mailto:lienhecongviec.huymc5428@gmail.com">
+lienhecongviec.huymc5428@gmail.com
+</a>
+
+<button onclick="copyText('lienhecongviec.huymc5428@gmail.com')">
+Sao chép
+</button>
+
+</div>
+
+<div id="menu">
+  <a href="gioithieu.html">Giới thiệu</a>
+  <a href="sukien.html">Sự kiện</a>
+  <a href="kiniem.html">Kỉ niệm</a>
+  <a href="thongtin.html">Thông tin</a>
+  <a href="tainguyen.html">Tài nguyên</a>
+</div>
+
+<script>
+function updateClock(){
+  var now = new Date();
+  var h = String(now.getHours()).padStart(2, "0");
+  var m = String(now.getMinutes()).padStart(2, "0");
+  var s = String(now.getSeconds()).padStart(2, "0");
+  document.getElementById("clock").innerHTML = h + ":" + m + ":" + s;
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+function toggleMenu(){
+  var menu = document.getElementById("menu");
+  var topbar = document.getElementById("topbar");
+
+  if(menu.style.maxHeight && menu.style.maxHeight !== "0px"){
+    menu.style.maxHeight = "0px";
+    topbar.style.top = "220px";
+  }else{
+    menu.style.maxHeight = "300px";
+    topbar.style.top = "500px";
+  }
+}
+
+function toggleEmail(){
+  var email = document.getElementById("email");
+
+  if(email.style.maxHeight && email.style.maxHeight !== "0px"){
+    email.style.maxHeight = "0px";
+  }else{
+    email.style.maxHeight = email.scrollHeight + "px";
+  }
+}
+
+function copyText(text){
+  var temp = document.createElement("textarea");
+  temp.value = text;
+  document.body.appendChild(temp);
+  temp.select();
+  document.execCommand("copy");
+  document.body.removeChild(temp);
+}
+function searchMenu(){
+
+  var text = prompt("🔍 Tìm kiếm nội dung trong trang website...");
+
+  if(!text) return;
+
+  text = text.toLowerCase();
+
+  if(text.includes("giới thiệu")){
+    window.location.href = "gioithieu.html";
+  }
+
+  else if(text.includes("sự kiện")){
+    window.location.href = "sukien.html";
+  }
+
+  else if(text.includes("kỉ niệm")){
+    window.location.href = "kiniem.html";
+  }
+
+  else if(text.includes("thông tin")){
+    window.location.href = "thongtin.html";
+  }
+
+  else if(text.includes("tài nguyên")){
+    window.location.href = "tainguyen.html";
+  }
+
+  else{
+    alert("Không tìm thấy");
+  }
+}
+</script>
+
+<div style="
+position:fixed;
+top:215px;
+left:0;
+width:100%;
+height:50px;
+background:red;
+z-index:997;
+"></div>
+
+</body>
+</html>
