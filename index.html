@@ -76,15 +76,18 @@
     .topbtn {
       position: fixed;
       background: #ECC94B;
-      border: 2.5px solid black;
+      border: 2px solid black;
       z-index: 1001;
-      width: 36px;
-      height: 28px;
-      line-height: 24px;
-      font-size: 18px;
+      width: 28px;
+      height: 22px;
+      line-height: 18px;
+      font-size: 14px;
       padding: 0;
       cursor: pointer;
-      border-radius: 2px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     #menuBtn {
@@ -93,15 +96,17 @@
     }
 
     #searchBtn {
-      top: 0px;
+      top: 4px;
       right: 10px;
-      border: 2.5px solid #00FFFF;
+      border: 2px solid #00d4ff;
+      background: #f9f9f9;
     }
 
     #emailBtn {
-      top: 0px;
-      left: 11px;
-      border: 2.5px solid #00FFFF;
+      top: 4px;
+      left: 10px;
+      border: 2px solid #00d4ff;
+      background: #f9f9f9;
     }
 
     #email {
@@ -109,18 +114,22 @@
       top: 32px;
       left: 10px;
       background: white;
-      border: 1px solid white;
-      width: min(280px, calc(100vw - 20px));
+      border: none;
+      width: min(260px, calc(100vw - 20px));
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.35s ease;
       z-index: 1002;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-      border-radius: 8px;
+      box-shadow: none;
+      border-radius: 10px;
+    }
+
+    #emailInner {
+      padding: 10px 12px;
     }
 
     #email p {
-      margin: 8px 10px;
+      margin: 6px 0;
       color: #333;
       font-weight: bold;
       font-size: 14px;
@@ -128,7 +137,7 @@
 
     #email a {
       display: block;
-      margin: 0 10px 6px 10px;
+      margin: 0 0 6px 0;
       color: #D32F2F;
       text-decoration: none;
       font-weight: bold;
@@ -137,7 +146,7 @@
     }
 
     #email button {
-      margin: 0 10px 10px 10px;
+      margin: 0 0 10px 0;
       padding: 6px 10px;
       border: none;
       background: #1565C0;
@@ -146,19 +155,93 @@
       font-size: 13px;
     }
 
+    #searchBox {
+      position: fixed;
+      top: 36px;
+      right: 10px;
+      width: min(320px, calc(100vw - 20px));
+      background: white;
+      border: none;
+      border-radius: 999px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      z-index: 1003;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s ease;
+    }
+
+    #searchBoxInner {
+      padding: 10px;
+    }
+
+    #searchInputWrap {
+      display: flex;
+      align-items: center;
+      background: #f1f3f4;
+      border-radius: 999px;
+      padding: 8px 12px;
+      border: 1px solid #e0e0e0;
+    }
+
+    #searchIcon {
+      font-size: 15px;
+      margin-right: 8px;
+      color: #666;
+      flex: 0 0 auto;
+    }
+
+    #searchInput {
+      border: none;
+      outline: none;
+      background: transparent;
+      width: 100%;
+      font-size: 15px;
+      color: #111;
+    }
+
+    #searchResults {
+      margin-top: 10px;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .resultItem {
+      display: block;
+      text-decoration: none;
+      background: #fff;
+      border: 1px solid #ececec;
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 8px;
+      color: #111;
+    }
+
+    .resultTitle {
+      font-size: 15px;
+      font-weight: bold;
+      color: #1565C0;
+      margin-bottom: 4px;
+    }
+
+    .resultDesc {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.45;
+    }
+
     #menu {
       position: fixed;
       top: 330px;
       left: 10px;
       background: navy;
-      border: 2px solid none;
+      border: none;
       width: min(360px, calc(100vw - 20px));
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.5s ease;
       z-index: 999;
       font-weight: bold;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      box-shadow: none;
       border-radius: 10px;
     }
 
@@ -168,7 +251,11 @@
       color: white;
       text-decoration: none;
       font-size: 18px;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    #menu a:last-child {
+      border-bottom: none;
     }
 
     #menu a:hover {
@@ -251,24 +338,36 @@
     <div id="ticker">Trang thông tin điện tử của Trường THCS Bình Thành</div>
   </div>
 
-  <button id="menuBtn" class="topbtn" onclick="toggleMenu()">☰</button>
-  <button id="searchBtn" class="topbtn" onclick="searchMenu()">🔍</button>
   <button id="emailBtn" class="topbtn" onclick="toggleEmail()">📧</button>
+  <button id="searchBtn" class="topbtn" onclick="toggleSearch()">🔍</button>
+  <button id="menuBtn" class="topbtn" onclick="toggleMenu()">☰</button>
 
   <div id="email">
-    <p>Thông tin liên hệ</p>
+    <div id="emailInner">
+      <p>Thông tin liên hệ</p>
 
-    <p>Email chính:</p>
-    <a href="mailto:truongthcsbinhthanh.edu@gmail.com">
-      truongthcsbinhthanh.edu@gmail.com
-    </a>
-    <button onclick="copyText('truongthcsbinhthanh.edu@gmail.com')">Sao chép</button>
+      <p>Email chính:</p>
+      <a href="mailto:truongthcsbinhthanh.edu@gmail.com">
+        truongthcsbinhthanh.edu@gmail.com
+      </a>
+      <button onclick="copyText('truongthcsbinhthanh.edu@gmail.com')">Sao chép</button>
 
-    <p>Email phụ:</p>
-    <a href="mailto:lienhecongviec.huymc5428@gmail.com">
-      lienhecongviec.huymc5428@gmail.com
-    </a>
-    <button onclick="copyText('lienhecongviec.huymc5428@gmail.com')">Sao chép</button>
+      <p>Email phụ:</p>
+      <a href="mailto:lienhecongviec.huymc5428@gmail.com">
+        lienhecongviec.huymc5428@gmail.com
+      </a>
+      <button onclick="copyText('lienhecongviec.huymc5428@gmail.com')">Sao chép</button>
+    </div>
+  </div>
+
+  <div id="searchBox">
+    <div id="searchBoxInner">
+      <div id="searchInputWrap">
+        <span id="searchIcon">🔍</span>
+        <input id="searchInput" type="text" placeholder="Tìm kiếm..." oninput="liveSearch()" />
+      </div>
+      <div id="searchResults"></div>
+    </div>
   </div>
 
   <div id="menu">
@@ -276,7 +375,7 @@
     <a href="sukien.html">Sự kiện</a>
     <a href="kiniem.html">Kỉ niệm</a>
     <a href="thongtin.html">Thông tin</a>
-    <a href="tainguyen.html">Tài nguyên</a>
+    <a href="tainguyenmaychu.html">Tài nguyên</a>
   </div>
 
   <div id="main">
@@ -301,8 +400,8 @@
           <div class="small">Hình ảnh và những dấu mốc đáng nhớ của trường.</div>
         </div>
         <div class="card">
-          <a href="tainguyen.html">Tài nguyên học tập</a>
-          <div class="small">Bài học, tài liệu, đề ôn tập và nội dung tham khảo.</div>
+          <a href="tainguyenmaychu.html">Tài nguyên</a>
+          <div class="small">Tài nguyên phần cứng của máy chủ.</div>
         </div>
       </div>
     </div>
@@ -314,6 +413,39 @@
   </div>
 
   <script>
+    const pages = [
+      {
+        title: "Giới thiệu nhà trường",
+        desc: "Xem lịch sử, cơ cấu và thông tin chung của trường.",
+        url: "gioithieu.html",
+        keywords: ["giới thiệu", "gioi thieu", "nhà trường", "truong"]
+      },
+      {
+        title: "Sự kiện mới",
+        desc: "Tin hoạt động, phong trào, lễ hội và sinh hoạt trường.",
+        url: "sukien.html",
+        keywords: ["sự kiện", "su kien", "hoạt động", "event"]
+      },
+      {
+        title: "Kỉ niệm",
+        desc: "Hình ảnh và những dấu mốc đáng nhớ của trường.",
+        url: "kiniem.html",
+        keywords: ["kỉ niệm", "ki niem", "hình ảnh", "anh"]
+      },
+      {
+        title: "Thông tin",
+        desc: "Thông tin chung, tin tức và nội dung cập nhật.",
+        url: "thongtin.html",
+        keywords: ["thông tin", "thong tin", "tin tức", "cap nhat"]
+      },
+      {
+        title: "Tài nguyên",
+        desc: "Tài nguyên phần cứng của máy chủ.",
+        url: "tainguyenmaychu.html",
+        keywords: ["tài nguyên", "tai nguyen", "máy chủ", "may chu", "phần cứng", "phan cung"]
+      }
+    ];
+
     function updateClock() {
       var now = new Date();
       var h = String(now.getHours()).padStart(2, "0");
@@ -327,7 +459,12 @@
 
     function toggleMenu() {
       var menu = document.getElementById("menu");
+      var searchBox = document.getElementById("searchBox");
+      var email = document.getElementById("email");
       var btn = document.getElementById("menuBtn");
+
+      searchBox.style.maxHeight = "0px";
+      email.style.maxHeight = "0px";
 
       if (menu.style.maxHeight && menu.style.maxHeight !== "0px") {
         menu.style.maxHeight = "0px";
@@ -340,11 +477,34 @@
 
     function toggleEmail() {
       var email = document.getElementById("email");
+      var menu = document.getElementById("menu");
+      var searchBox = document.getElementById("searchBox");
+
+      menu.style.maxHeight = "0px";
+      searchBox.style.maxHeight = "0px";
 
       if (email.style.maxHeight && email.style.maxHeight !== "0px") {
         email.style.maxHeight = "0px";
       } else {
         email.style.maxHeight = email.scrollHeight + "px";
+      }
+    }
+
+    function toggleSearch() {
+      var searchBox = document.getElementById("searchBox");
+      var menu = document.getElementById("menu");
+      var email = document.getElementById("email");
+      var input = document.getElementById("searchInput");
+
+      menu.style.maxHeight = "0px";
+      email.style.maxHeight = "0px";
+
+      if (searchBox.style.maxHeight && searchBox.style.maxHeight !== "0px") {
+        searchBox.style.maxHeight = "0px";
+      } else {
+        searchBox.style.maxHeight = "340px";
+        setTimeout(() => input.focus(), 100);
+        liveSearch();
       }
     }
 
@@ -363,26 +523,58 @@
       }
     }
 
-    function searchMenu() {
-      var text = prompt("🔍 Tìm kiếm nội dung trong trang website...");
-      if (!text) return;
+    function liveSearch() {
+      var input = document.getElementById("searchInput").value.trim().toLowerCase();
+      var results = document.getElementById("searchResults");
+      results.innerHTML = "";
 
-      text = text.toLowerCase();
-
-      if (text.includes("giới thiệu")) {
-        window.location.href = "gioithieu.html";
-      } else if (text.includes("sự kiện")) {
-        window.location.href = "sukien.html";
-      } else if (text.includes("kỉ niệm")) {
-        window.location.href = "kiniem.html";
-      } else if (text.includes("thông tin")) {
-        window.location.href = "thongtin.html";
-      } else if (text.includes("tài nguyên")) {
-        window.location.href = "tainguyen.html";
-      } else {
-        alert("Không tìm thấy");
+      if (!input) {
+        results.innerHTML = '<div class="small">Nhập từ khóa để tìm mục lục hoặc trang con.</div>';
+        return;
       }
+
+      var found = pages.filter(function(page) {
+        var text = (page.title + " " + page.desc + " " + page.keywords.join(" ")).toLowerCase();
+        return text.includes(input);
+      });
+
+      if (found.length === 0) {
+        results.innerHTML = '<div class="small">Không tìm thấy kết quả.</div>';
+        return;
+      }
+
+      found.forEach(function(page) {
+        var a = document.createElement("a");
+        a.className = "resultItem";
+        a.href = page.url;
+        a.innerHTML =
+          '<div class="resultTitle">' + page.title + '</div>' +
+          '<div class="resultDesc">' + page.desc + '</div>';
+        results.appendChild(a);
+      });
     }
+
+    document.addEventListener("click", function(e) {
+      var menu = document.getElementById("menu");
+      var email = document.getElementById("email");
+      var searchBox = document.getElementById("searchBox");
+      var menuBtn = document.getElementById("menuBtn");
+      var emailBtn = document.getElementById("emailBtn");
+      var searchBtn = document.getElementById("searchBtn");
+
+      if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+        menu.style.maxHeight = "0px";
+        menuBtn.textContent = "☰";
+      }
+
+      if (!email.contains(e.target) && !emailBtn.contains(e.target)) {
+        email.style.maxHeight = "0px";
+      }
+
+      if (!searchBox.contains(e.target) && !searchBtn.contains(e.target)) {
+        searchBox.style.maxHeight = "0px";
+      }
+    });
   </script>
 
 </body>
