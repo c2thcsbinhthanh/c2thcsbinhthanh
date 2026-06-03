@@ -1,592 +1,612 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trang thông tin điện tử dành Cho học sinh THCS</title>
+  <title>Trường THCS Bình Thành</title>
 
   <style>
+    /* Reset & Base Styles */
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      padding: 0;
-      background: white;
-      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
       overflow-x: hidden;
-      color: #111;
     }
 
-    #banner {
-      width: 100%;
-      height: 220px;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* --- TOAST NOTIFICATION --- */
+    #toast {
+      visibility: hidden;
+      min-width: 250px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 8px;
+      padding: 12px;
       position: fixed;
-      top: 25px;
-      left: 0;
-      display: block;
-      object-fit: cover;
-      z-index: 1;
-    }
-
-    #topbar {
-      position: fixed;
-      top: 245px;
-      left: 0;
-      width: 100%;
-      height: 40px;
-      background: white;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      z-index: 998;
-      border-top: 4px solid red;
-      border-bottom: 1px solid #ddd;
-      transition: top 0.35s ease;
-    }
-
-    #clock {
-      padding-left: 10px;
-      font-size: 18px;
-      white-space: nowrap;
-      color: black;
-      flex: 0 0 auto;
-    }
-
-    #ticker {
-      margin-left: 20px;
-      white-space: nowrap;
-      display: inline-block;
-      font-size: 18px;
-      color: #1565C0;
-      font-weight: bold;
-      animation: run 12s linear infinite;
-    }
-
-    @keyframes run {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-120%);
-      }
-    }
-
-    .topbtn {
-      position: fixed;
-      background: #ECC94B;
-      border: 2px solid black;
-      z-index: 1001;
-      width: 28px;
-      height: 22px;
-      line-height: 18px;
+      z-index: 9999;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 14px;
-      padding: 0;
-      cursor: pointer;
-      border-radius: 3px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    #toast.show {
+      visibility: visible;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+    @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+    @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+    /* --- HEADER & BANNER --- */
+    .banner-container {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background: #e9ecef;
+    }
+
+    .banner-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .btn-overlay {
+      position: absolute;
+      top: 10px;
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #1565C0;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: all 0.2s ease;
+      z-index: 10;
     }
-
-    #menuBtn {
-      top: 292px;
-      right: 10px;
-    }
-
-    #searchBtn {
-      top: 4px;
-      right: 10px;
-      border: 2px solid #00d4ff;
-      background: #f9f9f9;
-    }
-
-    #emailBtn {
-      top: 4px;
-      left: 10px;
-      border: 2px solid #00d4ff;
-      background: #f9f9f9;
-    }
-
-    #email {
-      position: fixed;
-      top: 32px;
-      left: 10px;
-      background: white;
-      border: none;
-      width: min(260px, calc(100vw - 20px));
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease;
-      z-index: 1002;
-      box-shadow: none;
-      border-radius: 10px;
-    }
-
-    #emailInner {
-      padding: 10px 12px;
-    }
-
-    #email p {
-      margin: 6px 0;
-      color: #333;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    #email a {
-      display: block;
-      margin: 0 0 6px 0;
-      color: #D32F2F;
-      text-decoration: none;
-      font-weight: bold;
-      word-break: break-word;
-      font-size: 14px;
-    }
-
-    #email button {
-      margin: 0 0 10px 0;
-      padding: 6px 10px;
-      border: none;
+    .btn-overlay:hover {
       background: #1565C0;
       color: white;
-      border-radius: 6px;
-      font-size: 13px;
     }
+    #btnEmailTop { left: 10px; }
+    #btnSearchTop { right: 10px; }
 
-    #searchBox {
-      position: fixed;
-      top: 36px;
-      right: 10px;
-      width: min(320px, calc(100vw - 20px));
-      background: white;
-      border: none;
-      border-radius: 999px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      z-index: 1003;
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.35s ease;
-    }
-
-    #searchBoxInner {
-      padding: 10px;
-    }
-
-    #searchInputWrap {
+    /* --- THANH ĐỒNG HỒ & CHỮ CHẠY --- */
+    .info-bar {
       display: flex;
       align-items: center;
-      background: #f1f3f4;
-      border-radius: 999px;
-      padding: 8px 12px;
-      border: 1px solid #e0e0e0;
+      background: white;
+      border-top: 4px solid #D32F2F; 
+      border-bottom: 1px solid #ddd;
+      height: 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
 
-    #searchIcon {
-      font-size: 15px;
-      margin-right: 8px;
-      color: #666;
-      flex: 0 0 auto;
+    .clock-section {
+      padding: 0 15px;
+      font-weight: bold;
+      color: #333;
+      border-right: 2px solid #D32F2F; 
+      white-space: nowrap;
+      font-family: monospace;
+      font-size: 16px;
     }
 
-    #searchInput {
-      border: none;
-      outline: none;
-      background: transparent;
-      width: 100%;
-      font-size: 15px;
-      color: #111;
+    .ticker-section {
+      flex-grow: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
     }
 
-    #searchResults {
-      margin-top: 10px;
-      max-height: 220px;
-      overflow-y: auto;
-    }
-
-    .resultItem {
-      display: block;
-      text-decoration: none;
-      background: #fff;
-      border: 1px solid #ececec;
-      border-radius: 12px;
-      padding: 10px;
-      margin-bottom: 8px;
-      color: #111;
-    }
-
-    .resultTitle {
-      font-size: 15px;
+    .ticker-text {
       font-weight: bold;
       color: #1565C0;
-      margin-bottom: 4px;
+      display: inline-block;
+      animation: bounceText 8s linear infinite alternate;
     }
 
-    .resultDesc {
-      font-size: 13px;
-      color: #555;
-      line-height: 1.45;
+    @keyframes bounceText {
+      0% { transform: translateX(5%); }
+      100% { transform: translateX(calc(100vw - 100% - 120px)); } 
     }
 
-    #menu {
-      position: fixed;
-      top: 330px;
-      left: 10px;
-      background: navy;
-      border: none;
-      width: min(360px, calc(100vw - 20px));
-      max-height: 0;
+    /* --- LAYOUT CHÍNH --- */
+    .container {
+      max-width: 1000px;
+      margin: 15px auto;
+      padding: 0 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .sidebar {
+      flex: 1 1 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .main-content {
+      flex: 2 1 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* --- CÁC KHỐI CHUNG --- */
+    .widget {
+      background: white;
+      border-radius: 8px;
       overflow: hidden;
-      transition: max-height 0.5s ease;
-      z-index: 999;
-      font-weight: bold;
-      box-shadow: none;
-      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border: 1px solid #e4e6eb;
     }
 
-    #menu a {
-      display: block;
-      padding: 10px;
+    .widget-header {
+      background: #1565C0;
       color: white;
-      text-decoration: none;
-      font-size: 18px;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding: 10px 15px;
+      font-weight: bold;
+      font-size: 16px;
+      text-transform: uppercase;
     }
 
-    #menu a:last-child {
+    .widget-body {
+      padding: 15px;
+    }
+
+    /* --- DANH MỤC MENU --- */
+    .menu-list {
+      list-style: none;
+    }
+    .menu-list li {
+      border-bottom: 1px dashed #ccc;
+    }
+    .menu-list li:last-child {
       border-bottom: none;
     }
-
-    #menu a:hover {
-      background: #1565C0;
-    }
-
-    #main {
-      padding: 310px 10px 20px;
-      min-height: 100vh;
-    }
-
-    .section {
-      background: #f7f9fc;
-      border: 1px solid #e4e7ef;
-      border-radius: 14px;
-      padding: 14px;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    }
-
-    .section h2 {
-      margin: 0 0 8px;
-      font-size: 20px;
-      color: #0b3d91;
-    }
-
-    .section p {
-      margin: 0;
-      line-height: 1.6;
+    .menu-list a {
+      display: block;
+      padding: 10px 0;
       color: #333;
-      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .menu-list a:hover {
+      color: #1565C0;
+      padding-left: 5px;
     }
 
-    .grid {
+    /* --- LIÊN KẾT WEBSITE --- */
+    .dropdown {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      outline: none;
+    }
+    .link-btn {
+      display: block;
+      background: #f8f9fa;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: bold;
+      color: #D32F2F;
+      text-align: center;
+      transition: background 0.3s;
+    }
+    .link-btn:hover { background: #e2e6ea; }
+
+    /* --- THỐNG KÊ --- */
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      color: #444;
+    }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-val { font-weight: bold; color: #1565C0; }
+
+    /* --- LƯỚI BÀI VIẾT --- */
+    .grid-cards {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 10px;
+      gap: 15px;
+    }
+    @media (min-width: 600px) {
+      .grid-cards { grid-template-columns: repeat(2, 1fr); }
     }
 
-    .card {
-      background: white;
-      border: 1px solid #e6e6e6;
-      border-radius: 12px;
-      padding: 12px;
+    .content-card {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 15px;
+      background: #fafafa;
+      transition: transform 0.2s;
     }
-
-    .card a {
+    .content-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .card-title {
       color: #1565C0;
-      text-decoration: none;
       font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 8px;
+      display: block;
     }
-
-    .small {
+    .card-desc {
       color: #555;
       font-size: 14px;
       line-height: 1.5;
-      margin-top: 6px;
     }
 
-    @media (min-width: 700px) {
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      #main {
-        padding-left: 14px;
-        padding-right: 14px;
-      }
+    /* --- FOOTER --- */
+    .footer {
+      background: white;
+      border-top: 2px solid #1565C0;
+      padding: 20px 10px;
+      text-align: center;
+      margin-top: 20px;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
     }
+    .footer h3 {
+      color: #111;
+      font-size: 18px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .footer p {
+      color: #444;
+      font-size: 14px;
+      margin: 5px 0;
+    }
+    .developer-section {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #666;
+    }
+    .logo-small {
+      height: 30px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* --- MODALS --- */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-box {
+      background: white;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      animation: slideDown 0.3s ease;
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px; right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #888;
+    }
+    
+    .search-input-wrapper {
+      display: flex;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      padding: 8px 15px;
+      margin-top: 15px;
+    }
+    .search-input-wrapper input {
+      border: none; outline: none; width: 100%; font-size: 15px;
+    }
+    #searchResults {
+      margin-top: 15px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .search-res-item {
+      display: block;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .search-res-item:last-child { border-bottom: none; }
+    .search-res-title { font-weight: bold; color: #1565C0; }
+    .search-res-desc { font-size: 12px; color: #666; }
+
+    .copy-btn {
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .copy-btn:hover { background: #e0e0e0; }
+
   </style>
 </head>
 
 <body>
 
-  <img id="banner" src="1.png" alt="Banner trường">
+  <div id="toast">Đã sao chép vào khay nhớ tạm!</div>
 
-  <div id="topbar">
-    <div id="clock">00:00:00</div>
-    <div id="ticker">Trang thông tin điện tử của Trường THCS Bình Thành</div>
+  <!-- BANNER -->
+  <div class="banner-container">
+    <button id="btnEmailTop" class="btn-overlay" onclick="openModal('emailModal')" title="Email Liên Hệ">📧</button>
+    <button id="btnSearchTop" class="btn-overlay" onclick="openModal('searchModal')" title="Tìm Kiếm">🔍</button>
+    <img src="1.png" alt="Banner Trường THCS Bình Thành" onerror="this.src='https://via.placeholder.com/1000x200?text=Trường+THCS+Bình+Thành'">
   </div>
 
-  <button id="emailBtn" class="topbtn" onclick="toggleEmail()">📧</button>
-  <button id="searchBtn" class="topbtn" onclick="toggleSearch()">🔍</button>
-  <button id="menuBtn" class="topbtn" onclick="toggleMenu()">☰</button>
-
-  <div id="email">
-    <div id="emailInner">
-      <p>Thông tin liên hệ</p>
-
-      <p>Email chính:</p>
-      <a href="mailto:truongthcsbinhthanh.edu@gmail.com">
-        truongthcsbinhthanh.edu@gmail.com
-      </a>
-      <button onclick="copyText('truongthcsbinhthanh.edu@gmail.com')">Sao chép</button>
-
-      <p>Email phụ:</p>
-      <a href="mailto:lienhecongviec.huymc5428@gmail.com">
-        lienhecongviec.huymc5428@gmail.com
-      </a>
-      <button onclick="copyText('lienhecongviec.huymc5428@gmail.com')">Sao chép</button>
+  <!-- THANH ĐỒNG HỒ & CHỮ CHẠY -->
+  <div class="info-bar">
+    <div class="clock-section" id="clockDisplay">00:00:00</div>
+    <div class="ticker-section">
+      <div class="ticker-text">Trang thông tin điện tử của Trường THCS Bình Thành</div>
     </div>
   </div>
 
-  <div id="searchBox">
-    <div id="searchBoxInner">
-      <div id="searchInputWrap">
-        <span id="searchIcon">🔍</span>
-        <input id="searchInput" type="text" placeholder="Tìm kiếm..." oninput="liveSearch()" />
+  <!-- NỘI DUNG CHÍNH -->
+  <div class="container">
+    
+    <div class="sidebar">
+      
+      <!-- MENU -->
+      <div class="widget">
+        <div class="widget-header">Danh mục chính</div>
+        <div class="widget-body">
+          <ul class="menu-list">
+            <li><a href="#gioithieu">Giới thiệu nhà trường</a></li>
+            <li><a href="#sukien">Sự kiện mới</a></li>
+            <li><a href="#kiniem">Kỉ niệm & Hình ảnh</a></li>
+            <li><a href="#thongtin">Tin tức - Thông báo</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- LIÊN KẾT WEBSITE -->
+      <div class="widget">
+        <div class="widget-header">Liên kết website</div>
+        <div class="widget-body">
+          <select class="dropdown">
+            <option>-- Chọn liên kết --</option>
+          </select>
+          <a href="https://angiang.edu.vn/" target="_blank" class="link-btn">
+            Sở Giáo dục và Đào tạo
+          </a>
+        </div>
+      </div>
+
+      <!-- THỐNG KÊ TRUY CẬP -->
+      <div class="widget">
+        <div class="widget-header">Thống kê truy cập</div>
+        <div class="widget-body">
+          <!-- Các con số ở đây tạm thời là giao diện mẫu -->
+          <div class="stat-row"><span>Hôm nay :</span> <span class="stat-val">15</span></div>
+          <div class="stat-row"><span>Hôm qua :</span> <span class="stat-val">345</span></div>
+          <div class="stat-row"><span id="lblThang">Tháng 06 :</span> <span class="stat-val">4,520</span></div>
+          <div class="stat-row"><span id="lblNam">Năm 2026 :</span> <span class="stat-val">85,206</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="main-content">
+      <div class="widget">
+        <div class="widget-header">Bảng Tin Trường</div>
+        <div class="widget-body">
+          <p style="margin-bottom: 15px; line-height: 1.6;">Chào mừng các em học sinh đến với trang thông tin điện tử của Trường THCS Bình Thành. Nơi đây cung cấp các tài nguyên học tập và thông báo mới nhất.</p>
+          
+          <div class="grid-cards">
+            <div class="content-card">
+              <a href="#tainguyen" class="card-title">Tài nguyên học tập của học sinh</a>
+              <div class="card-desc">Tài nguyên của máy chủ giúp học tập cho học sinh, lưu trữ bài giảng, đề thi.</div>
+            </div>
+            <div class="content-card">
+              <a href="#server" class="card-title">Tài nguyên phần cứng</a>
+              <div class="card-desc">Tài nguyên của máy chủ giúp duy trì hoạt động ổn định của trang web nhà trường.</div>
+            </div>
+            <div class="content-card">
+              <a href="#sukien" class="card-title">Sự kiện mới nổi bật</a>
+              <div class="card-desc">Tổng hợp các hoạt động phong trào, lễ hội, sinh hoạt ngoại khóa của trường.</div>
+            </div>
+            <div class="content-card">
+              <a href="#kiniem" class="card-title">Góc Kỉ Niệm</a>
+              <div class="card-desc">Lưu giữ hình ảnh, video và những dấu mốc đáng nhớ của các thế hệ học sinh.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <h3>TRƯỜNG THCS BÌNH THÀNH</h3>
+    <p><strong>Địa chỉ:</strong> Ấp Tây Bình, Xã Thoại Giang, Huyện Thoại Sơn, Tỉnh An Giang</p>
+    <p><strong>Email:</strong> thcsbinhthanh.thoaison@angiang.gov.vn</p>
+    
+    <div class="developer-section">
+      <span>Hợp tác phát triển bởi:</span>
+      <img src="2.png" alt="Partner 1" class="logo-small" onerror="this.src='https://via.placeholder.com/80x30?text=Logo+2'">
+      <img src="3.png" alt="Partner 2" class="logo-small" onerror="this.src='https://via.placeholder.com/80x30?text=Logo+3'">
+    </div>
+  </div>
+
+  <!-- MODAL TÌM KIẾM -->
+  <div id="searchModal" class="modal-overlay">
+    <div class="modal-box">
+      <span class="close-btn" onclick="closeModal('searchModal')">&times;</span>
+      <h3 style="color:#1565C0;">Tìm Kiếm</h3>
+      <div class="search-input-wrapper">
+        <span style="color:#888; margin-right: 10px;">🔍</span>
+        <input type="text" id="searchInput" placeholder="Nhập từ khóa tìm kiếm..." oninput="handleSearch()">
       </div>
       <div id="searchResults"></div>
     </div>
   </div>
 
-  <div id="menu">
-    <a href="gioithieu.html">Giới thiệu</a>
-    <a href="sukien.html">Sự kiện</a>
-    <a href="kiniem.html">Kỉ niệm</a>
-    <a href="thongtin.html">Thông tin</a>
-    <a href="tainguyen.html">Tài nguyên học tập của học sinh</a>
-    <a href="tainguyenserver.html">Tài nguyên phần cứng</a>
-  </div>
-
-  <div id="main">
-    <div class="section">
-      <h2>Chào mừng bạn</h2>
-      <p>Đây là trang thông tin điện tử của Trường THCS Bình Thành. Các mục bên dưới là phần nội dung mẫu, bạn có thể thay đổi theo ý mình.</p>
-    </div>
-
-    <div class="section">
-      <h2>Thông báo nhanh</h2>
-      <div class="grid">
-        <div class="card">
-          <a href="gioithieu.html">Giới thiệu nhà trường</a>
-          <div class="small">Xem lịch sử, cơ cấu và thông tin chung của trường.</div>
-        </div>
-        <div class="card">
-          <a href="sukien.html">Sự kiện mới</a>
-          <div class="small">Tin hoạt động, phong trào, lễ hội và sinh hoạt trường.</div>
-        </div>
-        <div class="card">
-          <a href="kiniem.html">Kỉ niệm</a>
-          <div class="small">Hình ảnh và những dấu mốc đáng nhớ của trường.</div>
-        </div>
-        <div class="card">
-          <a href="tainguyen.html">Tài nguyên học tập của học sinh</a>
-          <div class="small">Tài nguyên của máy chủ giúp học tập cho học sinh.</div>
-        <div>
-        <div class="card">
-          <a href="tainguyenserver.html"> Tài nguyên phần cứng</a>
-          <div class="small"> tài nguyên của máy chủ giúp duy trì trang web.</div>
+  <!-- MODAL EMAIL -->
+  <div id="emailModal" class="modal-overlay">
+    <div class="modal-box">
+      <span class="close-btn" onclick="closeModal('emailModal')">&times;</span>
+      <h3 style="color:#1565C0; margin-bottom: 15px;">Thông Tin Liên Hệ</h3>
+      
+      <div style="margin-bottom: 15px;">
+        <p style="font-weight: bold; font-size: 14px; color: #555;">Email nhà trường:</p>
+        <div style="display:flex; align-items:center; margin-top:5px;">
+          <a href="mailto:thcsbinhthanh.thoaison@angiang.gov.vn" style="color:#D32F2F; font-weight:bold; word-break: break-all;">truongthcsbinhthanh.edu@gmail.com</a>
+          <button class="copy-btn" onclick="copyToClipboard('truongthcsbinhthanh.edu@gmail.com)">Copy</button>
         </div>
       </div>
-    </div>
 
-    <div class="section">
-      <h2>Liên hệ nhanh</h2>
-      <p>Nếu cần, bạn có thể bấm nút email ở góc trên bên trái để xem địa chỉ liên hệ.</p>
+      <div>
+        <p style="font-weight: bold; font-size: 14px; color: #555;">Hỗ trợ kỹ thuật:</p>
+        <div style="display:flex; align-items:center; margin-top:5px;">
+          <a href="mailto:lienhecongviec.huymc5428@gmail.com" style="color:#D32F2F; font-weight:bold; word-break: break-all;">lienhecongviec.huymc5428@gmail.com</a>
+          <button class="copy-btn" onclick="copyToClipboard('lienhecongviec.huymc5428@gmail.com')">Copy</button>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    const pages = [
-      {
-        title: "Giới thiệu nhà trường",
-        desc: "Xem lịch sử, cơ cấu và thông tin chung của trường.",
-        url: "gioithieu.html",
-        keywords: ["giới thiệu", "gioi thieu", "nhà trường", "nha truong"]
-      },
-      {
-        title: "Sự kiện mới",
-        desc: "Tin hoạt động, phong trào, lễ hội và sinh hoạt trường.",
-        url: "sukien.html",
-        keywords: ["sự kiện", "su kien", "hoạt động", "hoat dong", "sự kiện mới", "su kien moi"]
-      },
-      {
-        title: "Kỉ niệm",
-        desc: "Hình ảnh và những dấu mốc đáng nhớ của trường.",
-        url: "kiniem.html",
-        keywords: ["kỉ niệm", "ki niem", "hình ảnh", "hinh anh"]
-      },
-      {
-        title: "Thông tin",
-        desc: "Thông tin chung, tin tức và nội dung cập nhật.",
-        url: "thongtin.html",
-        keywords: ["thông tin", "thong tin", "tin tức", "tin tuc", "cập nhật", "cap nhat"]
-      },
-      {
-        title: "Tài nguyên học tập của học sinh",
-        desc: "Tài nguyên của máy chủ giúp học tập cho học sinh.",
-        url: "tainguyen.html",
-        keywords: ["tài nguyên", "tai nguyen", "học tập", "hoc tap", "của học sinh", "cua hoc sinh"]
-      },
-      {
-        title: "Tài nguyên phần cứng",
-        desc: "tài nguyên của máy chủ giúp duy trì trang web.",
-        url: "tainguyenserver.html",
-        keywords: ["tài nguyên", "tai nguyen", "phần cứng", "phan cung", "server"]
+    // --- 1. XỬ LÝ ĐỒNG HỒ & THÁNG/NĂM TỰ ĐỘNG ---
+    function updateTimeAndStats() {
+      const now = new Date();
+      
+      // Đồng hồ
+      const h = String(now.getHours()).padStart(2, "0");
+      const m = String(now.getMinutes()).padStart(2, "0");
+      const s = String(now.getSeconds()).padStart(2, "0");
+      document.getElementById("clockDisplay").textContent = h + ":" + m + ":" + s;
+      
+      // Tự động gán Tháng và Năm cho thống kê truy cập
+      const currentMonth = String(now.getMonth() + 1).padStart(2, "0");
+      const currentYear = now.getFullYear();
+      document.getElementById("lblThang").textContent = "Tháng " + currentMonth + " :";
+      document.getElementById("lblNam").textContent = "Năm " + currentYear + " :";
+    }
+    setInterval(updateTimeAndStats, 1000);
+    updateTimeAndStats(); // Chạy ngay khi load web
+
+    // --- 2. XỬ LÝ MODAL (POPUP) ---
+    function openModal(id) {
+      document.getElementById(id).style.display = 'flex';
+      if(id === 'searchModal') {
+        setTimeout(() => document.getElementById('searchInput').focus(), 100);
       }
+    }
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal-overlay')) {
+        event.target.style.display = "none";
+      }
+    }
+
+    // --- 3. COPY TO CLIPBOARD ---
+    function showToast() {
+      const toast = document.getElementById("toast");
+      toast.className = "show";
+      setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+    }
+    function copyToClipboard(text) {
+      const tempInput = document.createElement("input");
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+      showToast();
+    }
+
+    // --- 4. TÌM KIẾM MÔ PHỎNG ---
+    const searchData = [
+      { title: "Giới thiệu nhà trường", desc: "Xem lịch sử, cơ cấu trường", url: "#" },
+      { title: "Tài nguyên học tập", desc: "Tài nguyên của máy chủ giúp học tập cho học sinh", url: "#" },
+      { title: "Tài nguyên phần cứng", desc: "Giúp duy trì trang web", url: "#" },
+      { title: "Sự kiện mới", desc: "Hoạt động, phong trào lễ hội", url: "#" }
     ];
 
-    function updateClock() {
-      var now = new Date();
-      var h = String(now.getHours()).padStart(2, "0");
-      var m = String(now.getMinutes()).padStart(2, "0");
-      var s = String(now.getSeconds()).padStart(2, "0");
-      document.getElementById("clock").innerHTML = h + ":" + m + ":" + s;
-    }
+    function handleSearch() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      const resultBox = document.getElementById('searchResults');
+      resultBox.innerHTML = '';
+      if(!query) return;
 
-    setInterval(updateClock, 1000);
-    updateClock();
+      const filtered = searchData.filter(item => 
+        item.title.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query)
+      );
 
-    function toggleMenu() {
-      var menu = document.getElementById("menu");
-      var searchBox = document.getElementById("searchBox");
-      var email = document.getElementById("email");
-      var btn = document.getElementById("menuBtn");
-
-      searchBox.style.maxHeight = "0px";
-      email.style.maxHeight = "0px";
-
-      if (menu.style.maxHeight && menu.style.maxHeight !== "0px") {
-        menu.style.maxHeight = "0px";
-        btn.textContent = "☰";
-      } else {
-        menu.style.maxHeight = menu.scrollHeight + "px";
-        btn.textContent = "✕";
-      }
-    }
-
-    function toggleEmail() {
-      var email = document.getElementById("email");
-      var menu = document.getElementById("menu");
-      var searchBox = document.getElementById("searchBox");
-
-      menu.style.maxHeight = "0px";
-      searchBox.style.maxHeight = "0px";
-
-      if (email.style.maxHeight && email.style.maxHeight !== "0px") {
-        email.style.maxHeight = "0px";
-      } else {
-        email.style.maxHeight = email.scrollHeight + "px";
-      }
-    }
-
-    function toggleSearch() {
-      var searchBox = document.getElementById("searchBox");
-      var menu = document.getElementById("menu");
-      var email = document.getElementById("email");
-      var input = document.getElementById("searchInput");
-
-      menu.style.maxHeight = "0px";
-      email.style.maxHeight = "0px";
-
-      if (searchBox.style.maxHeight && searchBox.style.maxHeight !== "0px") {
-        searchBox.style.maxHeight = "0px";
-      } else {
-        searchBox.style.maxHeight = "340px";
-        setTimeout(() => input.focus(), 100);
-        liveSearch();
-      }
-    }
-
-    async function copyText(text) {
-      try {
-        await navigator.clipboard.writeText(text);
-        alert("Đã sao chép");
-      } catch (err) {
-        var temp = document.createElement("textarea");
-        temp.value = text;
-        document.body.appendChild(temp);
-        temp.select();
-        document.execCommand("copy");
-        document.body.removeChild(temp);
-        alert("Đã sao chép");
-      }
-    }
-
-    function liveSearch() {
-      var input = document.getElementById("searchInput").value.trim().toLowerCase();
-      var results = document.getElementById("searchResults");
-      results.innerHTML = "";
-
-      if (!input) {
-        results.innerHTML = '<div class="small">Nhập từ khóa để tìm mục lục hoặc trang con.</div>';
+      if(filtered.length === 0) {
+        resultBox.innerHTML = '<p style="font-size:13px; color:#666; padding:10px;">Không tìm thấy kết quả.</p>';
         return;
       }
 
-      var found = pages.filter(function(page) {
-        var text = (page.title + " " + page.desc + " " + page.keywords.join(" ")).toLowerCase();
-        return text.includes(input);
-      });
-
-      if (found.length === 0) {
-        results.innerHTML = '<div class="small">Không tìm thấy kết quả.</div>';
-        return;
-      }
-
-      found.forEach(function(page) {
-        var a = document.createElement("a");
-        a.className = "resultItem";
-        a.href = page.url;
-        a.innerHTML =
-          '<div class="resultTitle">' + page.title + '</div>' +
-          '<div class="resultDesc">' + page.desc + '</div>';
-        results.appendChild(a);
+      filtered.forEach(item => {
+        resultBox.innerHTML += `
+          <a href="${item.url}" class="search-res-item">
+            <div class="search-res-title">${item.title}</div>
+            <div class="search-res-desc">${item.desc}</div>
+          </a>
+        `;
       });
     }
-
-    document.addEventListener("click", function(e) {
-      var menu = document.getElementById("menu");
-      var email = document.getElementById("email");
-      var searchBox = document.getElementById("searchBox");
-      var menuBtn = document.getElementById("menuBtn");
-      var emailBtn = document.getElementById("emailBtn");
-      var searchBtn = document.getElementById("searchBtn");
-
-      if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
-        menu.style.maxHeight = "0px";
-        menuBtn.textContent = "☰";
-      }
-
-      if (!email.contains(e.target) && !emailBtn.contains(e.target)) {
-        email.style.maxHeight = "0px";
-      }
-
-      if (!searchBox.contains(e.target) && !searchBtn.contains(e.target)) {
-        searchBox.style.maxHeight = "0px";
-      }
-    });
   </script>
 
 </body>
 </html>
+
+
+```
