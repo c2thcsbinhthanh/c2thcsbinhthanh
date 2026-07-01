@@ -1,55 +1,271 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-  <title>Sự kiện</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Trường Học</title>
 
-  <style>
-    body{
-      margin:0;
-      font-family:Arial;
-      background:white;
-    }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
 
-    img{
-      width:100%;
-      height:250px;
-      object-fit:cover;
-    }
+body{
+    background:#f4f6fb;
+}
 
-    h1{
-      color:red;
-      text-align:center;
-      font-size:40px;
-    }
+/* Banner trên cùng */
+.top-banner{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+    display:block;
+}
 
-    p{
-      font-size:22px;
-      padding:20px;
-    }
+/* Thanh menu */
+.navbar{
+    background:#1e3a8a;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    padding:10px;
+}
 
-    a{
-      display:inline-block;
-      margin:20px;
-      padding:10px 20px;
-      background:Navy;
-      color:white;
-      text-decoration:none;
-      border-radius:8px;
+.navbar button{
+    background:transparent;
+    border:none;
+    color:#fff;
+    padding:10px 15px;
+    margin:5px;
+    cursor:pointer;
+    border-radius:8px;
+    transition:.2s;
+    font-size:15px;
+}
+
+.navbar button:hover{
+    background:rgba(255,255,255,.2);
+}
+
+.content{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.page{
+    display:none;
+    animation:fade .3s;
+}
+
+.page.active{
+    display:block;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(10px);
     }
-  </style>
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.card{
+    background:#fff;
+    border-radius:18px;
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+    padding:25px;
+}
+
+.card h2{
+    color:#d40000;
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.card p{
+    line-height:1.8;
+    text-align:justify;
+}
+
+.btn-wrap{
+    text-align:center;
+    margin-top:25px;
+}
+
+.back{
+    display:inline-block;
+    background:#1e3a8a;
+    color:#fff;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.back:hover{
+    opacity:.85;
+}
+
+@media(max-width:600px){
+    .top-banner{
+        height:180px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<img src="1.png">
+<img src="1.png" class="top-banner" alt="Banner">
 
-<h1>SỰ KIỆN</h1>
+<div class="navbar">
+<button onclick="showPage('home')">Trang chủ</button>
+<button onclick="showPage('students')">Khai Giảng</button>
+<button onclick="showPage('teachers')">Tổng Kết</button>
+<button onclick="showPage('schedule')">Ngày Nhà Giáo Việt Nam</button>
+<button onclick="showPage('grades')">Tết</button>
+<button onclick="showPage('contact')">Các Sự Kiện Khác Lớn Và Nhỏ</button>
+</div>
+
+<div class="content">
+
+<div id="home" class="page active">
+<div class="card">
+<h2>GIỚI THIỆU MỤC SỰ KIỆN</h2>
 
 <p>
-Các hoạt động và sự kiện nổi bật của trường THCS Bình Thành.
+Mục Sự kiện là nơi cập nhật nhanh chóng và chính xác những hoạt động nổi bật, các chương trình quan trọng và những thông báo đáng chú ý của nhà trường. Đây là cầu nối giúp học sinh, giáo viên và phụ huynh dễ dàng theo dõi những sự kiện đang diễn ra cũng như các hoạt động sắp tới.
+Tại đây, bạn có thể tìm thấy thông tin về các buổi lễ lớn của trường như Lễ Khai giảng, Lễ Bế giảng, các chương trình kỷ niệm, hội thi, hoạt động văn nghệ, thể dục thể thao, trải nghiệm sáng tạo, ngoại khóa, thiện nguyện, hướng nghiệp, các cuộc thi học tập, tuyên dương học sinh đạt thành tích xuất sắc và nhiều sự kiện ý nghĩa khác.
+Mỗi bài đăng đều cung cấp đầy đủ nội dung, thời gian, địa điểm và hình ảnh minh họa nhằm giúp người xem nắm bắt thông tin một cách nhanh chóng và thuận tiện. Mục Sự kiện không chỉ lưu giữ những khoảnh khắc đáng nhớ của thầy và trò mà còn góp phần lan tỏa tinh thần học tập, đoàn kết, sáng tạo và phát triển của nhà trường.
+Hãy thường xuyên theo dõi Mục Sự kiện để không bỏ lỡ những hoạt động quan trọng và cùng đồng hành với các chương trình ý nghĩa của trường.
 </p>
 
-<a href="index.html">⬅ Quay lại</a>
+<div class="btn-wrap">
+<a href="#" class="back" onclick="showPage('home');return false;">
+⬅ Quay lại
+</a>
+</div>
+
+</div>
+</div>
+<!-- Học sinh -->
+<div id="students" class="page">
+<div class="card">
+<h2>👨‍🎓 HỌC SINH</h2>
+
+<p>
+Trang này dùng để quản lý danh sách học sinh, thông tin lớp học,
+kết quả học tập, khen thưởng và các hoạt động ngoại khóa.
+</p>
+
+<div class="btn-wrap">
+<a href="#" class="back" onclick="showPage('home');return false;">
+⬅ Quay lại
+</a>
+</div>
+
+</div>
+</div>
+
+<!-- Giáo viên -->
+<div id="teachers" class="page">
+<div class="card">
+<h2>👩‍🏫 GIÁO VIÊN</h2>
+
+<p>
+Thông tin giáo viên, bộ môn giảng dạy,
+lịch công tác và các thông báo của nhà trường.
+</p>
+
+<div class="btn-wrap">
+<a href="#" class="back" onclick="showPage('home');return false;">
+⬅ Quay lại
+</a>
+</div>
+
+</div>
+</div>
+
+<!-- Thời khóa biểu -->
+<div id="schedule" class="page">
+<div class="card">
+<h2>📅 THỜI KHÓA BIỂU</h2>
+
+<p>
+Tra cứu thời khóa biểu theo từng lớp,
+cập nhật lịch học và lịch kiểm tra mới nhất.
+</p>
+
+<div class="btn-wrap">
+<a href="#" class="back" onclick="showPage('home');return false;">
+⬅ Quay lại
+</a>
+</div>
+
+</div>
+</div>
+
+<!-- Điểm số -->
+<div id="grades" class="page">
+<div class="card">
+<h2>📊 ĐIỂM SỐ</h2>
+
+<p>
+Xem điểm kiểm tra, điểm giữa kỳ,
+điểm cuối kỳ và kết quả học tập.
+</p>
+
+<div class="btn-wrap">
+<a href="#" class="back" onclick="showPage('home');return false;">
+⬅ Quay lại
+</a>
+</div>
+
+</div>
+</div>
+
+<!-- Liên hệ -->
+<div id="contact" class="page">
+<div class="card">
+<h2>📞 LIÊN HỆ</h2>
+
+<p>
+Email: school@example.com<br>
+Điện thoại: 0123 456 789
+</p>
+
+<div class="btn-wrap">
+<a href="#" class="back" onclick="showPage('home');return false;">
+⬅ Quay lại
+</a>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<script>
+function showPage(id){
+    document.querySelectorAll(".page").forEach(function(page){
+        page.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+</script>
 
 </body>
 </html>
