@@ -25,7 +25,91 @@
       color: inherit;
     }
 
-    /* TOAST */
+    /* POPUP THÔNG BÁO TỰ ĐỘNG KHI VÀO TRANG */
+    .welcome-overlay {
+      display: none; /* JS sẽ chuyển thành flex khi vào trang */
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+    }
+
+    .welcome-box {
+      background: white;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      animation: popUpAnim 0.4s ease;
+    }
+
+    @keyframes popUpAnim {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .welcome-header {
+      background: #D32F2F;
+      color: white;
+      padding: 15px;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .welcome-body {
+      padding: 20px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .welcome-body ul {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+
+    .welcome-body li {
+      margin-bottom: 6px;
+    }
+
+    /* HIỆU ỨNG CHỚP NHÁY CHO NGÀY THÁNG */
+    .blink-text {
+      animation: blinker 1.5s linear infinite;
+    }
+
+    @keyframes blinker {
+      50% { opacity: 0.3; }
+    }
+
+    .welcome-footer {
+      padding: 12px 20px;
+      background: #f8f9fa;
+      text-align: right;
+      border-top: 1px solid #eee;
+    }
+
+    .btn-close-welcome {
+      background: #1565C0;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+
+    .btn-close-welcome:hover {
+      background: #0d47a1;
+    }
+
+    /* TOAST BANNER */
     #toast {
       visibility: hidden;
       min-width: 250px;
@@ -146,7 +230,7 @@
       100% { transform: translateX(calc(100vw - 100% - 140px)); }
     }
 
-    /* LAYOUT */
+    /* LAYOUT BỐ CỤC */
     .container {
       max-width: 1000px;
       margin: 15px auto;
@@ -187,7 +271,6 @@
       text-transform: uppercase;
     }
 
-    /* Màu đỏ nổi bật cho phần lưu ý quan trọng */
     .widget-header.warning-header {
       background: #D32F2F;
     }
@@ -196,7 +279,7 @@
       padding: 15px;
     }
 
-    /* MENU */
+    /* MENU THÀNH PHẦN */
     .menu-list {
       list-style: none;
     }
@@ -222,7 +305,6 @@
       padding-left: 5px;
     }
 
-    /* LIÊN KẾT WEBSITE */
     .dropdown {
       width: 100%;
       padding: 10px;
@@ -267,7 +349,7 @@
       color: #1565C0;
     }
 
-    /* CARDS */
+    /* KHỐI THẺ (CARDS) */
     .grid-cards {
       display: grid;
       grid-template-columns: 1fr;
@@ -301,7 +383,6 @@
       display: block;
     }
 
-    /* Đổi màu tiêu đề cho các mục lưu ý để tạo điểm nhấn */
     .warning-card .card-title {
       color: #D32F2F;
     }
@@ -312,7 +393,7 @@
       line-height: 1.5;
     }
 
-    /* FOOTER */
+    /* FOOTER CHÂN TRANG */
     .footer {
       background: white;
       border-top: 2px solid #1565C0;
@@ -354,7 +435,7 @@
       object-fit: contain;
     }
 
-    /* MODALS */
+    /* HỆ THỐNG CỬA SỔ POPUP */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -450,6 +531,32 @@
 </head>
 
 <body>
+
+  <div id="welcomeNotification" class="welcome-overlay">
+    <div class="welcome-box">
+      <div class="welcome-header">
+        📢 THÔNG BÁO TỪ BAN QUẢN TRỊ
+      </div>
+      <div class="welcome-body">
+        <p class="blink-text" style="text-align: center; font-size: 18px; color: #D32F2F; font-weight: bold; margin-bottom: 15px;">
+          🗓️ NGÀY PHÁT HÀNH CHÍNH THỨC: 01/09/2026
+        </p>
+        <p>Chào mừng các em học sinh đến với Hệ thống thông tin điện tử <b>THCS Bình Thành</b>!</p>
+        <p>Hiện tại website đang chạy thử nghiệm kỹ thuật. <b>Sắp tới, vào đúng ngày 01/09/2026, hệ thống sẽ chính thức hoạt động ổn định và bắt đầu đăng tải các nội dung học tập, thông báo mới.</b></p>
+        
+        <p style="margin-top: 12px; font-weight: bold; color: #1565C0;">Các nội dung đang chuẩn bị cập nhật:</p>
+        <ul>
+          <li>Hệ thống <b>Tin tức - Thông báo</b> nhà trường nhanh chóng.</li>
+          <li>Kho <b>Tài nguyên học tập</b> số hóa từ lớp 6 đến lớp 9.</li>
+          <li>Kỹ năng sống thiết yếu tại mục <b>Lưu ý & Hữu ích</b>.</li>
+        </ul>
+      </div>
+      <div class="welcome-footer">
+        <button class="btn-close-welcome" onclick="closeWelcomeModal()">Vào trang web</button>
+      </div>
+    </div>
+  </div>
+
   <div id="toast">Đã sao chép vào khay nhớ tạm!</div>
 
   <div class="banner-container">
@@ -466,6 +573,7 @@
   </div>
 
   <div class="container">
+    
     <div class="sidebar">
       <div class="widget">
         <div class="widget-header">Danh mục chính</div>
@@ -487,9 +595,7 @@
             <option value="https://angiang.edu.vn/">Sở Giáo dục và Đào tạo</option>
             <option value="https://moet.gov.vn/">Bộ Giáo dục và Đào tạo</option>
             <option value="https://thanhnien.vn/">Báo Thanh Niên</option>
-            <option value="https://c2thcsbinhthanh.github.io/c2thcsbinhthanh/">Trang thông tin điện tử dành cho học sinh THCS</option>
           </select>
-
           <a href="https://angiang.edu.vn/" target="_blank" rel="noopener noreferrer" class="link-btn">
             Sở Giáo dục và Đào tạo
           </a>
@@ -501,13 +607,14 @@
         <div class="widget-body">
           <div class="stat-row"><span>Hôm nay :</span> <span class="stat-val">15</span></div>
           <div class="stat-row"><span>Hôm qua :</span> <span class="stat-val">345</span></div>
-          <div class="stat-row"><span id="lblThang">Tháng 06 :</span> <span class="stat-val">4,520</span></div>
-          <div class="stat-row"><span id="lblNam">Năm 2026 :</span> <span class="stat-val">85,206</span></div>
+          <div class="stat-row"><span id="lblThang">Tháng -- :</span> <span class="stat-val">4,520</span></div>
+          <div class="stat-row"><span id="lblNam">Năm ---- :</span> <span class="stat-val">85,206</span></div>
         </div>
       </div>
     </div>
 
     <div class="main-content">
+      
       <div class="widget">
         <div class="widget-header">Bảng Tin Trường</div>
         <div class="widget-body">
@@ -518,12 +625,12 @@
           <div class="grid-cards">
             <div class="content-card">
               <a href="tainguyen.html" class="card-title">Tài nguyên học tập của học sinh</a>
-              <div class="card-desc">Tài nguyên của máy chủ giúp học tập cho học sinh, lưu trữ bài giảng, đề thi.</div>
+              <div class="card-desc">Tài nguyên hệ thống giúp học tập cho học sinh, lưu trữ đề thi từ lớp 6-9.</div>
             </div>
 
             <div class="content-card">
               <a href="tainguyenserver.html" class="card-title">Tài nguyên máy chủ</a>
-              <div class="card-desc">tổng hợp các phần cứng phần mềm của máy chủ giúp duy trì website.</div>
+              <div class="card-desc">Tổng hợp phần cứng, phần mềm hỗ trợ duy trì và vận hành website ổn định.</div>
             </div>
 
             <div class="content-card">
@@ -606,23 +713,17 @@
     <div class="modal-box">
       <span class="close-btn" onclick="closeModal('emailModal')">&times;</span>
       <h3 style="color:#1565C0; margin-bottom: 15px;">Thông Tin Liên Hệ</h3>
-
       <div style="margin-bottom: 15px;">
         <p style="font-weight: bold; font-size: 14px; color: #555;">Email trang website:</p>
         <div style="display:flex; align-items:center; margin-top:5px; flex-wrap: wrap; gap: 8px;">
-          <a href="mailto:truongthcsbinhthanh.edu@gmail.com" style="color:#D32F2F; font-weight:bold; word-break: break-all;">
-            truongthcsbinhthanh.edu@gmail.com
-          </a>
+          <a href="mailto:truongthcsbinhthanh.edu@gmail.com" style="color:#D32F2F; font-weight:bold; word-break: break-all;">truongthcsbinhthanh.edu@gmail.com</a>
           <button class="copy-btn" onclick="copyToClipboard('truongthcsbinhthanh.edu@gmail.com')">Copy</button>
         </div>
       </div>
-
       <div>
         <p style="font-weight: bold; font-size: 14px; color: #555;">Hỗ trợ kỹ thuật:</p>
         <div style="display:flex; align-items:center; margin-top:5px; flex-wrap: wrap; gap: 8px;">
-          <a href="mailto:lienhecongviec.huymc5428@gmail.com" style="color:#D32F2F; font-weight:bold; word-break: break-all;">
-            lienhecongviec.huymc5428@gmail.com
-          </a>
+          <a href="mailto:lienhecongviec.huymc5428@gmail.com" style="color:#D32F2F; font-weight:bold; word-break: break-all;">lienhecongviec.huymc5428@gmail.com</a>
           <button class="copy-btn" onclick="copyToClipboard('lienhecongviec.huymc5428@gmail.com')">Copy</button>
         </div>
       </div>
@@ -630,22 +731,40 @@
   </div>
 
   <script>
+    // XỬ LÝ KHỞI CHẠY KHI TRANG SẴN SÀNG (TRÁNH XUNG ĐỘT)
+    window.addEventListener('DOMContentLoaded', () => {
+      // 1. Tự động hiển thị bảng thông báo popup
+      const welcomeBox = document.getElementById("welcomeNotification");
+      if (welcomeBox) {
+        welcomeBox.style.display = "flex";
+      }
+      
+      // 2. Kích hoạt đồng hồ và cập nhật lịch tháng/năm
+      updateTimeAndStats();
+    });
+
+    function closeWelcomeModal() {
+      document.getElementById("welcomeNotification").style.display = "none";
+    }
+
     function updateTimeAndStats() {
       const now = new Date();
-
       const h = String(now.getHours()).padStart(2, "0");
       const m = String(now.getMinutes()).padStart(2, "0");
       const s = String(now.getSeconds()).padStart(2, "0");
-      document.getElementById("clockDisplay").textContent = `${h}:${m}:${s}`;
+      
+      const clockEl = document.getElementById("clockDisplay");
+      if (clockEl) clockEl.textContent = `${h}:${m}:${s}`;
 
       const currentMonth = String(now.getMonth() + 1).padStart(2, "0");
       const currentYear = now.getFullYear();
-      document.getElementById("lblThang").textContent = `Tháng ${currentMonth} :`;
-      document.getElementById("lblNam").textContent = `Năm ${currentYear} :`;
+      
+      const lblThang = document.getElementById("lblThang");
+      const lblNam = document.getElementById("lblNam");
+      if (lblThang) lblThang.textContent = `Tháng ${currentMonth} :`;
+      if (lblNam) lblNam.textContent = `Năm ${currentYear} :`;
     }
-
     setInterval(updateTimeAndStats, 1000);
-    updateTimeAndStats();
 
     function openModal(id) {
       document.getElementById(id).style.display = 'flex';
@@ -659,7 +778,7 @@
     }
 
     window.addEventListener('click', function(event) {
-      if (event.target.classList.contains('modal-overlay')) {
+      if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('welcome-overlay')) {
         event.target.style.display = 'none';
       }
     });
@@ -667,9 +786,7 @@
     function showToast() {
       const toast = document.getElementById("toast");
       toast.className = "show";
-      setTimeout(function() {
-        toast.className = toast.className.replace("show", "");
-      }, 3000);
+      setTimeout(function() { toast.className = toast.className.replace("show", ""); }, 3000);
     }
 
     function copyToClipboard(text) {
@@ -683,165 +800,46 @@
     }
 
     function normalizeText(str) {
-      return (str || "")
-        .toString()
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/đ/g, "d")
-        .replace(/[^a-z0-9\s]/g, " ")
-        .replace(/\s+/g, " ")
-        .trim();
+      return (str || "").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
     }
 
+    // CƠ SỞ DỮ LIỆU TÌM KIẾM
     const searchData = [
-      {
-        titleMain: "Giới thiệu",
-        titleSub: "Nhà trường",
-        desc: "Xem lịch sử, cơ cấu trường, thông tin tổng quan.",
-        keywords: [
-          "gioi thieu", "giới thiệu", "nha truong", "nhà trường", "truong hoc", "trường học",
-          "thcs", "trung hoc co so", "binh thanh", "bình thành", "lich su", "lịch sử", "co cau", "cơ cấu",
-          "tong quan", "tổng quan", "thong tin truong", "thông tin trường", "giao vien", "giáo viên",
-          "hoc sinh", "học sinh", "ban giam hieu", "ban giám hiệu"
-        ],
-        url: "gioithieu.html"
-      },
-      {
-        titleMain: "Sự kiện",
-        titleSub: "Mới",
-        desc: "Hoạt động, phong trào, lễ hội, ngoại khóa.",
-        keywords: [
-          "su kien", "sự kiện", "hoat dong", "hoạt động", "phong trao", "phong trào",
-          "le hoi", "lễ hội", "ngoai khoa", "ngoại khóa", "su kien moi", "sự kiện mới",
-          "sinh hoat", "sinh hoạt", "thi dua", "thi đua", "van nghe", "văn nghệ",
-          "the thao", "thể thao", "trai nghiem", "trải nghiệm", "tuyen truyen", "tuyên truyền",
-          "hoi thao", "hội thao"
-        ],
-        url: "sukien.html"
-      },
-      {
-        titleMain: "Kỉ niệm",
-        titleSub: "Hình ảnh",
-        desc: "Album ảnh, video, khoảnh khắc đáng nhớ.",
-        keywords: [
-          "ki niem", "kỉ niệm", "ky niem", "kỷ niệm", "hinh anh", "hình ảnh", "album",
-          "video", "anh", "ảnh", "hinh", "hình", "bo suu tap", "bộ sưu tập",
-          "luu niem", "lưu niệm", "ky yeu", "kỷ yếu", "anh lop", "ảnh lớp",
-          "hinh anh hoc sinh", "hình ảnh học sinh", "hinh anh truong", "hình ảnh trường"
-        ],
-        url: "kiniem.html"
-      },
-      {
-        titleMain: "Tin tức",
-        titleSub: "Thông báo",
-        desc: "Thông báo mới nhất, tin quan trọng của trường.",
-        keywords: [
-          "tin tuc", "tin tức", "thong bao", "thông báo", "tin moi", "tin mới",
-          "cap nhat", "cập nhật", "van ban", "văn bản", "lich nghi", "lịch nghỉ",
-          "lich hoc", "lịch học", "ke hoach", "kế hoạch", "chuong trinh", "chương trình",
-          "quyet dinh", "quyết định", "thong bao moi", "thông báo mới", "tin nha truong",
-          "tin nhà trường"
-        ],
-        url: "thongtin.html"
-      },
-      {
-        titleMain: "Tài nguyên",
-        titleSub: "Học tập",
-        desc: "Tài liệu, bài giảng, đề thi, ôn tập cho học sinh.",
-        keywords: [
-          "tai nguyen", "tài nguyên", "hoc tap", "học tập", "tai lieu", "tài liệu",
-          "bai giang", "bài giảng", "de thi", "đề thi", "kiem tra", "kiểm tra",
-          "trac nghiem", "trắc nghiệm", "on tap", "ôn tập", "bai tap", "bài tập",
-          "de cuong", "đề cương", "mon toan", "môn toán", "mon van", "môn văn",
-          "mon anh", "môn anh", "mon ly", "môn lý", "mon hoa", "môn hóa",
-          "mon sinh", "môn sinh", "mon su", "môn sử", "mon dia", "môn địa",
-          "tin hoc", "tin học", "cong nghe", "công nghệ", "lop 6", "lớp 6",
-          "lop 7", "lớp 7", "lop 8", "lớp 8", "lop 9", "lớp 9",
-          "hoc sinh", "học sinh", "tai lieu hoc tap", "tài liệu học tập",
-          "tai nguyen hoc sinh", "tài nguyên học sinh"
-        ],
-        url: "tainguyen.html"
-      },
-      {
-        titleMain: "Tài nguyên",
-        titleSub: "Máy chủ",
-        desc: "Thông tin phần cứng, phần mềm và hệ thống website.",
-        keywords: [
-          "tai nguyen", "tài nguyên", "may chu", "máy chủ", "server", "hosting",
-          "cpu", "ram", "linux", "windows server", "database", "web server",
-          "hosting website", "github", "cloudflare", "free", "he thong", "hệ thống", "phan cung", "phần cứng",
-          "phan mem", "phần mềm", "quan tri server", "quản trị server"
-        ],
-        url: "tainguyenserver.html"
-      },
-      {
-        titleMain: "Kỹ năng",
-        titleSub: "Phòng chống đuối nước",
-        desc: "Cẩm nang an toàn dưới nước dành riêng cho học sinh khi tham gia bơi lội và mùa mưa lũ.",
-        keywords: ["duoi nuoc", "đuối nước", "phong chong", "phòng chống", "boi loi", "bơi lội", "an toan", "an toàn", "cuu ho", "cứu hộ", "tai nan", "tai nạn", "mua lu", "mùa lũ"],
-        url: "phongchongduoinuoc.html"
-      },
-      {
-        titleMain: "Bài báo học sinh",
-        titleSub: "Gương sáng Bình Thành",
-        desc: "Bài báo tuyên dương những học sinh có thành tích xuất sắc và tích cực trong phong trào Đội.",
-        keywords: ["bai bao", "bài báo", "guong sang", "gương sáng", "hoc sinh", "học sinh", "tuyen duong", "tuyên dương", "thanh tich", "thành tích", "doi", "đội", "chong ngoan bac ho", "cháu ngoan bác hồ"],
-        url: "guongtot.html"
-      },
-      {
-        titleMain: "Mẹo hay",
-        titleSub: "Học tốt - giảm áp lực",
-        desc: "Chia sẻ phương pháp ghi nhớ nhanh sơ đồ tư duy (Mindmap) và kỹ thuật quản lý thời gian.",
-        keywords: ["meo hay", "mẹo hay", "hoc tot", "học tốt", "giam ap luc", "giảm áp lực", "so do tu duy", "sơ đồ tư duy", "mindmap", "ghi nho", "ghi nhớ", "thoi gian", "thời gian"],
-        url: "meohayhoctap.html"
-      },
-      {
-        titleMain: "Mẹo hay",
-        titleSub: "Bảo vệ sức khỏe",
-        desc: "Các thói quen tốt giúp phòng tránh tật khúc xạ (cận thị) và giữ tư thế ngồi học chuẩn.",
-        keywords: ["meo hay", "mẹo hay", "suc khoe", "sức khỏe", "can thi", "cận thị", "khuc xa", "khúc xạ", "tu the ngoi", "tư thế ngồi", "hoc duong", "học đường"],
-        url: "meosuckhoe.html"
-      }
+      { titleMain: "Giới thiệu", titleSub: "Nhà trường", desc: "Xem lịch sử, cơ cấu trường, thông tin tổng quan.", keywords: ["gioi thieu", "nha truong", "thcs", "binh thanh"], url: "gioithieu.html" },
+      { titleMain: "Sự kiện", titleSub: "Mới", desc: "Hoạt động, phong trào, lễ hội, ngoại khóa.", keywords: ["su kien", "hoat dong", "phong trao"], url: "sukien.html" },
+      { titleMain: "Kỉ niệm", titleSub: "Hình ảnh", desc: "Album ảnh, video, khoảnh khắc đáng nhớ.", keywords: ["ki niem", "hinh anh", "album", "ky niem"], url: "kiniem.html" },
+      { titleMain: "Tin tức", titleSub: "Thông báo", desc: "Thông báo mới nhất, tin quan trọng của trường.", keywords: ["tin tuc", "thong bao", "tin moi"], url: "thongtin.html" },
+      { titleMain: "Tài nguyên", titleSub: "Học tập", desc: "Tài liệu, bài giảng, đề thi, ôn tập khối 6 đến khối 9.", keywords: ["tai nguyen", "hoc tap", "de thi", "tai lieu"], url: "tainguyen.html" },
+      { titleMain: "Tài nguyên", titleSub: "Máy chủ", desc: "Thông tin phần cứng, phần mềm và hệ thống website.", keywords: ["may chu", "server", "hosting", "github"], url: "tainguyenserver.html" },
+      { titleMain: "Kỹ năng", titleSub: "Phòng chống đuối nước", desc: "Cẩm nang an toàn dưới nước dành riêng cho học sinh.", keywords: ["duoi nuoc", "phong chong", "an toan"], url: "phongchongduoinuoc.html" },
+      { titleMain: "Bài báo học sinh", titleSub: "Gương sáng Bình Thành", desc: "Bài báo tuyên dương những học sinh xuất sắc phong trào Đội.", keywords: ["guong sang", "tuyen duong", "hoc sinh"], url: "guongtot.html" },
+      { titleMain: "Mẹo hay", titleSub: "Học tốt - giảm áp lực", desc: "Chia sẻ phương pháp sơ đồ tư duy (Mindmap) và thời gian.", keywords: ["meo hay", "hoc tot", "mindmap"], url: "meohayhoctap.html" },
+      { titleMain: "Mẹo hay", titleSub: "Bảo vệ sức khỏe", desc: "Các thói quen tốt giúp phòng tránh tật khúc xạ, cận thị học đường.", keywords: ["suc khoe", "can thi", "tu the ngoi"], url: "meosuckhoe.html" }
     ];
 
     function handleSearch() {
       const input = document.getElementById("searchInput");
       const resultBox = document.getElementById("searchResults");
-
       const query = normalizeText(input.value);
       resultBox.innerHTML = "";
-
       if (!query) return;
 
       const filtered = searchData.filter(item => {
-        const allText = normalizeText([
-          item.titleMain,
-          item.titleSub,
-          item.desc,
-          ...(item.keywords || [])
-        ].join(" "));
+        const allText = normalizeText([item.titleMain, item.titleSub, item.desc, ...(item.keywords || [])].join(" "));
         return allText.includes(query);
       });
 
       if (filtered.length === 0) {
-        resultBox.innerHTML = `
-          <p style="font-size:13px; color:#666; padding:10px;">
-            Không tìm thấy kết quả.
-          </p>
-        `;
+        resultBox.innerHTML = `<p style="font-size:13px; color:#666; padding:10px;">Không tìm thấy kết quả.</p>`;
         return;
       }
 
       filtered.forEach(item => {
         resultBox.innerHTML += `
           <a href="${item.url}" class="search-res-item">
-            <div class="search-res-title">
-              ${item.titleMain} <span style="font-weight:400;">- ${item.titleSub}</span>
-            </div>
+            <div class="search-res-title">${item.titleMain} <span style="font-weight:400;">- ${item.titleSub}</span></div>
             <div class="search-res-desc">${item.desc}</div>
-          </a>
-        `;
+          </a>`;
       });
     }
   </script>
