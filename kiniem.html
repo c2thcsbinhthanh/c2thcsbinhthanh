@@ -1,55 +1,167 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-  <title>Kỉ niệm</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Góc Kỷ Niệm Học Trò</title>
 
   <style>
-    body{
-      margin:0;
-      font-family:Arial;
-      background:white;
+    * {
+      box-sizing: border-box;
     }
 
-    img{
-      width:100%;
-      height:250px;
-      object-fit:cover;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6fb;
+      color: #222;
     }
 
-    h1{
-      color:red;
-      text-align:center;
-      font-size:40px;
+    .container {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 20px;
     }
 
-    p{
-      font-size:22px;
-      padding:20px;
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      padding-bottom: 25px;
     }
 
-    a{
-      display:inline-block;
-      margin:20px;
-      padding:10px 20px;
-      background:Navy;
-      color:white;
-      text-decoration:none;
-      border-radius:8px;
+    .banner {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    h1 {
+      margin: 20px 0 10px;
+      color: #d40000;
+      text-align: center;
+      font-size: 34px;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 18px;
+      color: #666;
+      margin: 0 20px 20px;
+    }
+
+    .content {
+      padding: 0 22px;
+      font-size: 18px;
+      line-height: 1.8;
+      text-align: justify;
+      color: #333;
+    }
+
+    .content p {
+      margin-bottom: 15px;
+    }
+
+    .content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* KHU VỰC NÚT BẤM */
+    .btn-wrap {
+      text-align: center;
+      padding-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: 0.2s ease;
+    }
+
+    .btn-back {
+      background: navy;
+    }
+
+    .btn-gallery {
+      background: #1565C0;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 12px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .subtitle,
+      .content {
+        font-size: 16px;
+      }
+
+      .banner {
+        height: 180px;
+      }
+      
+      .btn-wrap {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      
+      .btn {
+        width: 80%;
+      }
     }
   </style>
 </head>
 
 <body>
+  <div class="container">
+    <div class="card">
+      <img src="1.png" alt="Ảnh đầu trang" class="banner">
 
-<img src="1.png">
+      <h1>GÓC KỶ NIỆM ĐẸP</h1>
+      <p class="subtitle">Nơi lưu giữ những khoảnh khắc thanh xuân dưới mái trường THCS Bình Thành</p>
 
-<h1>KỈ NIỆM</h1>
+      <div class="content">
+        <p>
+          Mái trường THCS Bình Thành không chỉ là nơi truyền trao tri thức, mà còn là chiếc hộp ký ức vô giá, gói trọn những năm tháng tuổi thơ hồn nhiên và tươi đẹp nhất của các thế hệ học sinh. Mỗi góc sân trường, mỗi hàng cây ghế đá đều mang theo một câu chuyện, một nụ cười hay cả những giọt nước mắt đầy xúc cảm của những ngày cắp sách tới trường.
+        </p>
+        <p>
+          Làm sao có thể quên được tiếng trống trường rộn rã vang lên mỗi sớm mai, những buổi sinh hoạt dưới cờ trang nghiêm nhưng đầy hào hứng. Nhớ làm sao những giờ ra chơi rộn rã tiếng cười đùa dưới bóng mát cây xanh, những lần cùng bạn bè ôn bài trước giờ kiểm tra, hay những buổi cùng nhau chuẩn bị tập san, tập văn nghệ cho các ngày lễ lớn của trường như 20/11 và 26/3.
+        </p>
+        <p>
+          Trong suốt chặng đường rèn luyện ấy, thầy cô chính là những người lái đò thầm lặng, luôn bao dung đón nhận và dìu dắt chúng em trưởng thành. Những lời răn dạy nghiêm khắc nhưng ngập tràn tình yêu thương, những ánh mắt khích lệ khi chúng em gặp khó khăn sẽ mãi là hành trang quý báu theo bước chân học sinh Bình Thành trên mọi nẻo đường tương lai.
+        </p>
+        <p>
+          Thời gian có thể trôi đi, những cô cậu học trò ngày nào rồi sẽ lớn khôn và bay cao, bay xa đến những chân trời mới. Thế nhưng, tình bạn trong sáng, tình thầy trò thiêng liêng và những kỷ niệm thân thương tại ngôi nhà chung THCS Bình Thành này sẽ mãi là đốm lửa ấm áp thắp sáng trong tim mỗi chúng em.
+        </p>
+      </div>
 
-<p>
-Những hình ảnh và khoảnh khắc đáng nhớ của trường.
-</p>
-
-<a href="index.html">⬅ Quay lại</a>
-
+      <div class="btn-wrap">
+        <a href="index.html" class="btn btn-back">⬅ Quay lại</a>
+        
+        <a href="anhkiniemdep.html" class="btn btn-gallery">🖼️ Xem ảnh kỷ niệm đẹp</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
