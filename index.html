@@ -187,6 +187,11 @@
       text-transform: uppercase;
     }
 
+    /* Màu đỏ nổi bật cho phần lưu ý quan trọng */
+    .widget-header.warning-header {
+      background: #D32F2F;
+    }
+
     .widget-body {
       padding: 15px;
     }
@@ -294,6 +299,11 @@
       font-size: 16px;
       margin-bottom: 8px;
       display: block;
+    }
+
+    /* Đổi màu tiêu đề cho các mục lưu ý để tạo điểm nhấn */
+    .warning-card .card-title {
+      color: #D32F2F;
     }
 
     .card-desc {
@@ -442,14 +452,12 @@
 <body>
   <div id="toast">Đã sao chép vào khay nhớ tạm!</div>
 
-  <!-- BANNER -->
   <div class="banner-container">
     <button id="btnEmailTop" class="btn-overlay" onclick="openModal('emailModal')" title="Email Liên Hệ" aria-label="Email">📧</button>
     <button id="btnSearchTop" class="btn-overlay" onclick="openModal('searchModal')" title="Tìm Kiếm" aria-label="Tìm kiếm">🔍</button>
     <img src="1.png" alt="Banner Trường THCS Bình Thành" onerror="this.src='https://via.placeholder.com/1000x200?text=Trường+THCS+Bình+Thành'">
   </div>
 
-  <!-- THANH ĐỒNG HỒ & CHỮ CHẠY -->
   <div class="info-bar">
     <div class="clock-section" id="clockDisplay">00:00:00</div>
     <div class="ticker-section">
@@ -457,10 +465,8 @@
     </div>
   </div>
 
-  <!-- NỘI DUNG CHÍNH -->
   <div class="container">
     <div class="sidebar">
-      <!-- MENU -->
       <div class="widget">
         <div class="widget-header">Danh mục chính</div>
         <div class="widget-body">
@@ -473,7 +479,6 @@
         </div>
       </div>
 
-      <!-- LIÊN KẾT WEBSITE -->
       <div class="widget">
         <div class="widget-header">Liên kết website</div>
         <div class="widget-body">
@@ -491,7 +496,6 @@
         </div>
       </div>
 
-      <!-- THỐNG KÊ TRUY CẬP -->
       <div class="widget">
         <div class="widget-header">Thống kê truy cập</div>
         <div class="widget-body">
@@ -534,10 +538,41 @@
           </div>
         </div>
       </div>
+
+      <div class="widget">
+        <div class="widget-header warning-header">Một số thứ cần lưu ý &amp; Hữu ích</div>
+        <div class="widget-body">
+          <p style="margin-bottom: 15px; line-height: 1.6; color: #555;">
+            Tổng hợp cẩm nang kỹ năng an toàn, thông tin giáo dục thiết yếu và các mẹo hay hỗ trợ cuộc sống, học tập hàng ngày cho các em.
+          </p>
+
+          <div class="grid-cards">
+            <div class="content-card warning-card">
+              <a href="phongchongduoinuoc.html" class="card-title">🚨 Kỹ năng phòng chống đuối nước</a>
+              <div class="card-desc">Cẩm nang an toàn dưới nước dành riêng cho học sinh khi tham gia bơi lội và mùa mưa lũ.</div>
+            </div>
+
+            <div class="content-card warning-card">
+              <a href="guongtot.html" class="card-title">🌟 Gương sáng học sinh Bình Thành</a>
+              <div class="card-desc">Bài báo tuyên dương những học sinh có thành tích xuất sắc và tích cực trong phong trào Đội.</div>
+            </div>
+
+            <div class="content-card warning-card">
+              <a href="meohayhoctap.html" class="card-title">💡 Mẹo hay học tốt - giảm áp lực</a>
+              <div class="card-desc">Chia sẻ phương pháp ghi nhớ nhanh sơ đồ tư duy (Mindmap) và kỹ thuật quản lý thời gian.</div>
+            </div>
+
+            <div class="content-card warning-card">
+              <a href="meosuckhoe.html" class="card-title">🍏 Mẹo hay bảo vệ sức khỏe học đường</a>
+              <div class="card-desc">Các thói quen tốt giúp phòng tránh tật khúc xạ (cận thị) và giữ tư thế ngồi học chuẩn.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- FOOTER -->
   <div class="footer">
     <h3>TRƯỜNG THCS BÌNH THÀNH</h3>
     <p><strong>Địa chỉ:</strong> Ấp Tây Bình, Xã Thoại Giang, Huyện Thoại Sơn, Tỉnh An Giang</p>
@@ -551,7 +586,6 @@
     </div>
   </div>
 
-  <!-- MODAL TÌM KIẾM -->
   <div id="searchModal" class="modal-overlay">
     <div class="modal-box">
       <span class="close-btn" onclick="closeModal('searchModal')">&times;</span>
@@ -564,7 +598,6 @@
     </div>
   </div>
 
-  <!-- MODAL EMAIL -->
   <div id="emailModal" class="modal-overlay">
     <div class="modal-box">
       <span class="close-btn" onclick="closeModal('emailModal')">&times;</span>
@@ -576,7 +609,7 @@
           <a href="mailto:truongthcsbinhthanh.edu@gmail.com" style="color:#D32F2F; font-weight:bold; word-break: break-all;">
             truongthcsbinhthanh.edu@gmail.com
           </a>
-          <button class="copy-btn" onclick="copyToClipboard('truongthcsbinhthanh.edu@gmail com')">Copy</button>
+          <button class="copy-btn" onclick="copyToClipboard('truongthcsbinhthanh.edu@gmail.com')">Copy</button>
         </div>
       </div>
 
@@ -737,6 +770,34 @@
           "phan mem", "phần mềm", "quan tri server", "quản trị server"
         ],
         url: "tainguyenserver.html"
+      },
+      {
+        titleMain: "Kỹ năng",
+        titleSub: "Phòng chống đuối nước",
+        desc: "Cẩm nang an toàn dưới nước dành riêng cho học sinh khi tham gia bơi lội và mùa mưa lũ.",
+        keywords: ["duoi nuoc", "đuối nước", "phong chong", "phòng chống", "boi loi", "bơi lội", "an toan", "an toàn", "cuu ho", "cứu hộ", "tai nan", "tai nạn", "mua lu", "mùa lũ"],
+        url: "phongchongduoinuoc.html"
+      },
+      {
+        titleMain: "Bài báo học sinh",
+        titleSub: "Gương sáng Bình Thành",
+        desc: "Bài báo tuyên dương những học sinh có thành tích xuất sắc và tích cực trong phong trào Đội.",
+        keywords: ["bai bao", "bài báo", "guong sang", "gương sáng", "hoc sinh", "học sinh", "tuyen duong", "tuyên dương", "thanh tich", "thành tích", "doi", "đội", "chong ngoan bac ho", "cháu ngoan bác hồ"],
+        url: "guongtot.html"
+      },
+      {
+        titleMain: "Mẹo hay",
+        titleSub: "Học tốt - giảm áp lực",
+        desc: "Chia sẻ phương pháp ghi nhớ nhanh sơ đồ tư duy (Mindmap) và kỹ thuật quản lý thời gian.",
+        keywords: ["meo hay", "mẹo hay", "hoc tot", "học tốt", "giam ap luc", "giảm áp lực", "so do tu duy", "sơ đồ tư duy", "mindmap", "ghi nho", "ghi nhớ", "thoi gian", "thời gian"],
+        url: "meohayhoctap.html"
+      },
+      {
+        titleMain: "Mẹo hay",
+        titleSub: "Bảo vệ sức khỏe",
+        desc: "Các thói quen tốt giúp phòng tránh tật khúc xạ (cận thị) và giữ tư thế ngồi học chuẩn.",
+        keywords: ["meo hay", "mẹo hay", "suc khoe", "sức khỏe", "can thi", "cận thị", "khuc xa", "khúc xạ", "tu the ngoi", "tư thế ngồi", "hoc duong", "học đường"],
+        url: "meosuckhoe.html"
       }
     ];
 
