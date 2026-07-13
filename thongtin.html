@@ -1,55 +1,281 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-  <title>Thông tin</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tin tức - Thông báo</title>
 
   <style>
-    body{
-      margin:0;
-      font-family:Arial;
-      background:white;
+    * {
+      box-sizing: border-box;
     }
 
-    img{
-      width:100%;
-      height:250px;
-      object-fit:cover;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6fb;
+      color: #222;
     }
 
-    h1{
-      color:red;
-      text-align:center;
-      font-size:40px;
+    .container {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 20px;
     }
 
-    p{
-      font-size:22px;
-      padding:20px;
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      padding-bottom: 25px;
     }
 
-    a{
-      display:inline-block;
-      margin:20px;
-      padding:10px 20px;
-      background:Navy;
-      color:white;
-      text-decoration:none;
-      border-radius:8px;
+    .banner {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    h1 {
+      margin: 20px 0 10px;
+      color: #d40000;
+      text-align: center;
+      font-size: 34px;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 18px;
+      color: #666;
+      margin: 0 20px 20px;
+    }
+
+    .content {
+      padding: 0 22px;
+      font-size: 18px;
+      line-height: 1.8;
+      text-align: justify;
+      color: #333;
+    }
+
+    .content p {
+      margin-bottom: 15px;
+    }
+
+    /* BỘ LỌC TIN TỨC */
+    .news-filter {
+      margin: 20px 0;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-filter {
+      padding: 8px 16px;
+      border: 1px solid #1565C0;
+      background: white;
+      color: #1565C0;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-filter.active {
+      background: #1565C0;
+      color: white;
+    }
+
+    /* DANH SÁCH BÀI VIẾT */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .news-item {
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #fdfdfd;
+      transition: 0.2s;
+    }
+
+    .news-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .tag {
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .tag-thongbao { background: #e3f2fd; color: #0d47a1; }
+    .tag-luuyi { background: #fff3e0; color: #e65100; }
+
+    .news-title {
+      margin: 8px 0 5px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .news-title a {
+      color: #1565C0;
+      text-decoration: none;
+    }
+
+    .news-title a:hover {
+      color: #d40000;
+    }
+
+    .news-desc {
+      margin: 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* NÚT BẤM XEM THÊM CHUYỂN TRANG */
+    .btn-readmore {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 13px;
+      color: #d40000;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .btn-readmore:hover {
+      text-decoration: underline;
+    }
+
+    .btn-wrap {
+      text-align: center;
+      padding-top: 20px;
+    }
+
+    .back {
+      display: inline-block;
+      padding: 12px 22px;
+      background: navy;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: 0.2s ease;
+    }
+
+    .back:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 12px; }
+      h1 { font-size: 28px; }
+      .subtitle, .content { font-size: 16px; }
+      .banner { height: 180px; }
     }
   </style>
 </head>
 
 <body>
+  <div class="container">
+    <div class="card">
+      <img src="1.png" alt="Ảnh đầu trang" class="banner">
 
-<img src="1.png">
+      <h1>TIN TỨC - THÔNG BÁO</h1>
+      <p class="subtitle">Cập nhật các thông báo mới từ nhà trường và các chuyên mục kỹ năng hữu ích</p>
 
-<h1>THÔNG TIN</h1>
+      <div class="content">
+        <p>
+          Trang thông tin tổng hợp giúp học sinh và phụ huynh dễ dàng nắm bắt các kế hoạch học tập, thông báo khẩn từ Ban giám hiệu, cũng như các bài viết hướng dẫn kỹ năng sống cần thiết.
+        </p>
+        
+        <hr style="border: 0; border-top: 1px dashed #ccc; margin: 20px 0;">
 
-<p>
-Thông tin học tập và thông báo của trường THCS Bình Thành.
-</p>
+        <div class="news-filter">
+          <button class="btn-filter active" onclick="filterNews('all', this)">Tất cả</button>
+          <button class="btn-filter" onclick="filterNews('thongbao', this)">Thông báo trường</button>
+          <button class="btn-filter" onclick="filterNews('luuyi', this)">Lưu ý & Hữu ích</button>
+        </div>
 
-<a href="index.html">⬅ Quay lại</a>
+        <div class="news-list">
+          
+          <div class="news-item thongbao">
+            <span class="tag tag-thongbao">Thông báo trường</span>
+            <div class="news-title"><a href="thongbaolichhoc.html">Thông báo về việc cập nhật thời khóa biểu mới áp dụng tuần sau</a></div>
+            <p class="news-desc">Các em học sinh chú ý theo dõi lịch học của lớp mình để chuẩn bị đầy đủ sách vở.</p>
+          </div>
 
+          <div class="news-item luuyi">
+            <span class="tag tag-luuyi">🚨 Cần lưu ý & Hữu ích</span>
+            <div class="news-title"><a href="phongchongduoinuoc.html">Kỹ năng phòng chống đuối nước cho học sinh</a></div>
+            <p class="news-desc">Cẩm nang an toàn dưới nước dành riêng cho học sinh khi tham gia bơi lội và mùa mưa lũ.</p>
+            <a href="phongchongduoinuoc.html" class="btn-readmore">Đọc bài viết ➔</a>
+          </div>
+
+          <div class="news-item luuyi">
+            <span class="tag tag-luuyi">🌟 Cần lưu ý & Hữu ích</span>
+            <div class="news-title"><a href="guongtot.html">Gương sáng học sinh Bình Thành tích cực phong trào Đội</a></div>
+            <p class="news-desc">Bài báo tuyên dương những học sinh có thành tích xuất sắc và nhặt được của rơi trả lại người mất.</p>
+            <a href="guongtot.html" class="btn-readmore">Đọc bài viết ➔</a>
+          </div>
+
+          <div class="news-item luuyi">
+            <span class="tag tag-luuyi">💡 Cần lưu ý & Hữu ích</span>
+            <div class="news-title"><a href="meohayhoctap.html">Mẹo hay học tốt - phương pháp giảm áp lực thi cử</a></div>
+            <p class="news-desc">Chia sẻ phương pháp ghi nhớ nhanh bằng sơ đồ tư duy (Mindmap) và kỹ thuật quản lý thời gian hiệu quả.</p>
+            <a href="meohayhoctap.html" class="btn-readmore">Đọc bài viết ➔</a>
+          </div>
+
+          <div class="news-item luuyi">
+            <span class="tag tag-luuyi">🍏 Cần lưu ý & Hữu ích</span>
+            <div class="news-title"><a href="meosuckhoe.html">Mẹo hay bảo vệ sức khỏe học đường và tư thế ngồi chuẩn</a></div>
+            <p class="news-desc">Các thói quen tốt giúp học sinh phòng tránh tật khúc xạ (cận thị) khi tiếp xúc màn hình máy tính.</p>
+            <a href="meosuckhoe.html" class="btn-readmore">Đọc bài viết ➔</a>
+          </div>
+
+        </div>
+
+        <script>
+          function filterNews(category, currentButton) {
+            // Đổi màu nút active
+            const buttons = document.querySelectorAll('.btn-filter');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            currentButton.classList.add('active');
+
+            // Ẩn/hiện bài viết
+            const items = document.querySelectorAll('.news-item');
+            items.forEach(item => {
+              if (category === 'all') {
+                item.style.display = 'block';
+              } else {
+                if (item.classList.contains(category)) {
+                  item.style.display = 'block';
+                } else {
+                  item.style.display = 'none';
+                }
+              }
+            });
+          }
+        </script>
+        
+      </div>
+
+      <div class="btn-wrap">
+        <a href="index.html" class="back">⬅ Quay lại trang chủ</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
