@@ -17,14 +17,25 @@
       background: #f4f6fb;
     }
 
+    /* Đưa toàn bộ trang vào một khung giới hạn, không tràn màn hình */
+    .container {
+      max-width: 750px; /* Độ rộng gọn gàng giống trang thông báo */
+      margin: 0 auto 30px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.08);
+      overflow: hidden;
+      padding-bottom: 20px;
+    }
+
     .top-banner {
       width: 100%;
-      height: 260px;
+      height: 220px;
       object-fit: cover;
       display: block;
     }
 
-    /* THANH DIỀU HƯỚNG CHÍNH (MỤC LỚN) */
+    /* THANH ĐIỀU HƯỚNG CHÍNH (MỤC LỚN) */
     .navbar {
       background: #1e3a8a;
       display: flex;
@@ -37,18 +48,23 @@
       background: transparent;
       border: none;
       color: #fff;
-      padding: 10px 15px;
-      margin: 5px;
+      padding: 8px 12px;
+      margin: 3px;
       cursor: pointer;
       border-radius: 8px;
       transition: .2s;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: bold;
     }
 
     .navbar button:hover,
     .navbar button.active-nav {
       background: rgba(255, 255, 255, .25);
+    }
+
+    /* NỘI DUNG BÊN TRONG */
+    .content {
+      padding: 20px 22px;
     }
 
     /* THANH ĐIỀU HƯỚNG PHỤ (MỤC NHỎ - NĂM HỌC) */
@@ -65,11 +81,11 @@
       background: #e2e8f0;
       border: none;
       color: #475569;
-      padding: 8px 16px;
+      padding: 6px 14px;
       cursor: pointer;
       border-radius: 20px;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 13px;
       transition: all 0.2s ease;
     }
 
@@ -80,12 +96,6 @@
     .sub-navbar button.active-sub {
       background: #d40000;
       color: #ffffff;
-    }
-
-    .content {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
     }
 
     /* ĐIỀU KHIỂN HIỂN THỊ TRANG LỚN */
@@ -104,6 +114,8 @@
       margin-top: 15px;
       line-height: 1.8;
       text-align: justify;
+      font-size: 17px;
+      color: #333;
     }
 
     .year-content.active-year {
@@ -122,22 +134,18 @@
       }
     }
 
-    .card {
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.08);
-      padding: 25px;
-    }
-
     .card h2 {
       color: #d40000;
       text-align: center;
       margin-bottom: 18px;
+      font-size: 28px;
     }
 
     .card p {
+      font-size: 17px;
       line-height: 1.8;
       text-align: justify;
+      color: #333;
     }
 
     .btn-wrap {
@@ -149,12 +157,13 @@
 
     .back {
       display: inline-block;
-      background: #1e3a8a;
+      background: navy;
       color: #fff;
       text-decoration: none;
       padding: 12px 22px;
       border-radius: 10px;
       font-weight: bold;
+      transition: opacity 0.2s;
     }
 
     .back:hover {
@@ -162,16 +171,22 @@
     }
 
     @media(max-width:600px) {
+      .container {
+        margin: 10px;
+        border-radius: 12px;
+      }
       .top-banner {
         height: 180px;
       }
       .navbar button {
         font-size: 13px;
-        padding: 8px 10px;
+        padding: 6px 10px;
       }
-      .sub-navbar button {
-        font-size: 12px;
-        padding: 6px 12px;
+      .card h2 {
+        font-size: 22px;
+      }
+      .card p, .year-content {
+        font-size: 15px;
       }
     }
   </style>
@@ -179,182 +194,180 @@
 
 <body>
 
-  <img src="1.png" class="top-banner" alt="Banner">
+  <div class="container">
+    
+    <img src="1.png" class="top-banner" alt="Banner">
 
-  <div class="navbar">
-    <button id="btn-home" class="active-nav" onclick="showPage('home')">Trang chủ</button>
-    <button id="btn-students" onclick="showPage('students')">Khai Giảng</button>
-    <button id="btn-teachers" onclick="showPage('teachers')">Tổng Kết</button>
-    <button id="btn-schedule" onclick="showPage('schedule')">Ngày Nhà Giáo Việt Nam</button>
-    <button id="btn-grades" onclick="showPage('grades')">Tết</button>
-    <button id="btn-contact" onclick="showPage('contact')">Các Sự Kiện Khác</button>
-  </div>
-
-  <div class="content">
-
-    <div id="home" class="page active">
-      <div class="card">
-        <h2>GIỚI THIỆU MỤC SỰ KIỆN</h2>
-        <p>
-          Mục Sự kiện là nơi cập nhật nhanh chóng và chính xác những hoạt động nổi bật, các chương trình quan trọng và những thông báo đáng chú ý của nhà trường. Đây là cầu nối giúp học sinh, giáo viên và phụ huynh dễ dàng theo dõi những sự kiện đang diễn ra cũng như các hoạt động sắp tới.
-          <br><br>
-          Tại đây, bạn có thể tìm thấy thông tin về các buổi lễ lớn của trường như Lễ Khai giảng, Lễ Bế giảng, các chương trình kỷ niệm, hội thi, hoạt động văn nghệ, thể dục thể thao, trải nghiệm sáng tạo, ngoại khóa, thiện nguyện, hướng nghiệp, các cuộc thi học tập, tuyên dương học sinh đạt thành tích xuất sắc và nhiều sự kiện ý nghĩa khác.
-          <br><br>
-          Mỗi bài đăng đều cung cấp đầy đủ nội dung, thời gian, địa điểm và hình ảnh minh họa nhằm giúp người xem nắm bắt thông tin một cách nhanh chóng và thuận tiện. Mục Sự kiện không chỉ lưu giữ những khoảnh khắc đáng nhớ của thầy và trò mà còn góp phần lan tỏa tinh thần học tập, đoàn kết, sáng tạo và phát triển của nhà trường.
-          <br><br>
-          Hãy thường xuyên theo dõi Mục Sự kiện để không bỏ lỡ những hoạt động quan trọng và cùng đồng hành với các chương trình ý nghĩa của trường.
-        </p>
-
-        <div class="btn-wrap">
-          <a href="index.html" class="back">⬅ Quay lại trang chủ</a>
-        </div>
-      </div>
+    <div class="navbar">
+      <button id="btn-home" class="active-nav" onclick="showPage('home')">Trang chủ</button>
+      <button id="btn-students" onclick="showPage('students')">Khai Giảng</button>
+      <button id="btn-teachers" onclick="showPage('teachers')">Tổng Kết</button>
+      <button id="btn-schedule" onclick="showPage('schedule')">Ngày 20/11</button>
+      <button id="btn-grades" onclick="showPage('grades')">Tết</button>
+      <button id="btn-contact" onclick="showPage('contact')">Sự Kiện Khác</button>
     </div>
 
-    <div id="students" class="page">
-      <div class="card">
-        <h2>LỄ KHAI GIẢNG</h2>
-        
-        <div class="sub-navbar">
-          <button class="btn-students-2026 active-sub" onclick="showYear('students', '2026')">Năm 2026</button>
-          <button class="btn-students-2027" onclick="showYear('students', '2027')">Năm 2027</button>
-          <button class="btn-students-2028" onclick="showYear('students', '2028')">Năm 2028</button>
-        </div>
+    <div class="content">
 
-        <div id="students-2026" class="year-content active-year">
-          <p><b>[Lễ Khai Giảng Năm học 2026 - 2027]</b>: Nội dung thông tin, chương trình buổi lễ, hình ảnh và các hoạt động chào mừng năm học mới của năm 2026 đang được cập nhật...</p>
-        </div>
-        <div id="students-2027" class="year-content">
-          <p><b>[Lễ Khai Giảng Năm học 2027 - 2028]</b>: Thông tin chi tiết về buổi lễ khai giảng năm 2027 đang được chuẩn bị cập nhật...</p>
-        </div>
-        <div id="students-2028" class="year-content">
-          <p><b>[Lễ Khai Giảng Năm học 2028 - 2029]</b>: Thông tin chi tiết về buổi lễ khai giảng năm 2028 đang được chuẩn bị cập nhật...</p>
-        </div>
+      <div id="home" class="page active">
+        <div class="card">
+          <h2>GIỚI THIỆU MỤC SỰ KIỆN</h2>
+          <p>
+            Mục Sự kiện là nơi cập nhật nhanh chóng và chính xác những hoạt động nổi bật, các chương trình quan trọng và những thông báo đáng chú ý của nhà trường. Đây là cầu nối giúp học sinh, giáo viên và phụ huynh dễ dàng theo dõi những sự kiện đang diễn ra cũng như các hoạt động sắp tới.
+            <br><br>
+            Tại đây, bạn có thể tìm thấy thông tin về các buổi lễ lớn của trường như Lễ Khai giảng, Lễ Bế giảng, các chương trình kỷ niệm, hội thi, hoạt động văn nghệ, thể dục thể thao, trải nghiệm sáng tạo, ngoại khóa, thiện nguyện, hướng nghiệp, các cuộc thi học tập, tuyên dương học sinh đạt thành tích xuất sắc và nhiều sự kiện ý nghĩa khác.
+            <br><br>
+            Mỗi bài đăng đều cung cấp đầy đủ nội dung, thời gian, địa điểm và hình ảnh minh họa nhằm giúp người xem nắm bắt thông tin một cách nhanh chóng và thuận tiện. Mục Sự kiện không chỉ lưu giữ những khoảnh khắc đáng nhớ của thầy và trò mà còn góp phần lan tỏa tinh thần học tập, đoàn kết, sáng tạo và phát triển của nhà trường.
+          </p>
 
-        <div class="btn-wrap">
-          <a href="index.html" class="back">⬅ Quay lại</a>
+          <div class="btn-wrap">
+            <a href="index.html" class="back">⬅ Quay lại trang chủ</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div id="teachers" class="page">
-      <div class="card">
-        <h2>LỄ TỔNG KẾT NĂM HỌC</h2>
+      <div id="students" class="page">
+        <div class="card">
+          <h2>LỄ KHAI GIẢNG</h2>
+          
+          <div class="sub-navbar">
+            <button class="btn-students-2026 active-sub" onclick="showYear('students', '2026')">Năm 2026</button>
+            <button class="btn-students-2027" onclick="showYear('students', '2027')">Năm 2027</button>
+            <button class="btn-students-2028" onclick="showYear('students', '2028')">Năm 2028</button>
+          </div>
 
-        <div class="sub-navbar">
-          <button class="btn-teachers-2026 active-sub" onclick="showYear('teachers', '2026')">Năm 2026</button>
-          <button class="btn-teachers-2027" onclick="showYear('teachers', '2027')">Năm 2027</button>
-          <button class="btn-teachers-2028" onclick="showYear('teachers', '2028')">Năm 2028</button>
-        </div>
+          <div id="students-2026" class="year-content active-year">
+            <p><b>[Lễ Khai Giảng Năm học 2026 - 2027]</b>: Nội dung thông tin, chương trình buổi lễ, hình ảnh và các hoạt động chào mừng năm học mới của năm 2026 đang được cập nhật...</p>
+          </div>
+          <div id="students-2027" class="year-content">
+            <p><b>[Lễ Khai Giảng Năm học 2027 - 2028]</b>: Thông tin chi tiết về buổi lễ khai giảng năm 2027 đang được chuẩn bị cập nhật...</p>
+          </div>
+          <div id="students-2028" class="year-content">
+            <p><b>[Lễ Khai Giảng Năm học 2028 - 2029]</b>: Thông tin chi tiết về buổi lễ khai giảng năm 2028 đang được chuẩn bị cập nhật...</p>
+          </div>
 
-        <div id="teachers-2026" class="year-content active-year">
-          <p><b>[Lễ Tổng Kết Năm Học 2025 - 2026]</b>: Lễ tổng kết, phát thưởng và lễ tri ân trưởng thành của học sinh khối 9 năm học 2025-2026 đang được cập nhật...</p>
-        </div>
-        <div id="teachers-2027" class="year-content">
-          <p><b>[Lễ Tổng Kết Năm Học 2026 - 2027]</b>: Nội dung tổng kết thành tích thi đua của tập thể giáo viên và học sinh năm học 2026-2027...</p>
-        </div>
-        <div id="teachers-2028" class="year-content">
-          <p><b>[Lễ Tổng Kết Năm Học 2027 - 2028]</b>: Nội dung tổng kết thành tích thi đua của tập thể giáo viên và học sinh năm học 2027-2028...</p>
-        </div>
-
-        <div class="btn-wrap">
-          <a href="index.html" class="back">⬅ Quay lại</a>
+          <div class="btn-wrap">
+            <a href="index.html" class="back">⬅ Quay lại</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div id="schedule" class="page">
-      <div class="card">
-        <h2>NGÀY NHÀ GIÁO VIỆT NAM 20/11</h2>
+      <div id="teachers" class="page">
+        <div class="card">
+          <h2>LỄ TỔNG KẾT NĂM HỌC</h2>
 
-        <div class="sub-navbar">
-          <button class="btn-schedule-2026 active-sub" onclick="showYear('schedule', '2026')">Năm 2026</button>
-          <button class="btn-schedule-2027" onclick="showYear('schedule', '2027')">Năm 2027</button>
-          <button class="btn-schedule-2028" onclick="showYear('schedule', '2028')">Năm 2028</button>
-        </div>
+          <div class="sub-navbar">
+            <button class="btn-teachers-2026 active-sub" onclick="showYear('teachers', '2026')">Năm 2026</button>
+            <button class="btn-teachers-2027" onclick="showYear('teachers', '2027')">Năm 2027</button>
+            <button class="btn-teachers-2028" onclick="showYear('teachers', '2028')">Năm 2028</button>
+          </div>
 
-        <div id="schedule-2026" class="year-content active-year">
-          <p><b>[Kỷ niệm Hiến chương Nhà giáo 20/11/2026]</b>: Chuỗi hoạt động phong trào làm báo tường, hội diễn văn nghệ chào mừng Ngày Nhà giáo Việt Nam năm 2026...</p>
-        </div>
-        <div id="schedule-2027" class="year-content">
-          <p><b>[Kỷ niệm Hiến chương Nhà giáo 20/11/2027]</b>: Các chương trình hoạt động thi đua tuần học tốt, hoa điểm 10 dâng tặng thầy cô năm 2027...</p>
-        </div>
-        <div id="schedule-2028" class="year-content">
-          <p><b>[Kỷ niệm Hiến chương Nhà giáo 20/11/2028]</b>: Các hoạt động chào mừng ngày nhà giáo Việt Nam năm 2028...</p>
-        </div>
+          <div id="teachers-2026" class="year-content active-year">
+            <p><b>[Lễ Tổng Kết Năm Học 2025 - 2026]</b>: Lễ tổng kết, phát thưởng và lễ tri ân trưởng thành của học sinh khối 9 năm học 2025-2026 đang được cập nhật...</p>
+          </div>
+          <div id="teachers-2027" class="year-content">
+            <p><b>[Lễ Tổng Kết Năm Học 2026 - 2027]</b>: Nội dung tổng kết thành tích thi đua của tập thể giáo viên và học sinh năm học 2026-2027...</p>
+          </div>
+          <div id="teachers-2028" class="year-content">
+            <p><b>[Lễ Tổng Kết Năm Học 2027 - 2028]</b>: Nội dung tổng kết thành tích thi đua của tập thể giáo viên và học sinh năm học 2027-2028...</p>
+          </div>
 
-        <div class="btn-wrap">
-          <a href="index.html" class="back">⬅ Quay lại</a>
+          <div class="btn-wrap">
+            <a href="index.html" class="back">⬅ Quay lại</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div id="grades" class="page">
-      <div class="card">
-        <h2>TẾT CỔ TRUYỀN</h2>
+      <div id="schedule" class="page">
+        <div class="card">
+          <h2>NGÀY NHÀ GIÁO VIỆT NAM 20/11</h2>
 
-        <div class="sub-navbar">
-          <button class="btn-grades-2026 active-sub" onclick="showYear('grades', '2026')">Năm 2026</button>
-          <button class="btn-grades-2027" onclick="showYear('grades', '2027')">Năm 2027</button>
-          <button class="btn-grades-2028" onclick="showYear('grades', '2028')">Năm 2028</button>
-        </div>
+          <div class="sub-navbar">
+            <button class="btn-schedule-2026 active-sub" onclick="showYear('schedule', '2026')">Năm 2026</button>
+            <button class="btn-schedule-2027" onclick="showYear('schedule', '2027')">Năm 2027</button>
+            <button class="btn-schedule-2028" onclick="showYear('schedule', '2028')">Năm 2028</button>
+          </div>
 
-        <div id="grades-2026" class="year-content active-year">
-          <p><b>[Chào Xuân Bính Ngọ 2026]</b>: Hoạt động lễ hội xuân, gian hàng ẩm thực dân gian, quyên góp quà Tết "Vì bạn nghèo" đầu năm 2026...</p>
-        </div>
-        <div id="grades-2027" class="year-content">
-          <p><b>[Chào Xuân Đinh Mùi 2027]</b>: Chương trình sinh hoạt dưới cờ mừng Đảng - mừng Xuân và các trò chơi dân gian năm 2027...</p>
-        </div>
-        <div id="grades-2028" class="year-content">
-          <p><b>[Chào Xuân Mậu Thân 2028]</b>: Các hoạt động đón Tết cổ truyền ấm áp của trường THCS Bình Thành năm 2028...</p>
-        </div>
+          <div id="schedule-2026" class="year-content active-year">
+            <p><b>[Kỷ niệm Hiến chương Nhà giáo 20/11/2026]</b>: Chuỗi hoạt động phong trào làm báo tường, hội diễn văn nghệ chào mừng Ngày Nhà giáo Việt Nam năm 2026...</p>
+          </div>
+          <div id="schedule-2027" class="year-content">
+            <p><b>[Kỷ niệm Hiến chương Nhà giáo 20/11/2027]</b>: Các chương trình hoạt động thi đua tuần học tốt, hoa điểm 10 dâng tặng thầy cô năm 2027...</p>
+          </div>
+          <div id="schedule-2028" class="year-content">
+            <p><b>[Kỷ niệm Hiến chương Nhà giáo 20/11/2028]</b>: Các hoạt động chào mừng ngày nhà giáo Việt Nam năm 2028...</p>
+          </div>
 
-        <div class="btn-wrap">
-          <a href="index.html" class="back">⬅ Quay lại</a>
+          <div class="btn-wrap">
+            <a href="index.html" class="back">⬅ Quay lại</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div id="contact" class="page">
-      <div class="card">
-        <h2>CÁC SỰ KIỆN KHÁC LỚN & NHỎ</h2>
+      <div id="grades" class="page">
+        <div class="card">
+          <h2>TẾT CỔ TRUYỀN</h2>
 
-        <div class="sub-navbar">
-          <button class="btn-contact-2026 active-sub" onclick="showYear('contact', '2026')">Năm 2026</button>
-          <button class="btn-contact-2027" onclick="showYear('contact', '2027')">Năm 2027</button>
-          <button class="btn-contact-2028" onclick="showYear('contact', '2028')">Năm 2028</button>
-        </div>
+          <div class="sub-navbar">
+            <button class="btn-grades-2026 active-sub" onclick="showYear('grades', '2026')">Năm 2026</button>
+            <button class="btn-grades-2027" onclick="showYear('grades', '2027')">Năm 2027</button>
+            <button class="btn-grades-2028" onclick="showYear('grades', '2028')">Năm 2028</button>
+          </div>
 
-        <div id="contact-2026" class="year-content active-year">
-          <p><b>[Hoạt Động Ngoại Khóa 2026]</b>: Tổng hợp các hội thao cấp trường, ngày hội đọc sách, diễn tập phòng cháy chữa cháy trong năm 2026...</p>
-        </div>
-        <div id="contact-2027" class="year-content">
-          <p><b>[Hoạt Động Ngoại Khóa 2027]</b>: Các phong trào rèn luyện kỹ năng sống, các cuộc thi trực tuyến tìm hiểu pháp luật năm 2027...</p>
-        </div>
-        <div id="contact-2028" class="year-content">
-          <p><b>[Hoạt Động Ngoại Khóa 2028]</b>: Tổng hợp hoạt động ngoại khóa kỹ năng mềm năm 2028...</p>
-        </div>
+          <div id="grades-2026" class="year-content active-year">
+            <p><b>[Chào Xuân Bính Ngọ 2026]</b>: Hoạt động lễ hội xuân, gian hàng ẩm thực dân gian, quyên góp quà Tết "Vì bạn nghèo" đầu năm 2026...</p>
+          </div>
+          <div id="grades-2027" class="year-content">
+            <p><b>[Chào Xuân Đinh Mùi 2027]</b>: Chương trình sinh hoạt dưới cờ mừng Đảng - mừng Xuân và các trò chơi dân gian năm 2027...</p>
+          </div>
+          <div id="grades-2028" class="year-content">
+            <p><b>[Chào Xuân Mậu Thân 2028]</b>: Các hoạt động đón Tết cổ truyền ấm áp của trường THCS Bình Thành năm 2028...</p>
+          </div>
 
-        <div class="btn-wrap">
-          <a href="index.html" class="back">⬅ Quay lại</a>
+          <div class="btn-wrap">
+            <a href="index.html" class="back">⬅ Quay lại</a>
+          </div>
         </div>
       </div>
-    </div>
 
+      <div id="contact" class="page">
+        <div class="card">
+          <h2>CÁC SỰ KIỆN KHÁC</h2>
+
+          <div class="sub-navbar">
+            <button class="btn-contact-2026 active-sub" onclick="showYear('contact', '2026')">Năm 2026</button>
+            <button class="btn-contact-2027" onclick="showYear('contact', '2027')">Năm 2027</button>
+            <button class="btn-contact-2028" onclick="showYear('contact', '2028')">Năm 2028</button>
+          </div>
+
+          <div id="contact-2026" class="year-content active-year">
+            <p><b>[Hoạt Động Ngoại Khóa 2026]</b>: Tổng hợp các hội thao cấp trường, ngày hội đọc sách, diễn tập phòng cháy chữa cháy trong năm 2026...</p>
+          </div>
+          <div id="contact-2027" class="year-content">
+            <p><b>[Hoạt Động Ngoại Khóa 2027]</b>: Các phong trào rèn luyện kỹ năng sống, các cuộc thi trực tuyến tìm hiểu pháp luật năm 2027...</p>
+          </div>
+          <div id="contact-2028" class="year-content">
+            <p><b>[Hoạt Động Ngoại Khóa 2028]</b>: Tổng hợp hoạt động ngoại khóa kỹ năng mềm năm 2028...</p>
+          </div>
+
+          <div class="btn-wrap">
+            <a href="index.html" class="back">⬅ Quay lại</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <script>
     // 1. HÀM CHUYỂN ĐỔI GIỮA CÁC TRANG SỰ KIỆN CHÍNH
     function showPage(id) {
-      // Ẩn toàn bộ các trang sự kiện lớn
       document.querySelectorAll(".page").forEach(function(page) {
         page.classList.remove("active");
       });
 
-      // Hiển thị trang được chọn
       document.getElementById(id).classList.add("active");
 
-      // Cập nhật trạng thái active cho nút trên thanh điều hướng chính
       document.querySelectorAll(".navbar button").forEach(function(btn) {
         btn.classList.remove("active-nav");
       });
@@ -363,7 +376,6 @@
         currentBtn.classList.add("active-nav");
       }
 
-      // Cuộn trang lên đầu mượt mà
       window.scrollTo({
         top: 0,
         behavior: "smooth"
@@ -372,26 +384,21 @@
 
     // 2. HÀM CHUYỂN ĐỔI GIỮA CÁC NĂM (MỤC NHỎ) TRONG TRANG LỚN
     function showYear(pageId, year) {
-      // Tìm container chứa trang lớn đang được chọn
       const pageContainer = document.getElementById(pageId);
       
-      // Ẩn toàn bộ các khối năm con trong trang lớn này
       pageContainer.querySelectorAll(".year-content").forEach(function(content) {
         content.classList.remove("active-year");
       });
 
-      // Hiển thị đúng khối năm được chọn
       const selectedYearContent = document.getElementById(pageId + "-" + year);
       if (selectedYearContent) {
         selectedYearContent.classList.add("active-year");
       }
 
-      // Reset class active cho các nút chọn năm trong sub-navbar của trang hiện tại
       pageContainer.querySelectorAll(".sub-navbar button").forEach(function(btn) {
         btn.classList.remove("active-sub");
       });
 
-      // Thêm class active vào nút của năm vừa click
       const clickedBtn = pageContainer.querySelector(".btn-" + pageId + "-" + year);
       if (clickedBtn) {
         clickedBtn.classList.add("active-sub");
