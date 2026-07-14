@@ -1,1 +1,411 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>No problem</title>
 
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f6fb;
+      padding: 20px 0;
+    }
+
+    /* Khung chứa giới hạn độ rộng giống trang Giới thiệu trong ảnh của bạn */
+    .container {
+      max-width: 750px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.08);
+      overflow: hidden;
+      padding-bottom: 30px;
+    }
+
+    /* BANNER CHÍNH CỦA TRƯỜNG Ở TRÊN CÙNG */
+    .main-banner {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* TIÊU ĐỀ CHÍNH Ở GIỮA TRANG */
+    .main-title {
+      text-align: center;
+      color: #d40000;
+      font-size: 32px;
+      font-weight: bold;
+      margin-top: 25px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    /* Dòng phụ đề nhỏ phía dưới tiêu đề chính */
+    .sub-title {
+      text-align: center;
+      color: #555;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    /* KHU VỰC CHỨA CÁC MỤC THƯ VIỆN ẢNH */
+    .gallery-content {
+      padding: 0 22px;
+    }
+
+    /* Từng mục ảnh trong danh sách 50 mục */
+    .gallery-item {
+      border-top: 1px dashed #ddd; /* Đường gạch ngăn cách nhẹ giữa các mục */
+      padding: 25px 0;
+      text-align: center;
+    }
+
+    /* Mục đầu tiên không cần đường kẻ phía trên */
+    .gallery-item:first-child {
+      border-top: none;
+      padding-top: 10px;
+    }
+
+    /* Tiêu đề của từng bức ảnh */
+    .item-title {
+      color: #d40000;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    /* Định dạng khung ảnh hiển thị cân đối gọn gàng */
+    .item-img {
+      max-width: 90%; /* Ảnh chiếm tối đa 90% chiều rộng khung để không bị tràn sát lề */
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Tạo bóng mờ cho ảnh nổi bật hơn */
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    /* Hiệu ứng phóng to nhẹ khi di chuột vào ảnh */
+    .item-img:hover {
+      transform: scale(1.02);
+    }
+
+    /* NÚT QUAY LẠI Ở CUỐI TRANG */
+    .btn-wrap {
+      text-align: center;
+      margin-top: 30px;
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+    }
+
+    .back {
+      display: inline-block;
+      background: navy;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: opacity 0.2s;
+    }
+
+    .back:hover {
+      opacity: .85;
+    }
+
+    /* Tự động tối ưu giao diện trên điện thoại di động */
+    @media(max-width:600px) {
+      .container {
+        margin: 10px;
+        border-radius: 12px;
+      }
+      .main-title {
+        font-size: 26px;
+      }
+      .item-title {
+        font-size: 17px;
+      }
+      .item-img {
+        max-width: 100%; /* Trên điện thoại cho ảnh rộng hết cỡ */
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    
+    <img src="1.png" class="main-banner" alt="Banner Trường Học">
+
+    <h1 class="main-title">No problem</h1>
+    <div class="sub-title">Thư viện hình ảnh</div>
+
+    <div class="gallery-content">
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+      <div class="gallery-item">
+        <div class="item-title">No problem</div>
+        <img src="No problem.png" class="item-img" alt="No problem.png">
+      </div>
+
+    </div>
+
+    <div class="btn-wrap">
+      <a href="index.html" class="back">⬅ Quay lại trang chủ</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
