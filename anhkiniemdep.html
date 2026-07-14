@@ -33,10 +33,12 @@
     .main-banner {
       width: 100%;
       height: 220px;
+      min-height: 150px;
+      background: #e2e8f0; /* Màu nền xám nhẹ nếu chưa tải được ảnh */
       display: block;
     }
 
-    /* TIÊU ĐỀ CHÍNH Ở GIỮA TRANG */
+    /* TIÊU ĐỀ LỚN CHÍNH GIỮA */
     .main-title {
       text-align: center;
       color: #d40000;
@@ -83,11 +85,15 @@
 
     /* Định dạng khung ảnh hiển thị cân đối gọn gàng */
     .item-img {
-      max-width: 90%; /* Ảnh chiếm tối đa 90% chiều rộng khung để không bị tràn sát lề */
+      width: 100%;
+      max-width: 600px; /* Độ rộng tối đa của ảnh */
       height: auto;
+      min-height: 200px; /* Chiều cao tối thiểu phòng khi ảnh chưa load */
+      background: #f1f5f9;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Tạo bóng mờ cho ảnh nổi bật hơn */
       display: inline-block;
+      object-fit: cover;
       transition: transform 0.2s ease;
     }
 
@@ -131,9 +137,6 @@
       .item-title {
         font-size: 17px;
       }
-      .item-img {
-        max-width: 100%; /* Trên điện thoại cho ảnh rộng hết cỡ */
-      }
     }
   </style>
 </head>
@@ -142,261 +145,261 @@
 
   <div class="container">
     
-    <img src="1.png" class="main-banner" alt="Banner Trường Học">
+    <img src="1.png" class="main-banner" alt="Chưa có ảnh banner 1.png">
 
-    <h1 class="main-title">No problem</h1>
+    <h1 class="main-title">THƯ VIỆN ẢNH</h1>
     <div class="sub-title">Thư viện hình ảnh</div>
 
     <div class="gallery-content">
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="10.png">
+        <img src="10.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
       <div class="gallery-item">
         <div class="item-title">No problem</div>
-        <img src="No problem.png" class="item-img" alt="No problem.png">
+        <img src="noproblem.png" class="item-img" alt="Chưa có ảnh noproblem.png">
       </div>
 
     </div>
