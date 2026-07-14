@@ -393,6 +393,39 @@
       line-height: 1.5;
     }
 
+    /* HỆ THỐNG LƯỚI CHO MỤC HÌNH ẢNH MỚI */
+    .grid-images {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    @media (min-width: 600px) {
+      .grid-images {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .image-card {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fafafa;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+    }
+
+    .image-card:hover {
+      transform: scale(1.02);
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+
     /* FOOTER CHÂN TRANG */
     .footer {
       background: white;
@@ -677,6 +710,23 @@
         </div>
       </div>
 
+      <div class="widget">
+        <div class="widget-header">Một số hình ảnh đẹp</div>
+        <div class="widget-body">
+          <div class="grid-images">
+            <div class="image-card">
+              <img src="5.png" alt="Hình ảnh đẹp số 5" onerror="this.src='https://via.placeholder.com/300x160?text=Hình+ảnh+5.png'">
+            </div>
+            <div class="image-card">
+              <img src="6.png" alt="Hình ảnh đẹp số 6" onerror="this.src='https://via.placeholder.com/300x160?text=Hình+ảnh+6.png'">
+            </div>
+            <div class="image-card">
+              <img src="7.png" alt="Hình ảnh đẹp số 7" onerror="this.src='https://via.placeholder.com/300x160?text=Hình+ảnh+7.png'">
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -693,7 +743,7 @@
       <span>Hợp tác phát triển bởi:</span>
       <img src="2.png" alt="Partner 1" class="logo-small" onerror="this.src='https://via.placeholder.com/80x30?text=Logo+2'">
       <img src="3.png" alt="Partner 2" class="logo-small" onerror="this.src='https://via.placeholder.com/80x30?text=Logo+3'">
-      <img src="4.png" alt="Partner 3" class="logo-small" onerror="this.scr='https://via.placeholder.com/80x30?text=logo+4'">
+      <img src="4.png" alt="Partner 3" class="logo-small" onerror="this.src='https://via.placeholder.com/80x30?text=logo+4'">
     </div>
   </div>
 
