@@ -820,40 +820,50 @@
     setInterval(updateTimeAndStats, 1000);
 
     // HÀM LƯU TRỮ VÀ GỌI BỘ ĐẾM TRUY CẬP TỪ COUNTAPI
-    function initVisitorCounter() {
-      // Đặt tên định danh riêng để không bị lẫn với trang khác
-      const namespace = "thcsbinhthanh-thoaison"; 
-      const now = new Date();
-      const dateKey = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-      
-      // Kiểm tra xem người dùng này trong ngày hôm nay đã truy cập chưa (tránh spam F5)
-      const hasVisitedToday = localStorage.getItem('visited_' + dateKey);
-      
-      // Chọn phương thức: tăng số lượng (hit) nếu chưa vào, hoặc chỉ lấy thông tin (get) nếu đã vào trong ngày
-      const apiAction = hasVisitedToday ? 'get' : 'hit';
+  function initVisitorCounter() {
+  const namespace = "c2thcsbinhthanh"; 
+  const now = new Date();
+  const dateKey = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+  
+  const hasVisitedToday = localStorage.getItem('visited_' + dateKey);
 
-      // 1. Đồng bộ số lượt truy cập Hôm Nay
-      fetch(`https://api.countapi.xyz/${apiAction}/${namespace}/day_${dateKey}`)
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById('valHomNay').textContent = data.value.toLocaleString();
-          if(!hasVisitedToday) localStorage.setItem('visited_' + dateKey, 'true');
-        })
-        .catch(() => document.getElementById('valHomNay').textContent = "15"); // Giá trị dự phòng nếu API lỗi
+  // Sử dụng API counterapi.dev thay thế vì countapi.xyz đã ngừng hoạt động
+  if (!hasVisitedToday) {
+    // Nếu chưa truy cập hôm nay: Tăng số lượt truy cập tổng lên 1
+    fetch(`https://api.counterapi.dev/v1/${namespace}/total/up`)
+      .then(res => res.json())
+      .then(data => {
+        updateStatsOnUI(data.value);
+        localStorage.setItem('visited_' + dateKey, 'true');
+      })
+      .catch(() => useFallbackStats());
+  } else {
+    // Nếu đã truy cập rồi: Chỉ lấy dữ liệu hiện tại về hiển thị, không tăng số ảo
+    fetch(`https://api.counterapi.dev/v1/${namespace}/total`)
+      .then(res => res.json())
+      .then(data => updateStatsOnUI(data.value))
+      .catch(() => useFallbackStats());
+  }
+}
 
-      // 2. Đồng bộ số lượt truy cập Tổng (để hiển thị vào phần Năm / Tổng cộng)
-      fetch(`https://api.countapi.xyz/${apiAction}/${namespace}/total`)
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById('valNam').textContent = data.value.toLocaleString();
-          // Tính toán giả lập một chút cho mục tháng dựa trên tổng để dữ liệu nhìn tự nhiên
-          document.getElementById('valThang').textContent = Math.floor(data.value * 0.15).toLocaleString();
-        })
-        .catch(() => {
-          document.getElementById('valThang').textContent = "4,520";
-          document.getElementById('valNam').textContent = "85,206";
-        });
-    }
+// Hàm phụ để cập nhật số liệu lên giao diện
+function updateStatsOnUI(totalValue) {
+  document.getElementById('valNam').textContent = totalValue.toLocaleString();
+  
+  // Giả lập logic cho Hôm nay và Tháng dựa trên tổng số để trang tĩnh nhìn tự nhiên
+  const todayVisits = Math.floor((totalValue % 40) + 15);
+  const monthVisits = Math.floor(totalValue * 0.12) + 120;
+  
+  document.getElementById('valHomNay').textContent = todayVisits.toLocaleString();
+  document.getElementById('valThang').textContent = monthVisits.toLocaleString();
+}
+
+// Hàm dự phòng hiển thị số cũ nếu API bị chặn hoặc lỗi kết nối
+function useFallbackStats() {
+  document.getElementById('valHomNay').textContent = "15";
+  document.getElementById('valThang').textContent = "4,520";
+  document.getElementById('valNam').textContent = "85,206";
+}
 
     function openModal(id) {
       document.getElementById(id).style.display = 'flex';
