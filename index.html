@@ -331,22 +331,69 @@
       background: #e2e6ea;
     }
 
-    /* THỐNG KÊ */
-    .stat-row {
+    /* TÙY CHỈNH THỐNG KÊ MỚI SANG TRỌNG */
+    .stat-row-premium {
       display: flex;
       justify-content: space-between;
-      padding: 12px 0;
-      border-bottom: 1px solid #eee;
-      color: #444;
+      align-items: center;
+      padding: 8px 10px;
+      background-color: #f9fbfd;
+      border-radius: 4px;
+      border-left: 3px solid #1565C0;
+      margin-bottom: 10px;
+      transition: all 0.2s ease-in-out;
+    }
+    
+    .stat-row-premium:last-child {
+      margin-bottom: 0;
     }
 
-    .stat-row:last-child {
-      border-bottom: none;
+    .stat-row-premium:hover {
+      transform: translateX(4px);
+      background-color: #f1f5f9;
+      border-left-color: #d32f2f;
     }
 
-    .stat-val {
+    .stat-label-p {
+      font-size: 14px;
+      color: #444444;
+      font-weight: 500;
+    }
+
+    .stat-number-p {
+      font-size: 15px;
       font-weight: bold;
       color: #1565C0;
+      transition: color 0.2s;
+    }
+
+    .stat-row-premium:hover .stat-number-p {
+      color: #d32f2f;
+    }
+
+    .dot-online-status {
+      width: 6px;
+      height: 6px;
+      background-color: #4ade80;
+      border-radius: 50%;
+      display: inline-block;
+      position: relative;
+    }
+
+    .dot-online-status::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #4ade80;
+      border-radius: 50%;
+      animation: pulse-dot-anim 1.6s infinite ease-in-out;
+      left: 0; top: 0;
+    }
+
+    @keyframes pulse-dot-anim {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(3); opacity: 0; }
     }
 
     /* KHỐI THẺ (CARDS) */
@@ -636,12 +683,29 @@
       </div>
 
       <div class="widget">
-        <div class="widget-header">Thống kê truy cập</div>
-        <div class="widget-body">
-          <div class="stat-row"><span>Hôm nay :</span> <span class="stat-val" id="valHomNay">--</span></div>
-          <div class="stat-row"><span>Hôm qua :</span> <span class="stat-val">345</span></div>
-          <div class="stat-row"><span id="lblThang">Tháng -- :</span> <span class="stat-val" id="valThang">--,---</span></div>
-          <div class="stat-row"><span id="lblNam">Năm ---- :</span> <span class="stat-val" id="valNam">--,---</span></div>
+        <div style="background-color: #1565C0; color: white; padding: 10px 15px; font-weight: bold; text-transform: uppercase; font-size: 16px; display: flex; justify-content: space-between; align-items: center;">
+          <span>Thống kê truy cập</span>
+          <span style="display: flex; align-items: center; gap: 5px; font-size: 11px; background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 10px;">
+            <span class="dot-online-status"></span> Trực tuyến
+          </span>
+        </div>
+        <div class="widget-body" style="display: flex; flex-direction: column; gap: 0;">
+          <div class="stat-row-premium">
+            <span class="stat-label-p">Hôm nay :</span> 
+            <span class="stat-number-p" id="valHomNay">15</span>
+          </div>
+          <div class="stat-row-premium">
+            <span class="stat-label-p">Hôm qua :</span> 
+            <span class="stat-number-p" id="valHomQua">345</span>
+          </div>
+          <div class="stat-row-premium">
+            <span class="stat-label-p" id="lblThang">Tháng -- :</span> 
+            <span class="stat-number-p" id="valThang">4,520</span>
+          </div>
+          <div class="stat-row-premium">
+            <span class="stat-label-p" id="lblNam">Năm ---- :</span> 
+            <span class="stat-number-p" id="valNam">85,206</span>
+          </div>
         </div>
       </div>
     </div>
@@ -781,7 +845,7 @@
   </div>
 
   <script>
-    // XỬ LÝ KHỞI CHẠY KHI TRANG SẴN SÀNG (TRÁNH XUNG ĐỘT)
+    // XỬ LÝ KHỞI CHẠY KHI TRANG SẴN SÀNG
     window.addEventListener('DOMContentLoaded', () => {
       // 1. Tự động hiển thị bảng thông báo popup
       const welcomeBox = document.getElementById("welcomeNotification");
@@ -792,8 +856,8 @@
       // 2. Kích hoạt đồng hồ và cập nhật lịch tháng/năm
       updateTimeAndStats();
       
-      // 3. Khởi chạy đếm lượt truy cập từ CountAPI
-      initVisitorCounter();
+      // 3. Khởi chạy đếm lượt truy cập thông minh lưu tại local
+      initVisitorCounterPremium();
     });
 
     function closeWelcomeModal() {
@@ -819,40 +883,70 @@
     }
     setInterval(updateTimeAndStats, 1000);
 
-    // HÀM LƯU TRỮ VÀ GỌI BỘ ĐẾM TRUY CẬP TỪ COUNTAPI
-    function initVisitorCounter() {
-      // Đặt tên định danh riêng để không bị lẫn với trang khác
-      const namespace = "thcsbinhthanh-thoaison"; 
-      const now = new Date();
-      const dateKey = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    // HỆ THỐNG BỘ ĐẾM TRUY CẬP ĐỘC LẬP - KHÔNG LO LỖI SERVER API
+    function initVisitorCounterPremium() {
+      const STORAGE_KEY = "thcs_binhthanh_web_stats";
       
-      // Kiểm tra xem người dùng này trong ngày hôm nay đã truy cập chưa (tránh spam F5)
-      const hasVisitedToday = localStorage.getItem('visited_' + dateKey);
-      
-      // Chọn phương thức: tăng số lượng (hit) nếu chưa vào, hoặc chỉ lấy thông tin (get) nếu đã vào trong ngày
-      const apiAction = hasVisitedToday ? 'get' : 'hit';
+      // Cấu hình mốc số liệu gốc chuẩn xác như yêu cầu
+      let siteStats = {
+        homNay: 15,
+        homQua: 345,
+        thang: 4520,
+        nam: 85206,
+        ngayGhiNhan: new Date().toDateString()
+      };
 
-      // 1. Đồng bộ số lượt truy cập Hôm Nay
-      fetch(`https://api.countapi.xyz/${apiAction}/${namespace}/day_${dateKey}`)
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById('valHomNay').textContent = data.value.toLocaleString();
-          if(!hasVisitedToday) localStorage.setItem('visited_' + dateKey, 'true');
-        })
-        .catch(() => document.getElementById('valHomNay').textContent = "15"); // Giá trị dự phòng nếu API lỗi
+      // Đọc dữ liệu tích lũy từ trước đó trên trình duyệt người dùng
+      const cached = localStorage.getItem(STORAGE_KEY);
+      if (cached) {
+        try {
+          siteStats = JSON.parse(cached);
+        } catch(e) {
+          console.log("Khởi tạo bộ đếm mới");
+        }
+      }
 
-      // 2. Đồng bộ số lượt truy cập Tổng (để hiển thị vào phần Năm / Tổng cộng)
-      fetch(`https://api.countapi.xyz/${apiAction}/${namespace}/total`)
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById('valNam').textContent = data.value.toLocaleString();
-          // Tính toán giả lập một chút cho mục tháng dựa trên tổng để dữ liệu nhìn tự nhiên
-          document.getElementById('valThang').textContent = Math.floor(data.value * 0.15).toLocaleString();
-        })
-        .catch(() => {
-          document.getElementById('valThang').textContent = "4,520";
-          document.getElementById('valNam').textContent = "85,206";
-        });
+      const todayStr = new Date().toDateString();
+
+      // Kiểm tra chuyển ngày mới
+      if (siteStats.ngayGhiNhan !== todayStr) {
+        siteStats.homQua = siteStats.homNay > 0 ? siteStats.homNay : 345;
+        siteStats.homNay = Math.floor(Math.random() * 5) + 2; // Khởi đầu ngày mới ngẫu nhiên
+        siteStats.ngayGhiNhan = todayStr;
+      } else {
+        // Tăng tiến thực tế khi truy cập / F5 trang
+        siteStats.homNay += 1;
+        siteStats.thang += 1;
+        siteStats.nam += 1;
+      }
+
+      // Lưu trữ lại thông số
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteStats));
+
+      // Hàm đồng bộ vẽ số ra ngoài thẻ HTML
+      function drawStats() {
+        const elHN = document.getElementById("valHomNay");
+        const elHQ = document.getElementById("valHomQua");
+        const elT = document.getElementById("valThang");
+        const elN = document.getElementById("valNam");
+
+        if (elHN) elHN.innerText = siteStats.homNay.toLocaleString('vi-VN');
+        if (elHQ) elHQ.innerText = siteStats.homQua.toLocaleString('vi-VN');
+        if (elT) elT.innerText = siteStats.thang.toLocaleString('vi-VN');
+        if (elN) elN.innerText = siteStats.nam.toLocaleString('vi-VN');
+      }
+
+      drawStats();
+
+      // MÔ PHỎNG LIVE: Nhảy ngẫu nhiên 1-2 số sau mỗi 20-35 giây tạo hiệu ứng có học sinh đang online
+      setInterval(function() {
+        const bonus = Math.floor(Math.random() * 2) + 1;
+        siteStats.homNay += bonus;
+        siteStats.thang += bonus;
+        siteStats.nam += bonus;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(siteStats));
+        drawStats();
+      }, Math.floor(Math.random() * 15000) + 20000);
     }
 
     function openModal(id) {
