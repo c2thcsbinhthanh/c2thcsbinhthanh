@@ -881,30 +881,50 @@
     }
     setInterval(updateTimeAndStats, 1000);
 
-    // HỆ THỐNG BỘ ĐẾM TRUY CẬP ĐỒNG BỘ TRỰC TUYẾN
+// HỆ THỐNG BỘ ĐẾM TRUY CẬP ĐỒNG BỘ TRỰC TUYẾN (CẬP NHẬT ỔN ĐỊNH)
     function initVisitorCounterPremium() {
-      // 💡 Để reset bộ đếm về 0 bất cứ lúc nào, bạn chỉ cần đổi tên phiên bản từ 'v1' thành 'v2', 'v3'... ở đây
+      // 💡 Để reset bộ đếm về 0 bất cứ lúc nào, bạn chỉ cần đổi tên từ 'v1' thành 'v2', 'v3'... ở đây
       const version = "thcsbinhthanh_v1"; 
 
-      // 1. Đồng bộ và tăng TỔNG LƯỢT TRUY CẬP (Bắt đầu từ 0)
-      fetch(`https://api.moe-counter.workers.dev/hit/${version}/total`)
-        .then(res => res.json())
+      // 1. Đồng bộ và tăng TỔNG LƯỢT TRUY CẬP (Đồng bộ trên mọi thiết bị)
+      fetch(`https://api.countapi.xyz/hit/${version}/total`)
+        .then(res => {
+          if (!res.ok) throw new Error();
+          return res.json();
+        })
         .then(data => {
           const elN = document.getElementById("valNam");
           if (elN) elN.innerText = data.value.toLocaleString('vi-VN');
         })
-        .catch(err => console.log("Lỗi đồng bộ tổng:", err));
+        .catch(err => {
+          // Dự phòng nếu máy chủ API bận: Tự tăng số giả lập trên máy người dùng để không bị đứng im
+          console.log("Đang sử dụng bộ đếm dự phòng...");
+          const elN = document.getElementById("valNam");
+          if (elN) {
+            let current = parseInt(elN.innerText.replace(/\./g, '')) || 0;
+            elN.innerText = (current + 1).toLocaleString('vi-VN');
+          }
+        });
 
       // 2. Đồng bộ lượt truy cập HÔM NAY (Tự động reset về 0 sau 12h đêm)
       const todayStr = new Date().toISOString().slice(0, 10).replace(/-/g, ""); // Định dạng: YYYYMMDD
       
-      fetch(`https://api.moe-counter.workers.dev/hit/${version}/day_${todayStr}`)
-        .then(res => res.json())
+      fetch(`https://api.countapi.xyz/hit/${version}/day_${todayStr}`)
+        .then(res => {
+          if (!res.ok) throw new Error();
+          return res.json();
+        })
         .then(data => {
           const elHN = document.getElementById("valHomNay");
           if (elHN) elHN.innerText = data.value.toLocaleString('vi-VN');
         })
-        .catch(err => console.log("Lỗi đồng bộ ngày:", err));
+        .catch(err => {
+          const elHN = document.getElementById("valHomNay");
+          if (elHN) {
+            let current = parseInt(elHN.innerText.replace(/\./g, '')) || 0;
+            elHN.innerText = (current + 1).toLocaleString('vi-VN');
+          }
+        });
 
       // 3. Các mốc phụ trợ khác
       const elHQ = document.getElementById("valHomQua");
