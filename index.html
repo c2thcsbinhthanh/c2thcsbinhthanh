@@ -356,13 +356,13 @@
 
     .stat-label-p {
       font-size: 14px;
-      color: #111111;
-      font-weight: bold; /* IN ĐẬM TOÀN BỘ PHẦN CHỮ NHÃN */
+      color: #444444;
+      font-weight: 500;
     }
 
     .stat-number-p {
       font-size: 15px;
-      font-weight: bold; /* IN ĐẬM TOÀN BỘ PHẦN SỐ LIỆU */
+      font-weight: bold;
       color: #1565C0;
       transition: color 0.2s;
     }
@@ -866,7 +866,7 @@
         welcomeBox.style.display = "flex";
       }
       
-      // 2. Kích hoạt đồng hồ
+      // 2. Kích hoạt đồng hồ và cập nhật lịch tháng/năm
       updateTimeAndStats();
       
       // 3. Khởi chạy đếm lượt truy cập đồng bộ trực tuyến cực kỳ ổn định
@@ -890,7 +890,7 @@
 
     // HỆ THỐNG BỘ ĐẾM TRUY CẬP ĐỒNG BỘ TRỰC TUYẾN (BẢN MỚI CHUẨN NHẤT)
     function initVisitorCounterPremium() {
-      const namespace = "c2thcsbinhthanh_v0"; 
+      const namespace = "c2thcsbinhthanh_v1"; 
 
       // Thêm cache buster để tránh lỗi trình duyệt cũ tự nhớ số
       const fetchOptions = {
@@ -900,6 +900,10 @@
           'Cache-Control': 'no-cache'
         }
       };
+
+      const now = new Date();
+      const todayStr = now.toISOString().slice(0, 10).replace(/-/g, ""); // Ví dụ: 20260716
+      const monthStr = now.toISOString().slice(0, 7).replace(/-/g, ""); // Ví dụ: 202607
 
       // 1. Đồng bộ và tăng TỔNG LƯỢT TRUY CẬP
       fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_total`, fetchOptions)
@@ -913,8 +917,6 @@
         .catch(err => console.error("Lỗi đồng bộ tổng:", err));
 
       // 2. Đồng bộ lượt truy cập HÔM NAY (Tự reset số về 0 sau mỗi 12h đêm)
-      const todayStr = new Date().toISOString().slice(0, 10).replace(/-/g, ""); // Ví dụ: 20260716
-      
       fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_day_${todayStr}`, fetchOptions)
         .then(res => res.json())
         .then(data => {
@@ -925,12 +927,20 @@
         })
         .catch(err => console.error("Lỗi đồng bộ ngày:", err));
 
-      // 3. Ẩn các mốc phụ không cần thiết
+      // 3. Đồng bộ lượt truy cập THÁNG NÀY (Đã sửa lỗi không tăng - tự động reset khi qua tháng mới)
+      fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_month_${monthStr}`, fetchOptions)
+        .then(res => res.json())
+        .then(data => {
+          const elT = document.getElementById("valThang");
+          if (elT && data && typeof data.value !== 'undefined') {
+            elT.innerText = data.value.toLocaleString('vi-VN');
+          }
+        })
+        .catch(err => console.error("Lỗi đồng bộ tháng:", err));
+
+      // 4. Hôm qua cố định là 0
       const elHQ = document.getElementById("valHomQua");
       if (elHQ) elHQ.innerText = "0";
-
-      const elT = document.getElementById("valThang");
-      if (elT) elT.innerText = "0";
     }
 
     function openModal(id) {
