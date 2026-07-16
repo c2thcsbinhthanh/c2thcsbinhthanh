@@ -27,7 +27,7 @@
 
     /* POPUP THÔNG BÁO TỰ ĐỘNG KHI VÀO TRANG */
     .welcome-overlay {
-      display: none; /* JS sẽ chuyển thành flex khi vào trang */
+      display: none; 
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0, 0, 0, 0.6);
@@ -77,7 +77,6 @@
       margin-bottom: 6px;
     }
 
-    /* HIỆU ỨNG CHỚP NHÁY CHO NGÀY THÁNG */
     .blink-text {
       animation: blinker 1.5s linear infinite;
     }
@@ -856,7 +855,7 @@
       // 2. Kích hoạt đồng hồ và cập nhật lịch tháng/năm
       updateTimeAndStats();
       
-      // 3. Khởi chạy đếm lượt truy cập đồng bộ trực tuyến
+      // 3. Khởi chạy đếm lượt truy cập đồng bộ trực tuyến cực kỳ ổn định
       initVisitorCounterPremium();
     });
 
@@ -881,52 +880,45 @@
     }
     setInterval(updateTimeAndStats, 1000);
 
-// HỆ THỐNG BỘ ĐẾM TRUY CẬP ĐỒNG BỘ TRỰC TUYẾN (CẬP NHẬT ỔN ĐỊNH)
+    // HỆ THỐNG BỘ ĐẾM TRUY CẬP ĐỒNG BỘ TRỰC TUYẾN (BẢN MỚI CHUẨN NHẤT)
     function initVisitorCounterPremium() {
-      // 💡 Để reset bộ đếm về 0 bất cứ lúc nào, bạn chỉ cần đổi tên từ 'v1' thành 'v2', 'v3'... ở đây
-      const version = "thcsbinhthanh_v1"; 
+      // 💡 Lưu ý: Khi muốn đếm lại từ số 0, bạn chỉ cần sửa chữ v3 thành v4, v5, v6...
+      const namespace = "c2thcsbinhthanh_v3"; 
 
-      // 1. Đồng bộ và tăng TỔNG LƯỢT TRUY CẬP (Đồng bộ trên mọi thiết bị)
-      fetch(`https://api.countapi.xyz/hit/${version}/total`)
-        .then(res => {
-          if (!res.ok) throw new Error();
-          return res.json();
-        })
+      // Thêm cache buster để tránh lỗi trình duyệt cũ tự nhớ số
+      const fetchOptions = {
+        method: 'GET',
+        cache: 'no-store', // 🛠️ Ép trình duyệt LUÔN lấy số mới, không bao giờ dùng cache cũ
+        headers: {
+          'Cache-Control': 'no-cache'
+        }
+      };
+
+      // 1. Đồng bộ và tăng TỔNG LƯỢT TRUY CẬP
+      fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_total`, fetchOptions)
+        .then(res => res.json())
         .then(data => {
           const elN = document.getElementById("valNam");
-          if (elN) elN.innerText = data.value.toLocaleString('vi-VN');
-        })
-        .catch(err => {
-          // Dự phòng nếu máy chủ API bận: Tự tăng số giả lập trên máy người dùng để không bị đứng im
-          console.log("Đang sử dụng bộ đếm dự phòng...");
-          const elN = document.getElementById("valNam");
-          if (elN) {
-            let current = parseInt(elN.innerText.replace(/\./g, '')) || 0;
-            elN.innerText = (current + 1).toLocaleString('vi-VN');
+          if (elN && data && typeof data.value !== 'undefined') {
+            elN.innerText = data.value.toLocaleString('vi-VN');
           }
-        });
+        })
+        .catch(err => console.error("Lỗi đồng bộ tổng:", err));
 
-      // 2. Đồng bộ lượt truy cập HÔM NAY (Tự động reset về 0 sau 12h đêm)
-      const todayStr = new Date().toISOString().slice(0, 10).replace(/-/g, ""); // Định dạng: YYYYMMDD
+      // 2. Đồng bộ lượt truy cập HÔM NAY (Tự reset số về 0 sau mỗi 12h đêm)
+      const todayStr = new Date().toISOString().slice(0, 10).replace(/-/g, ""); // Ví dụ: 20260716
       
-      fetch(`https://api.countapi.xyz/hit/${version}/day_${todayStr}`)
-        .then(res => {
-          if (!res.ok) throw new Error();
-          return res.json();
-        })
+      fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_day_${todayStr}`, fetchOptions)
+        .then(res => res.json())
         .then(data => {
           const elHN = document.getElementById("valHomNay");
-          if (elHN) elHN.innerText = data.value.toLocaleString('vi-VN');
-        })
-        .catch(err => {
-          const elHN = document.getElementById("valHomNay");
-          if (elHN) {
-            let current = parseInt(elHN.innerText.replace(/\./g, '')) || 0;
-            elHN.innerText = (current + 1).toLocaleString('vi-VN');
+          if (elHN && data && typeof data.value !== 'undefined') {
+            elHN.innerText = data.value.toLocaleString('vi-VN');
           }
-        });
+        })
+        .catch(err => console.error("Lỗi đồng bộ ngày:", err));
 
-      // 3. Các mốc phụ trợ khác
+      // 3. Ẩn các mốc phụ không cần thiết
       const elHQ = document.getElementById("valHomQua");
       if (elHQ) elHQ.innerText = "0";
 
