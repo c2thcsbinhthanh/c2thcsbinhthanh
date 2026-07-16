@@ -624,11 +624,17 @@
         <p>Chào mừng các em học sinh đến với Hệ thống thông tin điện tử <b>THCS Bình Thành</b>!</p>
         <p>Hiện tại website đang chạy thử nghiệm kỹ thuật. <b>Sắp tới, vào đúng ngày 01/09/2026, hệ thống sẽ chính thức hoạt động ổn định và bắt đầu đăng tải các nội dung học tập, thông báo mới.</b></p>
         
+        <div style="margin: 15px 0; padding: 12px; background: #ffebee; border-left: 5px solid #D32F2F; border-radius: 6px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+          <a href="gopy.html" style="color: #D32F2F; font-weight: bold; text-decoration: underline; font-size: 16px; display: inline-block;">
+            ✉️ Hộp thư góp ý (Bấm vào đây để đóng góp ý kiến)
+          </a>
+        </div>
+        
         <p style="margin-top: 12px; font-weight: bold; color: #1565C0;">Các nội dung đang chuẩn bị cập nhật:</p>
         <ul>
           <li>Hệ thống <b>Tin tức - Thông báo</b> nhà trường nhanh chóng.</li>
           <li>Kho <b>Tài nguyên học tập</b> số hóa từ lớp 6 đến lớp 9.</li>
-          <li>Kỹ năng sống thiết yếu tại mục <b>Lưu ý & Hữu ích</b>.</li>
+          <li>Kỹ năng sống thiết yếu tại mục <b>Lưu ý &amp; Hữu ích</b>.</li>
         </ul>
       </div>
       <div class="welcome-footer">
@@ -699,7 +705,8 @@
             <span class="stat-number-p" id="valHomQua">0</span>
           </div>
           <div class="stat-row-premium">
-            <span class="stat-label-p" id="lblThang">Tháng -- :</span> 
+            <span class="stat-label-p">Thống kê :</span> 
+            <span class="stat-number-p" id="lblThang">Tháng -- :</span> 
             <span class="stat-number-p" id="valThang">0</span>
           </div>
           <div class="stat-row-premium">
@@ -796,6 +803,13 @@
 
   <div class="footer">
     <h3>TRƯỜNG THCS BÌNH THÀNH</h3>
+    
+    <p style="margin: 5px 0 12px 0;">
+      <a href="gopy.html" style="color: #1565C0; text-decoration: underline; font-weight: bold; font-size: 15px; display: inline-block;">
+        👉 Hộp thư góp ý
+      </a>
+    </p>
+
     <p><strong>Địa chỉ:</strong> Ấp Tây Bình, Xã Thoại Giang, Huyện Thoại Sơn, Tỉnh An Giang</p>
     <p><strong>Email:</strong> thcsbinhthanh.thoaison@angiang.gov.vn</p>
     
@@ -883,7 +897,6 @@
 
     // HỆ THỐNG BỘ ĐẾM TRUY CẬP ĐỒNG BỘ TRỰC TUYẾN (BẢN MỚI CHUẨN NHẤT)
     function initVisitorCounterPremium() {
-      // 💡 Lưu ý: Khi muốn đếm lại từ số 0, bạn chỉ cần sửa chữ v3 thành v4, v5, v6...
       const namespace = "c2thcsbinhthanh_v3"; 
 
       // Thêm cache buster để tránh lỗi trình duyệt cũ tự nhớ số
