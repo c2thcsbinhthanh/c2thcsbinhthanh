@@ -356,13 +356,13 @@
 
     .stat-label-p {
       font-size: 14px;
-      color: #444444;
-      font-weight: 500;
+      color: #111111;
+      font-weight: bold; /* IN ĐẬM TOÀN BỘ PHẦN CHỮ NHÃN */
     }
 
     .stat-number-p {
       font-size: 15px;
-      font-weight: bold;
+      font-weight: bold; /* IN ĐẬM TOÀN BỘ PHẦN SỐ LIỆU */
       color: #1565C0;
       transition: color 0.2s;
     }
@@ -705,8 +705,7 @@
             <span class="stat-number-p" id="valHomQua">0</span>
           </div>
           <div class="stat-row-premium">
-            <span class="stat-label-p">Thống kê :</span> 
-            <span class="stat-number-p" id="lblThang">Tháng -- :</span> 
+            <span class="stat-label-p">Tháng này :</span> 
             <span class="stat-number-p" id="valThang">0</span>
           </div>
           <div class="stat-row-premium">
@@ -867,7 +866,7 @@
         welcomeBox.style.display = "flex";
       }
       
-      // 2. Kích hoạt đồng hồ và cập nhật lịch tháng/năm
+      // 2. Kích hoạt đồng hồ
       updateTimeAndStats();
       
       // 3. Khởi chạy đếm lượt truy cập đồng bộ trực tuyến cực kỳ ổn định
@@ -886,18 +885,12 @@
       
       const clockEl = document.getElementById("clockDisplay");
       if (clockEl) clockEl.textContent = `${h}:${m}:${s}`;
-
-      const currentMonth = String(now.getMonth() + 1).padStart(2, "0");
-      const currentYear = now.getFullYear();
-      
-      const lblThang = document.getElementById("lblThang");
-      if (lblThang) lblThang.textContent = `Tháng ${currentMonth} :`;
     }
     setInterval(updateTimeAndStats, 1000);
 
     // HỆ THỐNG BỘ ĐẾM TRUY CẬP ĐỒNG BỘ TRỰC TUYẾN (BẢN MỚI CHUẨN NHẤT)
     function initVisitorCounterPremium() {
-      const namespace = "c2thcsbinhthanh_v3"; 
+      const namespace = "c2thcsbinhthanh_v0"; 
 
       // Thêm cache buster để tránh lỗi trình duyệt cũ tự nhớ số
       const fetchOptions = {
