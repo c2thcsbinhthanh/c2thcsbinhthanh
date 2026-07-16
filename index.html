@@ -703,7 +703,7 @@
             <span class="stat-number-p" id="valThang">0</span>
           </div>
           <div class="stat-row-premium">
-            <span class="stat-label-p" id="lblNam">Năm ---- :</span> 
+            <span class="stat-label-p" id="lblNam">Tổng truy cập :</span> 
             <span class="stat-number-p" id="valNam">0</span>
           </div>
         </div>
@@ -856,7 +856,7 @@
       // 2. Kích hoạt đồng hồ và cập nhật lịch tháng/năm
       updateTimeAndStats();
       
-      // 3. Khởi chạy đếm lượt truy cập thông minh lưu tại local
+      // 3. Khởi chạy đếm lượt truy cập đồng bộ trực tuyến
       initVisitorCounterPremium();
     });
 
@@ -877,76 +877,41 @@
       const currentYear = now.getFullYear();
       
       const lblThang = document.getElementById("lblThang");
-      const lblNam = document.getElementById("lblNam");
       if (lblThang) lblThang.textContent = `Tháng ${currentMonth} :`;
-      if (lblNam) lblNam.textContent = `Năm ${currentYear} :`;
     }
     setInterval(updateTimeAndStats, 1000);
 
-    // HỆ THỐNG BỘ ĐẾM TRUY CẬP ĐỘC LẬP - KHÔNG LO LỖI SERVER API
+    // HỆ THỐNG BỘ ĐẾM TRUY CẬP ĐỒNG BỘ TRỰC TUYẾN
     function initVisitorCounterPremium() {
-      const STORAGE_KEY = "thcs_binhthanh_web_stats";
+      // 💡 Để reset bộ đếm về 0 bất cứ lúc nào, bạn chỉ cần đổi tên phiên bản từ 'v1' thành 'v2', 'v3'... ở đây
+      const version = "thcsbinhthanh_v1"; 
+
+      // 1. Đồng bộ và tăng TỔNG LƯỢT TRUY CẬP (Bắt đầu từ 0)
+      fetch(`https://api.moe-counter.workers.dev/hit/${version}/total`)
+        .then(res => res.json())
+        .then(data => {
+          const elN = document.getElementById("valNam");
+          if (elN) elN.innerText = data.value.toLocaleString('vi-VN');
+        })
+        .catch(err => console.log("Lỗi đồng bộ tổng:", err));
+
+      // 2. Đồng bộ lượt truy cập HÔM NAY (Tự động reset về 0 sau 12h đêm)
+      const todayStr = new Date().toISOString().slice(0, 10).replace(/-/g, ""); // Định dạng: YYYYMMDD
       
-      // Cấu hình mốc số liệu gốc chuẩn xác như yêu cầu
-      let siteStats = {
-        homNay: 0,
-        homQua: 0,
-        thang: 0,
-        nam: 0,
-        ngayGhiNhan: new Date().toDateString()
-      };
+      fetch(`https://api.moe-counter.workers.dev/hit/${version}/day_${todayStr}`)
+        .then(res => res.json())
+        .then(data => {
+          const elHN = document.getElementById("valHomNay");
+          if (elHN) elHN.innerText = data.value.toLocaleString('vi-VN');
+        })
+        .catch(err => console.log("Lỗi đồng bộ ngày:", err));
 
-      // Đọc dữ liệu tích lũy từ trước đó trên trình duyệt người dùng
-      const cached = localStorage.getItem(STORAGE_KEY);
-      if (cached) {
-        try {
-          siteStats = JSON.parse(cached);
-        } catch(e) {
-          console.log("Khởi tạo bộ đếm mới");
-        }
-      }
+      // 3. Các mốc phụ trợ khác
+      const elHQ = document.getElementById("valHomQua");
+      if (elHQ) elHQ.innerText = "0";
 
-      const todayStr = new Date().toDateString();
-
-      // Kiểm tra chuyển ngày mới
-      if (siteStats.ngayGhiNhan !== todayStr) {
-        siteStats.homQua = siteStats.homNay > 0 ? siteStats.homNay : 345;
-        siteStats.homNay = Math.floor(Math.random() * 5) + 2; // Khởi đầu ngày mới ngẫu nhiên
-        siteStats.ngayGhiNhan = todayStr;
-      } else {
-        // Tăng tiến thực tế khi truy cập / F5 trang
-        siteStats.homNay += 1;
-        siteStats.thang += 1;
-        siteStats.nam += 1;
-      }
-
-      // Lưu trữ lại thông số
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteStats));
-
-      // Hàm đồng bộ vẽ số ra ngoài thẻ HTML
-      function drawStats() {
-        const elHN = document.getElementById("valHomNay");
-        const elHQ = document.getElementById("valHomQua");
-        const elT = document.getElementById("valThang");
-        const elN = document.getElementById("valNam");
-
-        if (elHN) elHN.innerText = siteStats.homNay.toLocaleString('vi-VN');
-        if (elHQ) elHQ.innerText = siteStats.homQua.toLocaleString('vi-VN');
-        if (elT) elT.innerText = siteStats.thang.toLocaleString('vi-VN');
-        if (elN) elN.innerText = siteStats.nam.toLocaleString('vi-VN');
-      }
-
-      drawStats();
-
-      // MÔ PHỎNG LIVE: Nhảy ngẫu nhiên 1-2 số sau mỗi 20-35 giây tạo hiệu ứng có học sinh đang online
-      setInterval(function() {
-        const bonus = Math.floor(Math.random() * 2) + 1;
-        siteStats.homNay += bonus;
-        siteStats.thang += bonus;
-        siteStats.nam += bonus;
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(siteStats));
-        drawStats();
-      }, Math.floor(Math.random() * 15000) + 20000);
+      const elT = document.getElementById("valThang");
+      if (elT) elT.innerText = "0";
     }
 
     function openModal(id) {
