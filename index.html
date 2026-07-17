@@ -780,6 +780,33 @@
         </div>
       </div>
 
+      <!-- MỤC MỚI: THƯ VIỆN ẢNH NGƯỜI DÙNG -->
+      <div class="widget">
+        <div class="widget-header">Thư Viện Ảnh Người Dùng</div>
+        <div class="widget-body">
+          
+          <!-- Dòng chữ click chuyển trang -->
+          <div style="margin-bottom: 15px; text-align: center;">
+            <a href="anh.html" style="color: #D32F2F; font-weight: bold; font-size: 16px; text-decoration: underline; display: inline-flex; align-items: center; justify-content: center; gap: 5px;">
+              👉 siêu thư viện ảnh và tải ảnh lên (click vào dòng chữ này)
+            </a>
+          </div>
+
+          <div class="grid-images">
+            <div class="image-card">
+              <img src="8.png" alt="Ảnh người dùng 8" onerror="this.src='https://via.placeholder.com/300x160?text=8.png'">
+            </div>
+            <div class="image-card">
+              <img src="9.png" alt="Ảnh người dùng 9" onerror="this.src='https://via.placeholder.com/300x160?text=9.png'">
+            </div>
+            <div class="image-card">
+              <img src="10.png" alt="Ảnh người dùng 10" onerror="this.src='https://via.placeholder.com/300x160?text=10.png'">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- KẾT THÚC MỤC MỚI -->
+
       <div class="widget">
         <div class="widget-header">Một số hình ảnh đẹp</div>
         <div class="widget-body">
@@ -892,18 +919,31 @@
     function initVisitorCounterPremium() {
       const namespace = "c2thcsbinhthanh_v1"; 
 
-      // Thêm cache buster để tránh lỗi trình duyệt cũ tự nhớ số
       const fetchOptions = {
         method: 'GET',
-        cache: 'no-store', // 🛠️ Ép trình duyệt LUÔN lấy số mới, không bao giờ dùng cache cũ
+        cache: 'no-store', 
         headers: {
           'Cache-Control': 'no-cache'
         }
       };
 
       const now = new Date();
-      const todayStr = now.toISOString().slice(0, 10).replace(/-/g, ""); // Ví dụ: 20260716
-      const monthStr = now.toISOString().slice(0, 7).replace(/-/g, ""); // Ví dụ: 202607
+      
+      // SỬA LỖI 12H ĐÊM KHÔNG RESET: Sử dụng giờ địa phương (Local Time) thay vì UTC (toISOString)
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const date = String(now.getDate()).padStart(2, '0');
+      
+      const todayStr = `${year}${month}${date}`; // Ví dụ: 20260717
+      const monthStr = `${year}${month}`; // Ví dụ: 202607
+
+      // TÍNH TOÁN NGÀY HÔM QUA (để lấy dữ liệu)
+      const yesterday = new Date(now);
+      yesterday.setDate(now.getDate() - 1);
+      const yYear = yesterday.getFullYear();
+      const yMonth = String(yesterday.getMonth() + 1).padStart(2, '0');
+      const yDate = String(yesterday.getDate()).padStart(2, '0');
+      const yesterdayStr = `${yYear}${yMonth}${yDate}`;
 
       // 1. Đồng bộ và tăng TỔNG LƯỢT TRUY CẬP
       fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_total`, fetchOptions)
@@ -916,7 +956,7 @@
         })
         .catch(err => console.error("Lỗi đồng bộ tổng:", err));
 
-      // 2. Đồng bộ lượt truy cập HÔM NAY (Tự reset số về 0 sau mỗi 12h đêm)
+      // 2. Đồng bộ lượt truy cập HÔM NAY 
       fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_day_${todayStr}`, fetchOptions)
         .then(res => res.json())
         .then(data => {
@@ -927,7 +967,7 @@
         })
         .catch(err => console.error("Lỗi đồng bộ ngày:", err));
 
-      // 3. Đồng bộ lượt truy cập THÁNG NÀY (Đã sửa lỗi không tăng - tự động reset khi qua tháng mới)
+      // 3. Đồng bộ lượt truy cập THÁNG NÀY
       fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_month_${monthStr}`, fetchOptions)
         .then(res => res.json())
         .then(data => {
@@ -938,9 +978,23 @@
         })
         .catch(err => console.error("Lỗi đồng bộ tháng:", err));
 
-      // 4. Hôm qua cố định là 0
-      const elHQ = document.getElementById("valHomQua");
-      if (elHQ) elHQ.innerText = "0";
+      // 4. Đồng bộ lượt truy cập HÔM QUA (Sử dụng lệnh /get/ thay vì /hit/ để chỉ xem, không cộng thêm số)
+      fetch(`https://countapi.mileshilliard.com/api/v1/get/${namespace}_day_${yesterdayStr}`, fetchOptions)
+        .then(res => {
+          if (!res.ok) throw new Error("Chưa có data hôm qua");
+          return res.json();
+        })
+        .then(data => {
+          const elHQ = document.getElementById("valHomQua");
+          if (elHQ && data && typeof data.value !== 'undefined') {
+            elHQ.innerText = data.value.toLocaleString('vi-VN');
+          }
+        })
+        .catch(err => {
+          // Nếu hôm qua web không có ai vào (hoặc API chưa tạo key), mặc định là 0
+          const elHQ = document.getElementById("valHomQua");
+          if (elHQ) elHQ.innerText = "0";
+        });
     }
 
     function openModal(id) {
