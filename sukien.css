@@ -1,0 +1,179 @@
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f6fb;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: 0 auto 30px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.08);
+      overflow: hidden;
+      padding-bottom: 20px;
+    }
+
+    .top-banner {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .navbar {
+      background: #1e3a8a;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 10px;
+    }
+
+    .navbar button {
+      background: transparent;
+      border: none;
+      color: #fff;
+      padding: 8px 12px;
+      margin: 3px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: .2s;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .navbar button:hover,
+    .navbar button.active-nav {
+      background: rgba(255, 255, 255, .25);
+    }
+
+    .content {
+      padding: 20px 22px;
+    }
+
+    .sub-navbar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 12px;
+    }
+
+    .sub-navbar button {
+      background: #e2e8f0;
+      border: none;
+      color: #475569;
+      padding: 6px 14px;
+      cursor: pointer;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 13px;
+      transition: all 0.2s ease;
+    }
+
+    .sub-navbar button:hover {
+      background: #cbd5e1;
+    }
+
+    .sub-navbar button.active-sub {
+      background: #d40000;
+      color: #ffffff;
+    }
+
+    .page {
+      display: none;
+      animation: fade .3s;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .year-content {
+      display: none;
+      margin-top: 15px;
+      line-height: 1.8;
+      text-align: justify;
+      font-size: 17px;
+      color: #333;
+    }
+
+    .year-content.active-year {
+      display: block;
+      animation: fade .3s;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card h2 {
+      color: #d40000;
+      text-align: center;
+      margin-bottom: 18px;
+      font-size: 28px;
+    }
+
+    .card p {
+      font-size: 17px;
+      line-height: 1.8;
+      text-align: justify;
+      color: #333;
+    }
+
+    .btn-wrap {
+      text-align: center;
+      margin-top: 25px;
+      border-top: 1px dashed #eee;
+      padding-top: 15px;
+    }
+
+    .back {
+      display: inline-block;
+      background: navy;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: opacity 0.2s;
+    }
+
+    .back:hover {
+      opacity: .85;
+    }
+
+    @media(max-width:600px) {
+      .container {
+        margin: 10px;
+        border-radius: 12px;
+      }
+      .top-banner {
+        height: 180px;
+      }
+      .navbar button {
+        font-size: 13px;
+        padding: 6px 10px;
+      }
+      .card h2 {
+        font-size: 22px;
+      }
+      .card p, .year-content {
+        font-size: 15px;
+      }
+    }
+  

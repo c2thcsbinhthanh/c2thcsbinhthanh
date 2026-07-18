@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trang thông tin điện tử dành cho học sinh THCS</title>
+  <meta property="og:site_name" content="THCS Bình Thành">
+  <meta property="og:title" content="Trang thông tin điện tử THCS Bình Thành">
+  <meta name="application-name" content="THCS Bình Thành">
+  <meta name="apple-mobile-web-app-title" content="THCS Bình Thành">
+  <meta name="description" content="Website chính thức của ATCX Trường THCS Bình Thành.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <meta name="google-site-verification" content="UPCEV84lYCnUjOct89YHnufaDDJU2jfHgg5XFEHvzh0" />
+<<<<<<< Updated upstream
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "THCS Bình Thành",
+  "url": "https://c2thcsbinhthanh.github.io/"
+}
+</script>
+=======
+>>>>>>> Stashed changes
+
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="chuyentrang.css">
+</head>
+
+<body>
+
+  <div id="welcomeNotification" class="welcome-overlay">
+    <div class="welcome-box">
+      <div class="welcome-header">
+        📢 THÔNG BÁO TỪ BAN QUẢN TRỊ
+      </div>
+      <div class="welcome-body">
+        <p class="blink-text" style="text-align: center; font-size: 18px; color: #D32F2F; font-weight: bold; margin-bottom: 15px;">
+          🗓️ NGÀY PHÁT HÀNH CHÍNH THỨC: 01/09/2026
+        </p>
+        <p>Chào mừng các em học sinh đến với Hệ thống thông tin điện tử <b>THCS Bình Thành</b>!</p>
+        <p>Hiện tại website đang chạy thử nghiệm kỹ thuật. <b>Sắp tới, vào đúng ngày 01/09/2026, hệ thống sẽ chính thức hoạt động ổn định và bắt đầu đăng tải các nội dung học tập, thông báo mới.</b></p>
+        
+        <div style="margin: 15px 0; padding: 12px; background: #ffebee; border-left: 5px solid #D32F2F; border-radius: 6px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+          <a href="gopy.html" style="color: #D32F2F; font-weight: bold; text-decoration: underline; font-size: 16px; display: inline-block;">
+            ✉️ Hộp thư góp ý (Bấm vào đây để đóng góp ý kiến)
+          </a>
+        </div>
+        
+        <p style="margin-top: 12px; font-weight: bold; color: #1565C0;">Các nội dung đang chuẩn bị cập nhật:</p>
+        <ul>
+          <li>Hệ thống <b>Tin tức - Thông báo</b> nhà trường nhanh chóng.</li>
+          <li>Kho <b>Tài nguyên học tập</b> số hóa từ lớp 6 đến lớp 9.</li>
+          <li>Kỹ năng sống thiết yếu tại mục <b>Lưu ý &amp; Hữu ích</b>.</li>
+        </ul>
+      </div>
+      <div class="welcome-footer">
+        <button class="btn-close-welcome" onclick="closeWelcomeModal()">Vào trang web</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast">Đã sao chép vào khay nhớ tạm!</div>
+
+  <div class="banner-container">
+    <button id="btnEmailTop" class="btn-overlay" onclick="openModal('emailModal')" title="Email Liên Hệ" aria-label="Email">📧</button>
+    <button id="btnSearchTop" class="btn-overlay" onclick="openModal('searchModal')" title="Tìm Kiếm" aria-label="Tìm kiếm">🔍</button>
+    <img src="1.png" alt="Banner Trường THCS Bình Thành" onerror="this.src='https://via.placeholder.com/1000x200?text=Trường+THCS+Bình+Thành'">
+  </div>
+
+  <div class="info-bar">
+    <div class="clock-section" id="clockDisplay">00:00:00</div>
+    <div class="ticker-section">
+      <div class="ticker-text">Trang thông tin điện tử dành cho học sinh THCS</div>
+    </div>
+  </div>
+
+  <div class="container">
+    
+    <div class="sidebar">
+      <div class="widget">
+        <div class="widget-header">Danh mục chính</div>
+        <div class="widget-body">
+          <ul class="menu-list">
+            <li><a href="gioithieu.html">Giới thiệu nhà trường</a></li>
+            <li><a href="sukien.html">Sự kiện mới</a></li>
+            <li><a href="kiniem.html">Kỉ niệm &amp; Hình ảnh</a></li>
+            <li><a href="thongtin.html">Tin tức - Thông báo</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="widget">
+        <div class="widget-header">Liên kết website</div>
+        <div class="widget-body">
+          <select class="dropdown" onchange="if(this.value) window.open(this.value,'_blank')">
+            <option value="">-- Chọn liên kết --</option>
+            <option value="https://angiang.edu.vn/">Sở Giáo dục và Đào tạo</option>
+            <option value="https://moet.gov.vn/">Bộ Giáo dục và Đào tạo</option>
+            <option value="https://thanhnien.vn/">Báo Thanh Niên</option>
+          </select>
+          <a href="https://angiang.edu.vn/" target="_blank" rel="noopener noreferrer" class="link-btn">
+            Sở Giáo dục và Đào tạo
+          </a>
+        </div>
+      </div>
+
+      <div class="widget">
+        <div style="background-color: #1565C0; color: white; padding: 10px 15px; font-weight: bold; text-transform: uppercase; font-size: 16px; display: flex; justify-content: space-between; align-items: center;">
+          <span>Thống kê truy cập</span>
+          <span style="display: flex; align-items: center; gap: 5px; font-size: 11px; background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 10px;">
+            <span class="dot-online-status"></span> Trực tuyến
+          </span>
+        </div>
+        <div class="widget-body" style="display: flex; flex-direction: column; gap: 0;">
+          <div class="stat-row-premium">
+            <span class="stat-label-p">Hôm nay :</span>
+            <span class="stat-number-p" id="valHomNay">0</span>
+          </div>
+          <div class="stat-row-premium">
+            <span class="stat-label-p">Hôm qua :</span>
+            <span class="stat-number-p" id="valHomQua">0</span>
+          </div>
+          <div class="stat-row-premium">
+<<<<<<< Updated upstream
+            <span class="stat-label-p">Tháng này :</span> 
+=======
+            <span class="stat-label-p">Tháng này :</span>
+>>>>>>> Stashed changes
+            <span class="stat-number-p" id="valThang">0</span>
+          </div>
+          <div class="stat-row-premium">
+            <span class="stat-label-p" id="lblNam">Tổng truy cập :</span>
+            <span class="stat-number-p" id="valNam">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      
+      <div class="widget">
+        <div class="widget-header">Bảng Tin Trường</div>
+        <div class="widget-body">
+          <p style="margin-bottom: 15px; line-height: 1.6;">
+            Chào mừng các em học sinh đến với trang thông tin điện tử dành cho học sinh THCS. Nơi đây cung cấp các tài nguyên học tập và thông báo mới nhất.
+          </p>
+
+          <div class="grid-cards">
+            <div class="content-card">
+              <a href="tainguyen.html" class="card-title">Tài nguyên học tập của học sinh</a>
+              <div class="card-desc">Tài nguyên hệ thống giúp học tập cho học sinh, lưu trữ tài liệu từ lớp 6-9.</div>
+            </div>
+
+            <div class="content-card">
+              <a href="tainguyenserver.html" class="card-title">Tài nguyên máy chủ</a>
+              <div class="card-desc">Tổng hợp phần cứng, phần mềm hỗ trợ duy trì và vận hành website ổn định.</div>
+            </div>
+
+            <div class="content-card">
+              <a href="sukien.html" class="card-title">Sự kiện mới nổi bật</a>
+              <div class="card-desc">Tổng hợp các hoạt động phong trào, lễ hội, sinh hoạt ngoại khóa của trường.</div>
+            </div>
+
+            <div class="content-card">
+              <a href="kiniem.html" class="card-title">Góc Kỉ Niệm</a>
+              <div class="card-desc">Lưu giữ hình ảnh, video và những dấu mốc đáng nhớ của các thế hệ học sinh.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="widget">
+        <div class="widget-header warning-header">Một số thứ cần lưu ý &amp; Hữu ích</div>
+        <div class="widget-body">
+          <p style="margin-bottom: 15px; line-height: 1.6; color: #555;">
+            Tổng hợp cẩm nang kỹ năng an toàn, thông tin giáo dục thiết yếu và các mẹo hay hỗ trợ cuộc sống, học tập hàng ngày cho các em.
+          </p>
+
+          <div class="grid-cards">
+            <div class="content-card warning-card">
+              <a href="phongchongduoinuoc.html" class="card-title">🚨 Kỹ năng phòng chống đuối nước</a>
+              <div class="card-desc">Cẩm nang an toàn dưới nước dành riêng cho học sinh khi tham gia bơi lội và mùa mưa lũ.</div>
+            </div>
+
+            <div class="content-card warning-card">
+              <a href="guongtot.html" class="card-title">🌟 Gương sáng học sinh Bình Thành</a>
+              <div class="card-desc">Bài báo tuyên dương những học sinh có thành tích xuất sắc và tích cực trong phong trào Đội.</div>
+            </div>
+
+            <div class="content-card warning-card">
+              <a href="meohayhoctap.html" class="card-title">💡 Mẹo hay học tốt - giảm áp lực</a>
+              <div class="card-desc">Chia sẻ phương pháp ghi nhớ nhanh sơ đồ tư duy (Mindmap) và kỹ thuật quản lý thời gian.</div>
+            </div>
+
+            <div class="content-card warning-card">
+              <a href="meosuckhoe.html" class="card-title">🍏 Mẹo hay bảo vệ sức khỏe học đường</a>
+              <div class="card-desc">Các thói quen tốt giúp phòng tránh tật khúc xạ (cận thị) và giữ tư thế ngồi học chuẩn.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<<<<<<< Updated upstream
+      <!-- MỤC MỚI: THƯ VIỆN ẢNH NGƯỜI DÙNG -->
+=======
+      
+>>>>>>> Stashed changes
+      <div class="widget">
+        <div class="widget-header">Thư Viện Ảnh Người Dùng</div>
+        <div class="widget-body">
+          
+<<<<<<< Updated upstream
+          <!-- Dòng chữ click chuyển trang -->
+=======
+          
+>>>>>>> Stashed changes
+          <div style="margin-bottom: 15px; text-align: center;">
+            <a href="anh.html" style="color: #D32F2F; font-weight: bold; font-size: 16px; text-decoration: underline; display: inline-flex; align-items: center; justify-content: center; gap: 5px;">
+              👉 siêu thư viện ảnh và tải ảnh lên (click vào dòng chữ này)
+            </a>
+          </div>
+
+          <div class="grid-images">
+            <div class="image-card">
+              <img src="8.png" alt="Ảnh người dùng 8" onerror="this.src='https://via.placeholder.com/300x160?text=8.png'">
+            </div>
+            <div class="image-card">
+              <img src="9.png" alt="Ảnh người dùng 9" onerror="this.src='https://via.placeholder.com/300x160?text=9.png'">
+            </div>
+            <div class="image-card">
+              <img src="10.png" alt="Ảnh người dùng 10" onerror="this.src='https://via.placeholder.com/300x160?text=10.png'">
+            </div>
+          </div>
+        </div>
+      </div>
+<<<<<<< Updated upstream
+      <!-- KẾT THÚC MỤC MỚI -->
+=======
+      
+>>>>>>> Stashed changes
+
+      <div class="widget">
+        <div class="widget-header">Một số hình ảnh đẹp</div>
+        <div class="widget-body">
+          <div class="grid-images">
+            <div class="image-card">
+              <img src="5.jpg" alt="Hình ảnh đẹp số 5" style="transform:rotate(90deg);" onerror="this.src='https://via.placeholder.com/300x160?text=Hình+ảnh+5.jpg'">
+            </div>
+            <div class="image-card">
+              <img src="6.jpg" alt="Hình ảnh đẹp số 6" onerror="this.src='https://via.placeholder.com/300x160?text=Hình+ảnh+6.jpg'">
+            </div>
+            <div class="image-card">
+              <img src="7.jpg" alt="Hình ảnh đẹp số 7" onerror="this.src='https://via.placeholder.com/300x160?text=Hình+ảnh+7.jpg'">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <h3>TRƯỜNG THCS BÌNH THÀNH</h3>
+    
+    <p style="margin: 5px 0 12px 0;">
+      <a href="gopy.html" style="color: #1565C0; text-decoration: underline; font-weight: bold; font-size: 15px; display: inline-block;">
+        👉 Hộp thư góp ý
+      </a>
+    </p>
+
+    <p><strong>Địa chỉ:</strong> Ấp Tây Bình, Xã Thoại Giang, Huyện Thoại Sơn, Tỉnh An Giang</p>
+    <p><strong>Email:</strong> thcsbinhthanh.thoaison@angiang.gov.vn</p>
+    
+    <p style="margin-top: 15px; font-size: 13px; color: #666; border-top: 1px dashed #ddd; padding-top: 10px;">
+      &copy; 2026 | &copy; Copyright ATCX. All rights reserved.
+    </p>
+
+    <div class="developer-section" style="margin-top: 10px; padding-top: 0; border-top: none;">
+      <span>Hợp tác phát triển bởi:</span>
+      <img src="2.png" alt="Partner 1" class="logo-small" onerror="this.src='https://via.placeholder.com/80x30?text=Logo+2'">
+      <img src="3.png" alt="Partner 2" class="logo-small" onerror="this.src='https://via.placeholder.com/80x30?text=Logo+3'">
+      <img src="4.png" alt="Partner 3" class="logo-small" onerror="this.src='https://via.placeholder.com/80x30?text=logo+4'">
+    </div>
+  </div>
+
+  <div id="searchModal" class="modal-overlay">
+    <div class="modal-box">
+      <span class="close-btn" onclick="closeModal('searchModal')">&times;</span>
+      <h3 style="color:#1565C0;">Tìm Kiếm</h3>
+      <div class="search-input-wrapper">
+        <span style="color:#888; margin-right: 10px;">🔍</span>
+        <input type="text" id="searchInput" placeholder="Nhập từ khóa tìm kiếm..." oninput="handleSearch()">
+      </div>
+      <div id="searchResults"></div>
+    </div>
+  </div>
+
+  <div id="emailModal" class="modal-overlay">
+    <div class="modal-box">
+      <span class="close-btn" onclick="closeModal('emailModal')">&times;</span>
+      <h3 style="color:#1565C0; margin-bottom: 15px;">Thông Tin Liên Hệ</h3>
+      <div style="margin-bottom: 15px;">
+        <p style="font-weight: bold; font-size: 14px; color: #555;">Email trang website:</p>
+        <div style="display:flex; align-items:center; margin-top:5px; flex-wrap: wrap; gap: 8px;">
+          <a href="mailto:truongthcsbinhthanh.edu@gmail.com" style="color:#D32F2F; font-weight:bold; word-break: break-all;">truongthcsbinhthanh.edu@gmail.com</a>
+          <button class="copy-btn" onclick="copyToClipboard('truongthcsbinhthanh.edu@gmail.com')">Copy</button>
+        </div>
+      </div>
+      <div>
+        <p style="font-weight: bold; font-size: 14px; color: #555;">Hỗ trợ kỹ thuật:</p>
+        <div style="display:flex; align-items:center; margin-top:5px; flex-wrap: wrap; gap: 8px;">
+          <a href="mailto:lienhecongviec.huymc5428@gmail.com" style="color:#D32F2F; font-weight:bold; word-break: break-all;">lienhecongviec.huymc5428@gmail.com</a>
+          <button class="copy-btn" onclick="copyToClipboard('lienhecongviec.huymc5428@gmail.com')">Copy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<<<<<<< Updated upstream
+  <script>
+    // XỬ LÝ KHỞI CHẠY KHI TRANG SẴN SÀNG
+    window.addEventListener('DOMContentLoaded', () => {
+      // 1. Tự động hiển thị bảng thông báo popup
+      const welcomeBox = document.getElementById("welcomeNotification");
+      if (welcomeBox) {
+        welcomeBox.style.display = "flex";
+      }
+      
+      // 2. Kích hoạt đồng hồ và cập nhật lịch tháng/năm
+      updateTimeAndStats();
+      
+      // 3. Khởi chạy đếm lượt truy cập đồng bộ trực tuyến cực kỳ ổn định
+      initVisitorCounterPremium();
+    });
+
+    function closeWelcomeModal() {
+      document.getElementById("welcomeNotification").style.display = "none";
+    }
+
+    function updateTimeAndStats() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, "0");
+      const m = String(now.getMinutes()).padStart(2, "0");
+      const s = String(now.getSeconds()).padStart(2, "0");
+      
+      const clockEl = document.getElementById("clockDisplay");
+      if (clockEl) clockEl.textContent = `${h}:${m}:${s}`;
+    }
+    setInterval(updateTimeAndStats, 1000);
+
+    // HỆ THỐNG BỘ ĐẾM TRUY CẬP ĐỒNG BỘ TRỰC TUYẾN (BẢN MỚI CHUẨN NHẤT)
+    function initVisitorCounterPremium() {
+      const namespace = "c2thcsbinhthanh_v1"; 
+
+      const fetchOptions = {
+        method: 'GET',
+        cache: 'no-store', 
+        headers: {
+          'Cache-Control': 'no-cache'
+        }
+      };
+
+      const now = new Date();
+      
+      // SỬA LỖI 12H ĐÊM KHÔNG RESET: Sử dụng giờ địa phương (Local Time) thay vì UTC (toISOString)
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const date = String(now.getDate()).padStart(2, '0');
+      
+      const todayStr = `${year}${month}${date}`; // Ví dụ: 20260717
+      const monthStr = `${year}${month}`; // Ví dụ: 202607
+
+      // TÍNH TOÁN NGÀY HÔM QUA (để lấy dữ liệu)
+      const yesterday = new Date(now);
+      yesterday.setDate(now.getDate() - 1);
+      const yYear = yesterday.getFullYear();
+      const yMonth = String(yesterday.getMonth() + 1).padStart(2, '0');
+      const yDate = String(yesterday.getDate()).padStart(2, '0');
+      const yesterdayStr = `${yYear}${yMonth}${yDate}`;
+
+      // 1. Đồng bộ và tăng TỔNG LƯỢT TRUY CẬP
+      fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_total`, fetchOptions)
+        .then(res => res.json())
+        .then(data => {
+          const elN = document.getElementById("valNam");
+          if (elN && data && typeof data.value !== 'undefined') {
+            elN.innerText = data.value.toLocaleString('vi-VN');
+          }
+        })
+        .catch(err => console.error("Lỗi đồng bộ tổng:", err));
+
+      // 2. Đồng bộ lượt truy cập HÔM NAY 
+      fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_day_${todayStr}`, fetchOptions)
+        .then(res => res.json())
+        .then(data => {
+          const elHN = document.getElementById("valHomNay");
+          if (elHN && data && typeof data.value !== 'undefined') {
+            elHN.innerText = data.value.toLocaleString('vi-VN');
+          }
+        })
+        .catch(err => console.error("Lỗi đồng bộ ngày:", err));
+
+      // 3. Đồng bộ lượt truy cập THÁNG NÀY
+      fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_month_${monthStr}`, fetchOptions)
+        .then(res => res.json())
+        .then(data => {
+          const elT = document.getElementById("valThang");
+          if (elT && data && typeof data.value !== 'undefined') {
+            elT.innerText = data.value.toLocaleString('vi-VN');
+          }
+        })
+        .catch(err => console.error("Lỗi đồng bộ tháng:", err));
+
+      // 4. Đồng bộ lượt truy cập HÔM QUA (Sử dụng lệnh /get/ thay vì /hit/ để chỉ xem, không cộng thêm số)
+      fetch(`https://countapi.mileshilliard.com/api/v1/get/${namespace}_day_${yesterdayStr}`, fetchOptions)
+        .then(res => {
+          if (!res.ok) throw new Error("Chưa có data hôm qua");
+          return res.json();
+        })
+        .then(data => {
+          const elHQ = document.getElementById("valHomQua");
+          if (elHQ && data && typeof data.value !== 'undefined') {
+            elHQ.innerText = data.value.toLocaleString('vi-VN');
+          }
+        })
+        .catch(err => {
+          // Nếu hôm qua web không có ai vào (hoặc API chưa tạo key), mặc định là 0
+          const elHQ = document.getElementById("valHomQua");
+          if (elHQ) elHQ.innerText = "0";
+        });
+    }
+
+    function openModal(id) {
+      document.getElementById(id).style.display = 'flex';
+      if (id === 'searchModal') {
+        setTimeout(() => document.getElementById('searchInput').focus(), 100);
+      }
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    window.addEventListener('click', function(event) {
+      if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('welcome-overlay')) {
+        event.target.style.display = 'none';
+      }
+    });
+
+    function showToast() {
+      const toast = document.getElementById("toast");
+      toast.className = "show";
+      setTimeout(function() { toast.className = toast.className.replace("show", ""); }, 3000);
+    }
+
+    function copyToClipboard(text) {
+      const tempInput = document.createElement("input");
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+      showToast();
+    }
+
+    function normalizeText(str) {
+      return (str || "").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+    }
+
+    // CƠ SỞ DỮ LIỆU TÌM KIẾM
+    const searchData = [
+      { titleMain: "Giới thiệu", titleSub: "Nhà trường", desc: "Xem lịch sử, cơ cấu trường, thông tin tổng quan.", keywords: ["gioi thieu", "nha truong", "thcs", "binh thanh"], url: "gioithieu.html" },
+      { titleMain: "Sự kiện", titleSub: "Mới", desc: "Hoạt động, phong trào, lễ hội, ngoại khóa.", keywords: ["su kien", "hoat dong", "phong trao"], url: "sukien.html" },
+      { titleMain: "Kỉ niệm", titleSub: "Hình ảnh", desc: "Album ảnh, video, khoảnh khắc đáng nhớ.", keywords: ["ki niem", "hinh anh", "album", "ky niem"], url: "kiniem.html" },
+      { titleMain: "Tin tức", titleSub: "Thông báo", desc: "Thông báo mới nhất, tin quan trọng của trường.", keywords: ["tin tuc", "thong bao", "tin moi"], url: "thongtin.html" },
+      { titleMain: "Tài nguyên", titleSub: "Học tập", desc: "Tài liệu, bài giảng, đề thi, ôn tập khối 6 đến khối 9.", keywords: ["tai nguyen", "hoc tap", "de thi", "tai lieu"], url: "tainguyen.html" },
+      { titleMain: "Tài nguyên", titleSub: "Máy chủ", desc: "Thông tin phần cứng, phần mềm và hệ thống website.", keywords: ["may chu", "server", "hosting", "github"], url: "tainguyenserver.html" },
+      { titleMain: "Kỹ năng", titleSub: "Phòng chống đuối nước", desc: "Cẩm nang an toàn dưới nước dành riêng cho học sinh.", keywords: ["duoi nuoc", "phong chong", "an toan"], url: "phongchongduoinuoc.html" },
+      { titleMain: "Bài báo học sinh", titleSub: "Gương sáng Bình Thành", desc: "Bài báo tuyên dương những học sinh xuất sắc phong trào Đội.", keywords: ["guong sang", "tuyen duong", "hoc sinh"], url: "guongtot.html" },
+      { titleMain: "Mẹo hay", titleSub: "Học tốt - giảm áp lực", desc: "Chia sẻ phương pháp sơ đồ tư duy (Mindmap) và thời gian.", keywords: ["meo hay", "hoc tot", "mindmap"], url: "meohayhoctap.html" },
+      { titleMain: "Mẹo hay", titleSub: "Bảo vệ sức khỏe", desc: "Các thói quen tốt giúp phòng tránh tật khúc xạ, cận thị học đường.", keywords: ["suc khoe", "can thi", "tu the ngoi"], url: "meosuckhoe.html" }
+    ];
+
+    function handleSearch() {
+      const input = document.getElementById("searchInput");
+      const resultBox = document.getElementById("searchResults");
+      const query = normalizeText(input.value);
+      resultBox.innerHTML = "";
+      if (!query) return;
+
+      const filtered = searchData.filter(item => {
+        const allText = normalizeText([item.titleMain, item.titleSub, item.desc, ...(item.keywords || [])].join(" "));
+        return allText.includes(query);
+      });
+
+      if (filtered.length === 0) {
+        resultBox.innerHTML = `<p style="font-size:13px; color:#666; padding:10px;">Không tìm thấy kết quả.</p>`;
+        return;
+      }
+
+      filtered.forEach(item => {
+        resultBox.innerHTML += `
+          <a href="${item.url}" class="search-res-item">
+            <div class="search-res-title">${item.titleMain} <span style="font-weight:400;">- ${item.titleSub}</span></div>
+            <div class="search-res-desc">${item.desc}</div>
+          </a>`;
+      });
+    }
+  </script>
+=======
+  <script src="index.js"></script>
+  <script src="chuyentrang.js"></script>
+>>>>>>> Stashed changes
+</body>
+</html>

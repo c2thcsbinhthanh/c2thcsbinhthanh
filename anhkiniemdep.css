@@ -1,0 +1,125 @@
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f6fb;
+      padding: 20px 0;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.08);
+      overflow: hidden;
+      padding-bottom: 30px;
+    }
+
+    .main-banner {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      max-height: 30vw;
+      min-height: 140px;
+      object-fit: cover;
+      object-position: top;
+      background: #e2e8f0;
+      display: block;
+    }
+
+    .main-title {
+      text-align: center;
+      color: #d40000;
+      font-size: 32px;
+      font-weight: bold;
+      margin-top: 25px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    .sub-title {
+      text-align: center;
+      color: #555;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .gallery-content {
+      padding: 0 22px;
+    }
+
+    .gallery-item {
+      border-top: 1px dashed #ddd;
+      padding: 25px 0;
+      text-align: center;
+    }
+
+    .gallery-item:first-child {
+      border-top: none;
+      padding-top: 10px;
+    }
+
+    .item-title {
+      color: #d40000;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .item-img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      min-height: 200px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: inline-block;
+      object-fit: cover;
+      transition: transform 0.2s ease;
+    }
+
+    .item-img:hover {
+      transform: scale(1.02);
+    }
+
+    .btn-wrap {
+      text-align: center;
+      margin-top: 30px;
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+    }
+
+    .back {
+      display: inline-block;
+      background: navy;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: opacity 0.2s;
+    }
+
+    .back:hover {
+      opacity: .85;
+    }
+
+    @media(max-width:600px) {
+      .container {
+        margin: 10px;
+        border-radius: 12px;
+      }
+      .main-title {
+        font-size: 26px;
+      }
+      .item-title {
+        font-size: 17px;
+      }
+    }
+  
