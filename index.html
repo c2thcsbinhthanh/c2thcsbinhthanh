@@ -198,20 +198,12 @@
         </div>
       </div>
 
-<<<<<<< Updated upstream
-      <!-- MỤC MỚI: THƯ VIỆN ẢNH NGƯỜI DÙNG -->
-=======
       
->>>>>>> Stashed changes
       <div class="widget">
         <div class="widget-header">Thư Viện Ảnh Người Dùng</div>
         <div class="widget-body">
           
-<<<<<<< Updated upstream
-          <!-- Dòng chữ click chuyển trang -->
-=======
           
->>>>>>> Stashed changes
           <div style="margin-bottom: 15px; text-align: center;">
             <a href="anh.html" style="color: #D32F2F; font-weight: bold; font-size: 16px; text-decoration: underline; display: inline-flex; align-items: center; justify-content: center; gap: 5px;">
               👉 siêu thư viện ảnh và tải ảnh lên (click vào dòng chữ này)
@@ -231,11 +223,6 @@
           </div>
         </div>
       </div>
-<<<<<<< Updated upstream
-      <!-- KẾT THÚC MỤC MỚI -->
-=======
-      
->>>>>>> Stashed changes
 
       <div class="widget">
         <div class="widget-header">Một số hình ảnh đẹp</div>
@@ -324,10 +311,8 @@
         welcomeBox.style.display = "flex";
       }
       
-      // 2. Kích hoạt đồng hồ và cập nhật lịch tháng/năm
       updateTimeAndStats();
       
-      // 3. Khởi chạy đếm lượt truy cập đồng bộ trực tuyến cực kỳ ổn định
       initVisitorCounterPremium();
     });
 
@@ -346,7 +331,6 @@
     }
     setInterval(updateTimeAndStats, 1000);
 
-    // HỆ THỐNG BỘ ĐẾM TRUY CẬP ĐỒNG BỘ TRỰC TUYẾN (BẢN MỚI CHUẨN NHẤT)
     function initVisitorCounterPremium() {
       const namespace = "c2thcsbinhthanh_v1"; 
 
@@ -360,15 +344,13 @@
 
       const now = new Date();
       
-      // SỬA LỖI 12H ĐÊM KHÔNG RESET: Sử dụng giờ địa phương (Local Time) thay vì UTC (toISOString)
       const year = now.getFullYear();
       const month = String(now.getMonth() + 1).padStart(2, '0');
       const date = String(now.getDate()).padStart(2, '0');
       
-      const todayStr = `${year}${month}${date}`; // Ví dụ: 20260717
-      const monthStr = `${year}${month}`; // Ví dụ: 202607
+      const todayStr = `${year}${month}${date}`;
+      const monthStr = `${year}${month}`;
 
-      // TÍNH TOÁN NGÀY HÔM QUA (để lấy dữ liệu)
       const yesterday = new Date(now);
       yesterday.setDate(now.getDate() - 1);
       const yYear = yesterday.getFullYear();
@@ -376,7 +358,6 @@
       const yDate = String(yesterday.getDate()).padStart(2, '0');
       const yesterdayStr = `${yYear}${yMonth}${yDate}`;
 
-      // 1. Đồng bộ và tăng TỔNG LƯỢT TRUY CẬP
       fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_total`, fetchOptions)
         .then(res => res.json())
         .then(data => {
@@ -387,7 +368,6 @@
         })
         .catch(err => console.error("Lỗi đồng bộ tổng:", err));
 
-      // 2. Đồng bộ lượt truy cập HÔM NAY 
       fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_day_${todayStr}`, fetchOptions)
         .then(res => res.json())
         .then(data => {
@@ -398,7 +378,6 @@
         })
         .catch(err => console.error("Lỗi đồng bộ ngày:", err));
 
-      // 3. Đồng bộ lượt truy cập THÁNG NÀY
       fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_month_${monthStr}`, fetchOptions)
         .then(res => res.json())
         .then(data => {
@@ -409,7 +388,6 @@
         })
         .catch(err => console.error("Lỗi đồng bộ tháng:", err));
 
-      // 4. Đồng bộ lượt truy cập HÔM QUA (Sử dụng lệnh /get/ thay vì /hit/ để chỉ xem, không cộng thêm số)
       fetch(`https://countapi.mileshilliard.com/api/v1/get/${namespace}_day_${yesterdayStr}`, fetchOptions)
         .then(res => {
           if (!res.ok) throw new Error("Chưa có data hôm qua");
@@ -422,7 +400,6 @@
           }
         })
         .catch(err => {
-          // Nếu hôm qua web không có ai vào (hoặc API chưa tạo key), mặc định là 0
           const elHQ = document.getElementById("valHomQua");
           if (elHQ) elHQ.innerText = "0";
         });
@@ -465,7 +442,6 @@
       return (str || "").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
     }
 
-    // CƠ SỞ DỮ LIỆU TÌM KIẾM
     const searchData = [
       { titleMain: "Giới thiệu", titleSub: "Nhà trường", desc: "Xem lịch sử, cơ cấu trường, thông tin tổng quan.", keywords: ["gioi thieu", "nha truong", "thcs", "binh thanh"], url: "gioithieu.html" },
       { titleMain: "Sự kiện", titleSub: "Mới", desc: "Hoạt động, phong trào, lễ hội, ngoại khóa.", keywords: ["su kien", "hoat dong", "phong trao"], url: "sukien.html" },
@@ -505,9 +481,7 @@
       });
     }
   </script>
-=======
   <script src="index.js"></script>
   <script src="chuyentrang.js"></script>
->>>>>>> Stashed changes
 </body>
 </html>
