@@ -1,3 +1,8 @@
+    history.scrollRestoration = "manual";
+
+window.addEventListener("pageshow", () => {
+    window.scrollTo(0, 0);
+});   
     window.addEventListener('DOMContentLoaded', () => {
       const welcomeBox = document.getElementById("welcomeNotification");
       if (welcomeBox) {
