@@ -1,4 +1,3 @@
-
     window.addEventListener('DOMContentLoaded', () => {
       const welcomeBox = document.getElementById("welcomeNotification");
       if (welcomeBox) {
@@ -13,10 +12,19 @@
     function closeWelcomeModal() {
       const overlay = document.getElementById("welcomeNotification");
       const box = overlay ? overlay.querySelector(".welcome-box") : null;
+      if (!overlay) return;
+      overlay.classList.add("closing");
       if (box) box.classList.add("closing");
+      overlay.style.animation = "overlayFadeOut 0.3s ease forwards";
+      if (box) box.style.animation = "popDownAnim 0.3s ease forwards";
       setTimeout(() => {
-        if (overlay) overlay.style.display = "none";
-        if (box) box.classList.remove("closing");
+        overlay.style.display = "none";
+        overlay.style.animation = "";
+        overlay.classList.remove("closing");
+        if (box) {
+          box.style.animation = "";
+          box.classList.remove("closing");
+        }
       }, 300);
     }
 
@@ -103,7 +111,9 @@
     }
 
     function openModal(id) {
-      document.getElementById(id).style.display = 'flex';
+      const overlay = document.getElementById(id);
+      if (!overlay) return;
+      overlay.style.display = 'flex';
       if (id === 'searchModal') {
         setTimeout(() => document.getElementById('searchInput').focus(), 100);
       }
@@ -141,6 +151,18 @@
       document.execCommand("copy");
       document.body.removeChild(tempInput);
       showToast();
+    }
+
+    function toggleReadMore(button) {
+      const content = button.previousElementSibling;
+      if (!content) return;
+
+      const expanded = content.classList.toggle("expanded");
+      if (expanded) {
+        button.textContent = "Thu gọn";
+      } else {
+        button.textContent = "Xem thêm";
+      }
     }
 
     function normalizeText(str) {
@@ -185,4 +207,3 @@
           </a>`;
       });
     }
-  
