@@ -237,6 +237,43 @@
         </div>
       </div>
 
+
+      <div class="widget">
+        <div class="widget-header forum-header">Diễn đàn <span class="beta-badge">BETA</span></div>
+        <div class="widget-body">
+          <div class="forum-link-wrap">
+            <a href="diendan.html" class="forum-link">👉 Diễn đàn (click vào dòng chữ này)</a>
+          </div>
+
+          <div class="forum-posts">
+            <article class="forum-post">
+              <h4 class="forum-post-title">Thông báo thử nghiệm tính năng mới cho giao diện diễn đàn của website trường</h4>
+              <div class="forum-post-content">
+                Website đang được nâng cấp để bổ sung khu vực diễn đàn cho học sinh, nơi mọi người có thể đọc thông báo, chia sẻ ý tưởng học tập, thảo luận về đề ôn tập và cập nhật các hoạt động mới của trường. Nội dung minh họa này được viết rất dài để kiểm tra chức năng rút gọn nội dung. Khi trang vừa tải lên, đoạn văn chỉ hiển thị tối đa hai dòng. Sau khi bấm vào nút xem thêm, toàn bộ nội dung sẽ mở ra đầy đủ để người đọc xem hết từng câu chữ. Đây là cách trình bày phù hợp với các bài viết dài, có tiêu đề lớn, cần tóm tắt trước rồi mới cho phép đọc tiếp.
+              </div>
+              <button class="read-more-btn" type="button" onclick="toggleReadMore(this)">Xem thêm</button>
+            </article>
+
+            <article class="forum-post">
+              <h4 class="forum-post-title">Chia sẻ tài liệu học tập và kinh nghiệm tự ôn tập môn Toán, Tin học, Khoa học tự nhiên</h4>
+              <div class="forum-post-content">
+                Mục này dùng để mô phỏng một bài viết dài với nhiều câu mô tả chi tiết. Học sinh có thể đăng nội dung về tài liệu ôn tập, mẹo ghi nhớ công thức, cách làm bài nhanh, kinh nghiệm học lập trình web, hoặc các phương pháp tự học hiệu quả tại nhà. Đoạn văn được viết dài hơn bình thường để kiểm tra chính xác chức năng hiển thị hai dòng đầu tiên, sau đó người dùng sẽ bấm vào nút xem thêm để đọc toàn bộ nội dung. Nếu bấm lại lần nữa thì phần nội dung sẽ thu gọn về trạng thái ban đầu. Việc này giúp trang gọn hơn và tránh chiếm quá nhiều diện tích khi có nhiều bài viết.
+              </div>
+              <button class="read-more-btn" type="button" onclick="toggleReadMore(this)">Xem thêm</button>
+            </article>
+
+            <article class="forum-post">
+              <h4 class="forum-post-title">Thông báo góp ý, cập nhật giao diện và các bài đăng demo cho trang diễn đàn</h4>
+              <div class="forum-post-content">
+                Đây là bài viết demo thứ ba nhằm xác nhận cơ chế rút gọn nội dung hoạt động đúng trong mọi trường hợp. Nội dung có thể dài vô hạn, có thể là một đoạn giải thích, một bài chia sẻ kinh nghiệm, một thông báo quan trọng hoặc một bài giới thiệu dự án. Khi chưa mở rộng, người xem chỉ thấy hai dòng đầu tiên nhờ cơ chế giới hạn số dòng bằng CSS. Khi nhấn vào nút xem thêm, toàn bộ nội dung sẽ hiển thị đầy đủ. Khi nhấn thu gọn, bài viết trở về trạng thái ngắn gọn ban đầu để giao diện luôn sạch và dễ đọc.
+              </div>
+              <button class="read-more-btn" type="button" onclick="toggleReadMore(this)">Xem thêm</button>
+            </article>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   </div>
 
@@ -296,185 +333,6 @@
       </div>
     </div>
   </div>
-
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-
-      const welcomeBox = document.getElementById("welcomeNotification");
-      if (welcomeBox) {
-        welcomeBox.style.display = "flex";
-      }
-      
-      updateTimeAndStats();
-      
-      initVisitorCounterPremium();
-    });
-
-    function closeWelcomeModal() {
-      document.getElementById("welcomeNotification").style.display = "none";
-    }
-
-    function updateTimeAndStats() {
-      const now = new Date();
-      const h = String(now.getHours()).padStart(2, "0");
-      const m = String(now.getMinutes()).padStart(2, "0");
-      const s = String(now.getSeconds()).padStart(2, "0");
-      
-      const clockEl = document.getElementById("clockDisplay");
-      if (clockEl) clockEl.textContent = `${h}:${m}:${s}`;
-    }
-    setInterval(updateTimeAndStats, 1000);
-
-    function initVisitorCounterPremium() {
-      const namespace = "c2thcsbinhthanh_v1"; 
-
-      const fetchOptions = {
-        method: 'GET',
-        cache: 'no-store', 
-        headers: {
-          'Cache-Control': 'no-cache'
-        }
-      };
-
-      const now = new Date();
-      
-      const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const date = String(now.getDate()).padStart(2, '0');
-      
-      const todayStr = `${year}${month}${date}`;
-      const monthStr = `${year}${month}`;
-
-      const yesterday = new Date(now);
-      yesterday.setDate(now.getDate() - 1);
-      const yYear = yesterday.getFullYear();
-      const yMonth = String(yesterday.getMonth() + 1).padStart(2, '0');
-      const yDate = String(yesterday.getDate()).padStart(2, '0');
-      const yesterdayStr = `${yYear}${yMonth}${yDate}`;
-
-      fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_total`, fetchOptions)
-        .then(res => res.json())
-        .then(data => {
-          const elN = document.getElementById("valNam");
-          if (elN && data && typeof data.value !== 'undefined') {
-            elN.innerText = data.value.toLocaleString('vi-VN');
-          }
-        })
-        .catch(err => console.error("Lỗi đồng bộ tổng:", err));
-
-      fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_day_${todayStr}`, fetchOptions)
-        .then(res => res.json())
-        .then(data => {
-          const elHN = document.getElementById("valHomNay");
-          if (elHN && data && typeof data.value !== 'undefined') {
-            elHN.innerText = data.value.toLocaleString('vi-VN');
-          }
-        })
-        .catch(err => console.error("Lỗi đồng bộ ngày:", err));
-
-      fetch(`https://countapi.mileshilliard.com/api/v1/hit/${namespace}_month_${monthStr}`, fetchOptions)
-        .then(res => res.json())
-        .then(data => {
-          const elT = document.getElementById("valThang");
-          if (elT && data && typeof data.value !== 'undefined') {
-            elT.innerText = data.value.toLocaleString('vi-VN');
-          }
-        })
-        .catch(err => console.error("Lỗi đồng bộ tháng:", err));
-
-      fetch(`https://countapi.mileshilliard.com/api/v1/get/${namespace}_day_${yesterdayStr}`, fetchOptions)
-        .then(res => {
-          if (!res.ok) throw new Error("Chưa có data hôm qua");
-          return res.json();
-        })
-        .then(data => {
-          const elHQ = document.getElementById("valHomQua");
-          if (elHQ && data && typeof data.value !== 'undefined') {
-            elHQ.innerText = data.value.toLocaleString('vi-VN');
-          }
-        })
-        .catch(err => {
-          const elHQ = document.getElementById("valHomQua");
-          if (elHQ) elHQ.innerText = "0";
-        });
-    }
-
-    function openModal(id) {
-      document.getElementById(id).style.display = 'flex';
-      if (id === 'searchModal') {
-        setTimeout(() => document.getElementById('searchInput').focus(), 100);
-      }
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).style.display = 'none';
-    }
-
-    window.addEventListener('click', function(event) {
-      if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('welcome-overlay')) {
-        event.target.style.display = 'none';
-      }
-    });
-
-    function showToast() {
-      const toast = document.getElementById("toast");
-      toast.className = "show";
-      setTimeout(function() { toast.className = toast.className.replace("show", ""); }, 3000);
-    }
-
-    function copyToClipboard(text) {
-      const tempInput = document.createElement("input");
-      tempInput.value = text;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      document.execCommand("copy");
-      document.body.removeChild(tempInput);
-      showToast();
-    }
-
-    function normalizeText(str) {
-      return (str || "").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
-    }
-
-    const searchData = [
-      { titleMain: "Giới thiệu", titleSub: "Nhà trường", desc: "Xem lịch sử, cơ cấu trường, thông tin tổng quan.", keywords: ["gioi thieu", "nha truong", "thcs", "binh thanh"], url: "gioithieu.html" },
-      { titleMain: "Sự kiện", titleSub: "Mới", desc: "Hoạt động, phong trào, lễ hội, ngoại khóa.", keywords: ["su kien", "hoat dong", "phong trao"], url: "sukien.html" },
-      { titleMain: "Kỉ niệm", titleSub: "Hình ảnh", desc: "Album ảnh, video, khoảnh khắc đáng nhớ.", keywords: ["ki niem", "hinh anh", "album", "ky niem"], url: "kiniem.html" },
-      { titleMain: "Tin tức", titleSub: "Thông báo", desc: "Thông báo mới nhất, tin quan trọng của trường.", keywords: ["tin tuc", "thong bao", "tin moi"], url: "thongtin.html" },
-      { titleMain: "Tài nguyên", titleSub: "Học tập", desc: "Tài liệu, bài giảng, đề thi, ôn tập khối 6 đến khối 9.", keywords: ["tai nguyen", "hoc tap", "de thi", "tai lieu"], url: "tainguyen.html" },
-      { titleMain: "Tài nguyên", titleSub: "Máy chủ", desc: "Thông tin phần cứng, phần mềm và hệ thống website.", keywords: ["may chu", "server", "hosting", "github"], url: "tainguyenserver.html" },
-      { titleMain: "Kỹ năng", titleSub: "Phòng chống đuối nước", desc: "Cẩm nang an toàn dưới nước dành riêng cho học sinh.", keywords: ["duoi nuoc", "phong chong", "an toan"], url: "phongchongduoinuoc.html" },
-      { titleMain: "Bài báo học sinh", titleSub: "Gương sáng Bình Thành", desc: "Bài báo tuyên dương những học sinh xuất sắc phong trào Đội.", keywords: ["guong sang", "tuyen duong", "hoc sinh"], url: "guongtot.html" },
-      { titleMain: "Mẹo hay", titleSub: "Học tốt - giảm áp lực", desc: "Chia sẻ phương pháp sơ đồ tư duy (Mindmap) và thời gian.", keywords: ["meo hay", "hoc tot", "mindmap"], url: "meohayhoctap.html" },
-      { titleMain: "Mẹo hay", titleSub: "Bảo vệ sức khỏe", desc: "Các thói quen tốt giúp phòng tránh tật khúc xạ, cận thị học đường.", keywords: ["suc khoe", "can thi", "tu the ngoi"], url: "meosuckhoe.html" }
-    ];
-
-    function handleSearch() {
-      const input = document.getElementById("searchInput");
-      const resultBox = document.getElementById("searchResults");
-      const query = normalizeText(input.value);
-      resultBox.innerHTML = "";
-      if (!query) return;
-
-      const filtered = searchData.filter(item => {
-        const allText = normalizeText([item.titleMain, item.titleSub, item.desc, ...(item.keywords || [])].join(" "));
-        return allText.includes(query);
-      });
-
-      if (filtered.length === 0) {
-        resultBox.innerHTML = `<p style="font-size:13px; color:#666; padding:10px;">Không tìm thấy kết quả.</p>`;
-        return;
-      }
-
-      filtered.forEach(item => {
-        resultBox.innerHTML += `
-          <a href="${item.url}" class="search-res-item">
-            <div class="search-res-title">${item.titleMain} <span style="font-weight:400;">- ${item.titleSub}</span></div>
-            <div class="search-res-desc">${item.desc}</div>
-          </a>`;
-      });
-    }
-  </script>
   <script src="index.js"></script>
   <script src="chuyentrang.js"></script>
 </body>
