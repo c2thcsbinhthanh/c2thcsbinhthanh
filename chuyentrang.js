@@ -28,6 +28,12 @@
     document.addEventListener('click', handleClick);
   }
 
+  function restorePage() {
+    document.body.classList.remove('page-leave');
+  }
+
+  window.addEventListener('pageshow', restorePage);
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
