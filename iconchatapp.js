@@ -1,14 +1,14 @@
 function initializeIconChatApp(root) {
-const bubble = root.querySelector('bubble');
-    const panel = root.querySelector('panel');
-    const panelHead = root.querySelector('panelHead');
-    const overlay = root.querySelector('overlay');
-    const hint = root.querySelector('hint');
-    const mainView = root.querySelector('mainView');
-    const subView = root.querySelector('subView');
-    const subTitle = root.querySelector('subTitle');
-    const subList = root.querySelector('subList');
-    const backBtn = root.querySelector('backBtn');
+const bubble = root.querySelector('#bubble');
+    const panel = root.querySelector('#panel');
+    const panelHead = root.querySelector('#panelHead');
+    const overlay = root.querySelector('#overlay');
+    const hint = root.querySelector('#hint');
+    const mainView = root.querySelector('#mainView');
+    const subView = root.querySelector('#subView');
+    const subTitle = root.querySelector('#subTitle');
+    const subList = root.querySelector('#subList');
+    const backBtn = root.querySelector('#backBtn');
 
     const DATA = {
       zalo: {
